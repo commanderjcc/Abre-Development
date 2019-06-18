@@ -12,7 +12,7 @@ Abre is a software platform that allows schools to manage and distribute web-bas
 ### Set up a Web-server
 
   1.  Choose your fighter:
-    * [XAMPP](https://www.apachefriends.org/index.html) - cross platform (Windows,Mac,Linux), Apache2, MySQL, PHP, Perl
+    * [XAMPP](https://www.apachefriends.org/index.html) - cross platform (Windows, Mac, Linux), Apache2, MySQL, PHP, Perl
     * [MAMP](https://www.mamp.info/en/) - Mac OS, Apache2, MySQL, PHP
     * [LAMP](https://www.linode.com/docs/web-servers/lamp/install-lamp-stack-on-ubuntu-18-04/) - Linux, Apache2, MySQL, PHP (Little harder for Newbies, linked website is for Ubuntu 18.04)
   2. Download your pick from the internet and follow their install instructions.
@@ -45,39 +45,33 @@ Abre is a software platform that allows schools to manage and distribute web-bas
 
 ### Follow Install from Above
 
-    Exactly the same but with a local Webserver
+*You'll need a webserver no matter what*
 
 ### Download IDE
 
-    blah bajslfkjs fsjfa sfkls jflksjaflksjfl
-    sfaskjfslkjf s
-    sfjlksdjf
+  1. Download and install the [Jetbrains Toolbox](https://www.jetbrains.com/toolbox/app/) and install PHPStorm from the Toolbox.
+    * *Trust me it's easier this way, everything just stays updated*
 
 ### Integrate Webserver with PHPStorm
 
-blah bajslfkjs fsjfa sfkls jflksjaflksjfl
-sfaskjfslkjf s
-sfjlksdjf
+  Follow this [JetBrains Guide](https://www.jetbrains.com/help/phpstorm/installing-an-amp-package.html) but skip the first section about installing an AMP package, you've already done that.
 
 ### Integrate PHP with PHPStorm
 
-blah bajslfkjs fsjfa sfkls jflksjaflksjfl
-sfaskjfslkjf s
-sfjlksdjf
+##### If you have a Local webserver Follow [these instructions](https://www.jetbrains.com/help/phpstorm/configuring-local-interpreter.html)
+##### If you have a Remote webserver Follow [these instructions](https://www.jetbrains.com/help/phpstorm/configuring-remote-interpreters.html)
 
-#### Integrate PHP Debugger with PHPStorm
+### Integrate Xdebug with PHPStorm
 
-blah bajslfkjs fsjfa sfkls jflksjaflksjfl
-sfaskjfslkjf s
-sfjlksdjf
+**As a starting point use this [guide](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html).**
+
+If you are running a MacOS or Linux web-server, you may need to Download/Compile Xdebug using PECL by running `pecl install xdebug`. PECL should be installed automatically, but if not, run `sudo apt-get install php7.1-dev` on Linux or install [Homebrew](https://brew.sh/) on MacOS and run `brew install php7.1-dev`. If there's still trouble, search Google for `install PECL <your_OS>`
 
 #### Install JetBrains Extension
 
-blah bajslfkjs fsjfa sfkls jflksjaflksjfl
-sfaskjfslkjf s
-sfjlksdjf
 
-###
+
+
 
 ## Documentation
 
