@@ -17,23 +17,28 @@ Abre is a software platform that allows schools to manage and distribute web-bas
     * [LAMP](https://www.linode.com/docs/web-servers/lamp/install-lamp-stack-on-ubuntu-18-04/) - Linux, Apache2, MySQL, PHP (Little harder for Newbies, linked website is for Ubuntu 18.04)
   2. Download your pick from the internet and follow their install instructions.
 
-**	\(⌐◔\_◔\) Make sure you install all three: Apache, PHP 7, and MySQL! \(◕\_◕¬\)**
+**\(⌐◔\_◔\) Make sure you install all three: Apache, PHP 7, and MySQL! \(◕\_◕¬\)**
 
 
 ### Connect Abre installation to Web-server
 
   **Change Document Root to Repo Location**
 
-    blah bajslfkjs fsjfa sfkls jflksjaflksjfl
-    sfaskjfslkjf s
-    sfjlksdjf
+  1. Open the settings of whichever Web-server you selected and look for a setting called document root location or folder.
+  2. Change the Document Root to the location of your Abre folder.
+  3. Restart the Web-server
+
+  *Linux users, you're going to have to change your document root manually by editing the apache config files. Search up* `edit apache document root` *on Google and look for recent stack overflow posts.*
+
   ***Or***
 
   **Copy Repo into Document Root**
 
-    blah bajslfkjs fsjfa sfkls jflksjaflksjfl
-    sfaskjfslkjf s
-    sfjlksdjf
+  1. Depending on how you installed your Web-server the Document Root will be in a different location. However here are the default locations:
+   * XAMPP - "C:\xampp\htdocs\"
+   * MAMP - "/Applications/MAMP/htdocs/"
+   * LAMP - "/var/www/html/"
+  2. Select all the entire contents of the Abre folder and copy them into your Document Root folder (above).
 
 ### Open Browser & Follow install program
 
