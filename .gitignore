@@ -1,3 +1,5 @@
 .idea
 configuration.*
 Logs
+
+*.DS_Store
