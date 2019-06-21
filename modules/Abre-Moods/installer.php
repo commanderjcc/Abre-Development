@@ -55,7 +55,7 @@
 		require(dirname(__FILE__) . '/../../core/abre_dbconnect.php');
 		if(!$db->query("SELECT user_ID FROM moods LIMIT 1"))
 		{
-			$sql = "ALTER TABLE `moods` ADD `user_ID` varchar(11) NOT NULL;";
+			$sql = "ALTER TABLE `moods` ADD `user_ID` int(11) NOT NULL;";
 			$db->multi_query($sql);
 		}
 		$db->close();
