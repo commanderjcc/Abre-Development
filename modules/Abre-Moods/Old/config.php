@@ -25,10 +25,12 @@
 	//Check for installation
 	if(admin()){ require('installer.php'); }
 
+
+//Not quite certain what this stuff does...
 	$pageview = 1;
 	$drawerhidden = 0;
 	$pageorder = 2;
-	$pagetitle = "Moods"; 
+	$pagetitle = "Moods";
 	$description = "A place to record your moods."; //changes the description in the store
 	$version = $abre_version; //the version number (4.5.9)
 	$repo = NULL;
