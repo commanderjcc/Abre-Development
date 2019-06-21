@@ -33,7 +33,7 @@
 
 	if($records==0){
 		$stmt = $db->stmt_init();
-		$sql = "INSERT INTO profiles (email, startup, siteID) VALUES (?, '0', ?)";
+		$sql = "INSERT INTO profiles (email, startup, siteID) VALUES (?, '0', ?)"; //Doesnt work
 		$stmt->prepare($sql);
 		$stmt->bind_param("si", $_SESSION['useremail'], $_SESSION['siteID']);
 		$stmt->execute();

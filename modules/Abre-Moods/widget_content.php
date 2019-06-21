@@ -1,4 +1,7 @@
 <?php
+    /* Called when widget down arrow is clicked
+
+
 	/*
 	* Copyright (C) 2016-2018 Abre.io Inc.
 	*
@@ -26,7 +29,8 @@
 
 <?php
 	//different icons and text for staff vs students
-	$pagerestrictions="staff";
+	//$pagerestrictions="staff";
+	//$pagerestrictions="student";
 	//if($_SESSION['usertype']=="student")
 	if($pagerestrictions=="student")
 	{

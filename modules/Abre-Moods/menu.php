@@ -1,4 +1,7 @@
 <?php
+    /* Called when User clicks on Mood from hamburger menu */
+
+
 
 	/*
 	* Copyright (C) 2016-2018 Abre.io Inc.
