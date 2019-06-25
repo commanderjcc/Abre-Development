@@ -92,21 +92,13 @@
 	}
 	echo "<div class='result'></div>";
 	echo "<script type='text/javascript'>
-			    var timer;
-			    
-			    var MoodsUpdater = function() {		         
-					$.post('modules/Abre-Moods/Retrieve_Data/.php', {request:'test'}, function(data) {
+			    var TeacherOverviewUpdater = function() {		         
+					$.post('modules/Abre-Moods/get_time.php', {request:'test'}, function(data) {
 						console.log(data);
 					}).done(function(data) {
 						$('.result').html(data);
 					});   
 			    }
-			    function startMoodsUpdater() {
-			        if(!timer) {
-			            timer = setInterval(MoodsUpdater,1000);
-			        }
-			        
-			    }
-			    moodsUpdate();
+			    setNamedInterval('TeacherOverview',TeacherOverviewUpdater,1000);
 		</script>";
 ?>

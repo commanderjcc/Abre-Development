@@ -40,17 +40,18 @@
 	require_once('permissions.php');
 
 	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/main_0.0.9.css'>";
+
+	// This JS allows us to track each timer so that no two updaters are running at the same time
 	echo "<script type='text/javascript'>
-						var setNamedInterval = (function() {
-							var timers = {}
-							return function(name, f, interval, ...args) {
-								if (!timers[name]) {
-									timers[name] = setInterval(function() {
-										timers[name] = null
-										f(...args)
-									}, timeout)
-								}
-							}
-						})()
+			var setNamedInterval = (function() {
+				var timers = {};
+				return function(name, f, interval, ...args) {
+					if (!timers[name]) {
+						timers[name] = setInterval(function() {
+							f(...args);
+						}, interval)
+					}
+				}
+			})()
 		  </script>";
 ?>
