@@ -22,6 +22,7 @@
 	require_once(dirname(__FILE__) . '/../../core/abre_verification.php');
 	//require_once(dirname(__FILE__) . '/../../core/abre_google_login.php');
   require_once(dirname(__FILE__) . '/../../core/abre_functions.php');
+  require_once(dirname(__FILE__).'/permissions.php');
   //require(dirname(__FILE__) . '/../../core/abre_dbconnect.php');
 
 ?>
@@ -33,7 +34,7 @@
 	//$pagerestrictions="student";
 	//if($_SESSION['usertype']=="student")
 	//if($pagerestrictions=="student")
-	if(true)
+	if($isStudent)
 	{
 		echo "<hr class='widget_hr'>"; //keep
 		echo "<div class='widget_holder'>"; //keep
@@ -42,7 +43,7 @@
 			//echo "<div class='widget_container widget_body' style='color:#666;'>History<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_history_or_overview.php' data-reload='true'>history</i></div>";
 		echo "</div>";
 	}
-	else{
+	else if($isStaff){
 		echo "<hr class='widget_hr'>"; //keep
 		//echo "<div class='widget_holder'>"; //keep
 		//echo "<div class='widget_container widget_body' style='color:#666;'>Roster<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_menu_or_roster.php' data-reload='true'>group</i></div>";
@@ -91,6 +92,7 @@
 	echo "</div>";
 	}
 	echo "<div class='result'></div>";
+	//creates and registers updater that uses post ajax calls to pull down latest data
 	echo "<script type='text/javascript'>
 			    var TeacherOverviewUpdater = function() {		         
 					$.post('modules/Abre-Moods/get_time.php', {request:'test'}, function(data) {
