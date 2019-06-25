@@ -41,13 +41,16 @@
 
 	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/main_0.0.9.css'>";
 	echo "<script type='text/javascript'>
-			  var setNamedInvterval = (function() {
-			      var timers = {};
-			      return function(name, f, interval){
-			          if(!timer[name]) {
-			              timer[name] = setInterval()
-			          }
-			      }
-			  })()
+						var setNamedInterval = (function() {
+							var timers = {}
+							return function(name, f, interval, ...args) {
+								if (!timers[name]) {
+									timers[name] = setInterval(function() {
+										timers[name] = null
+										f(...args)
+									}, timeout)
+								}
+							}
+						})()
 		  </script>";
 ?>
