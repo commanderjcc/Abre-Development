@@ -32,7 +32,8 @@
 	//$pagerestrictions="staff";
 	//$pagerestrictions="student";
 	//if($_SESSION['usertype']=="student")
-	if($pagerestrictions=="student")
+	//if($pagerestrictions=="student")
+	if(true)
 	{
 		echo "<hr class='widget_hr'>"; //keep
 		echo "<div class='widget_holder'>"; //keep
@@ -41,7 +42,7 @@
 			//echo "<div class='widget_container widget_body' style='color:#666;'>History<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_history_or_overview.php' data-reload='true'>history</i></div>";
 		echo "</div>";
 	}
-	else {
+	else{
 		echo "<hr class='widget_hr'>"; //keep
 		//echo "<div class='widget_holder'>"; //keep
 		//echo "<div class='widget_container widget_body' style='color:#666;'>Roster<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_menu_or_roster.php' data-reload='true'>group</i></div>";
@@ -89,22 +90,21 @@
 			</div>";
 	echo "</div>";
 	}
+	echo "<div class='result'></div>";
 	echo "<script type='text/javascript'>
-			$(document).ready(function(){
-			    function test() {
-			        $.ajax({
-			        	type: 'POST',
-			        	url: 'index.php',
-			        	success: function() {
-			        	    console.log('worked!');
-			        	}
-			        });
+			    var timer;
+			    function moodsUpdate() {
+			        if(!timer) {
+			            timer = setInterval( function() {
+			            	$.post('modules/Abre-Moods/get_time.php', {request:'test'}, function(data) {
+								console.log(data);
+			        		}).done(function(data) {
+								$('.result').html(data);
+			        		});   
+			            },1000);
+			        }
+			        
 			    }
-			    test();
-			    setInterval(function(){
-			        console.log('testing...');
-			        test();
-			    },5000);
-			});
+			    moodsUpdate();
 		</script>";
 ?>
