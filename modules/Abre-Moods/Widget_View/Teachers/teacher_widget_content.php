@@ -37,31 +37,31 @@ echo "<div class='widget_body'>
 echo 	"<div id='total_bar' class='teacher_color_bar'>
 					<div id='shaded_total_bar' class='shaded_bar'></div>
 					<div class='bar_text_container'>
-						Total - <span class='bold_bar_text'>20/30</span>
+						Total - <span class='bold_bar_text'></span>
 					</div>
 				</div>
 				<div id='blue_bar' class='teacher_color_bar'>
 					<div id='shaded_blue_bar' class='shaded_bar'></div>
 					<div class='bar_text_container'>
-						Blue - <span class='bold_bar_text'>20/30</span>
+						Blue - <span class='bold_bar_text'></span>
 					</div>
 				</div>
 				<div id='green_bar' class='teacher_color_bar'>
 					<div id='shaded_green_bar'class='shaded_bar'></div>
 					<div class='bar_text_container'>
-						Green - <span class='bold_bar_text'>20/30</span>
+						Green - <span class='bold_bar_text'></span>
 					</div>
 				</div>
 				<div id='yellow_bar' class='teacher_color_bar'>
 				<div id='shaded_yellow_bar' class='shaded_bar'></div>
 					<div class='bar_text_container'>
-						Yellow - <span class='bold_bar_text'>20/30</span>
+						Yellow - <span class='bold_bar_text'></span>
 					</div>
 				</div>
 				<div id='red_bar' class='teacher_color_bar'>
 				<div id='shaded_red_bar' class='shaded_bar'></div>
 					<div class='bar_text_container'>
-						Red - <span class='bold_bar_text'>20/30</span>
+						Red - <span class='bold_bar_text'></span>
 					</div>
 				</div>
 			</div>";
@@ -70,12 +70,70 @@ echo "</div>";
 echo "<div class='result'></div>";
 //creates and registers updater that uses post ajax calls to pull down latest data
 echo "<script type='text/javascript'>
+                //Updater as a function with a ajax post call
 			    var TeacherOverviewUpdater = function() {		         
-					$.post('modules/Abre-Moods/get_time.php', {request:'test'}, function(data) {
-						console.log(data);
-					}).done(function(data) {
-						$('.result').html(data);
-					});   
+					var jQueryRequest = $.post('/modules/Abre-Moods/Retrieve_Data/Teachers/get_all_students_history.php', {request:'test'}, function(data) {
+						//log data to console for testing, can remove for production
+					    console.log(data);
+					});
+					
+					//Do if request succeeded
+					jQueryRequest.done(function(data) {
+					    var jsonData = JSON.parse(data);
+					    
+					    //update text
+					    $('#total_bar .bar_text_container .bold_bar_text').html(jsonData.totalResponses+'/'+jsonData.totalStudents);
+					    
+					    //animate shaded bar across div
+					    $('#total_bar .shaded_bar').animate({
+					        'width': 100 * (jsonData.totalStudents - jsonData.totalResponses)/jsonData.totalStudents + '%'
+					    });
+					    
+					    
+					    //repeat for blue
+					    $('#blue_bar .bar_text_container .bold_bar_text').html(jsonData.blue+'/'+jsonData.totalStudents);
+					    
+					    //animate shaded bar across div
+					    $('#blue_bar .shaded_bar').animate({
+					        'width': 100 * (jsonData.totalStudents - jsonData.blue)/jsonData.totalStudents + '%'
+					    });
+					    
+					    
+					    //repeat for green
+					    $('#green_bar .bar_text_container .bold_bar_text').html(jsonData.green+'/'+jsonData.totalStudents);
+					    
+					    //animate shaded bar across div
+					    $('#green_bar .shaded_bar').animate({
+					        'width': 100 * (jsonData.totalStudents - jsonData.green)/jsonData.totalStudents + '%'
+					    });
+					    
+					    
+					    //repeat for yellow
+					    $('#yellow_bar .bar_text_container .bold_bar_text').html(jsonData.yellow+'/'+jsonData.totalStudents);
+					    
+					    //animate shaded bar across div
+					    $('#yellow_bar .shaded_bar').animate({
+					        'width': 100 * (jsonData.totalStudents - jsonData.yellow)/jsonData.totalStudents + '%'
+					    });
+					    
+					    
+					    //repeat for red
+					    $('#red_bar .bar_text_container .bold_bar_text').html(jsonData.red+'/'+jsonData.totalStudents);
+					    
+					    //animate shaded bar across div
+					    $('#red_bar .shaded_bar').animate({
+					        'width': 100 * (jsonData.totalStudents - jsonData.red)/jsonData.totalStudents + '%'
+					    });
+					    
+					    
+					    //just leaving for now for testing
+						$('.result').remove();
+					});
+					//Do if request failed
+					jQueryRequest.fail(function(data) {
+					    $('.result').html('POST Error, this is what we got back: ' + data);
+					});
 			    };
+			    //puts the function on a NAMED timer, name must be same for each updater. 
 			    setNamedInterval('TeacherOverview',TeacherOverviewUpdater,1000);
 		</script>";
