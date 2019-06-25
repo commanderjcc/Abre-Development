@@ -22,10 +22,6 @@
 
 require_once(dirname(__FILE__) . '/../../core/abre_verification.php');
 
-
-
-
-
 echo "<hr class='widget_hr'>"; //keep
 //echo "<div class='widget_holder'>"; //keep
 //echo "<div class='widget_container widget_body' style='color:#666;'>Roster<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_menu_or_roster.php' data-reload='true'>group</i></div>";
@@ -72,3 +68,16 @@ echo 	"<div id='total_bar' class='teacher_color_bar'>
 				</div>
 			</div>";
 echo "</div>";
+
+echo "<div class='result'></div>";
+//creates and registers updater that uses post ajax calls to pull down latest data
+echo "<script type='text/javascript'>
+			    var TeacherOverviewUpdater = function() {		         
+					$.post('modules/Abre-Moods/get_time.php', {request:'test'}, function(data) {
+						console.log(data);
+					}).done(function(data) {
+						$('.result').html(data);
+					});   
+			    };
+			    setNamedInterval('TeacherOverview',TeacherOverviewUpdater,1000);
+		</script>";
