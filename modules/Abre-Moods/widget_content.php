@@ -93,15 +93,17 @@
 	echo "<div class='result'></div>";
 	echo "<script type='text/javascript'>
 			    var timer;
-			    function moodsUpdate() {
+			    
+			    var MoodsUpdater = function() {		         
+					$.post('modules/Abre-Moods/Retrieve_Data/.php', {request:'test'}, function(data) {
+						console.log(data);
+					}).done(function(data) {
+						$('.result').html(data);
+					});   
+			    }
+			    function startMoodsUpdater() {
 			        if(!timer) {
-			            timer = setInterval( function() {
-			            	$.post('modules/Abre-Moods/get_time.php', {request:'test'}, function(data) {
-								console.log(data);
-			        		}).done(function(data) {
-								$('.result').html(data);
-			        		});   
-			            },1000);
+			            timer = setInterval(MoodsUpdater,1000);
 			        }
 			        
 			    }
