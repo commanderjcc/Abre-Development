@@ -58,7 +58,6 @@ echo 	"<div id='total_bar' class='teacher_color_bar'>
 			</div>";
 echo "</div>";
 
-echo "<div class='result'></div>";
 //creates and registers updater that uses post ajax calls to pull down latest data
 echo "<script type='text/javascript'>
                 //Updater as a function with a ajax post call
@@ -115,14 +114,6 @@ echo "<script type='text/javascript'>
 					    $('#red_bar .shaded_bar').animate({
 					        'width': 100 * (jsonData.totalStudents - jsonData.red)/jsonData.totalStudents + '%'
 					    });
-					    
-					    
-					    //just leaving for now for testing
-						$('.result').remove();
-					});
-					//Do if request failed
-					jQueryRequest.fail(function(data) {
-					    $('.result').html('POST Error, this is what we got back: ' + data);
 					});
 			    };
 			    //puts the function on a NAMED timer, name must be same for each updater. 

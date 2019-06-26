@@ -159,20 +159,24 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    cursor: pointer;
 }
 
 .alert_bar_information_container {
-    float: left;
     font-weight: 700;
     font-size: 20px;
-    align-items: center;
     padding: 10px;
-    width: 276px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    align-content: center;
 }
 
 .alert_details_name{
     padding: 0 !important;
-    margin: 0;
+    margin: 0 0 0 10px !important;
     font-size: 20px;
     line-height: 20px;
 
@@ -180,19 +184,27 @@
 
 .alert_details_time {
     padding: 0 !important;
-    margin: 0;
+    margin: 0 0 0 10px !important;
     font-weight: 300;
     font-style: italic;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 16px;
+    line-height: 16px;
 }
 
 .alert_details_message {
     padding: 0 !important;
-    margin: 0;
+    margin: 0 0 0 10px !important;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 20px;
+}
+
+.collapsible-body .alert_details_message {
+    font-size: 16px;
+}
+
+.collapsible-body .alert_bar_information_container {
+    flex-direction: column;
 }
 
 .alert_bar_close {
