@@ -34,6 +34,7 @@
 	//$pagerestrictions="student";
 	//if($_SESSION['usertype']=="student")
 	//if($pagerestrictions=="student")
+	$isStudent = false;
 	$isStaff = true;
 	if($isStudent)
 	{

@@ -24,16 +24,7 @@ echo "<hr class='widget_hr'>"; //keep
 //echo "<div class='widget_holder'>"; //keep
 //echo "<div class='widget_container widget_body' style='color:#666;'>Roster<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_menu_or_roster.php' data-reload='true'>group</i></div>";
 //echo "<div class='widget_container widget_body' style='color:#666;'>Overview<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_history_or_overview.php' data-reload='true'>table_chart</i></div>";
-echo "<div class='widget_body'>
-				<div class='alert_bar'>
-					<div class='alert_bar_information_container'>
-						<p class='alert_details'>John Smith <span class='alert_details_time'>- 8:23 AM </span></p>
-						<p class='alert_details'><span class='alert_details_message'>Marked: \"I need help\"</span></p>
-					</div> 
-					<div class='alert_bar_close'>
-						<i class='material-icons alert_bar_close_icon'>close</i>
-					</div>
-				</div>";
+echo "<div class='widget_body'>";
 echo 	"<div id='total_bar' class='teacher_color_bar'>
 					<div id='shaded_total_bar' class='shaded_bar'></div>
 					<div class='bar_text_container'>
@@ -72,7 +63,7 @@ echo "<div class='result'></div>";
 echo "<script type='text/javascript'>
                 //Updater as a function with a ajax post call
 			    var TeacherOverviewUpdater = function() {		         
-					var jQueryRequest = $.post('/modules/Abre-Moods/Retrieve_Data/Teachers/get_all_students_history.php', {request:'test'}, function(data) {
+					var jQueryRequest = $.post('/modules/Abre-Moods/Retrieve_Data/Teachers/get_all_students_history.php', {teacherID:'test'}, function(data) {
 						//log data to console for testing, can remove for production
 					    console.log(data);
 					});

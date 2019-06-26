@@ -20,7 +20,7 @@
 	require_once(dirname(__FILE__) . '/../../core/abre_verification.php');
 	require(dirname(__FILE__) . '/../../core/abre_dbconnect.php');
 	require_once(dirname(__FILE__) . '/../../core/abre_functions.php');
-	require(dirname(__FILE__) . '/../../core/abre_version.php');
+	//require(dirname(__FILE__) . '/../../core/abre_version.php');
 
 	//Check for installation
 	if(admin()){ require('installer.php'); }
@@ -54,4 +54,32 @@
 				}
 			})()
 		  </script>";
+
+
+	//if they are staff, add detection for students that need help
+	if($isStaff) {
+		echo "<script type='text/javascript'>
+		$(document).ready(function(){
+			var TeacherHelpUpdater = function() {
+			    var jQueryRequest = $.post('/modules/Abre-Moods/Retrieve_Data/Teachers/i_need_help.php', {teacherID:'test'} ,function(data){
+			        //log data to console, remove from production
+			        console.log(data);
+			    });
+			    
+			    jQueryRequest.done(function(data){
+			        if(data != null && data !=''){
+			            var jsonData = JSON.parse(data);
+			            //this prepends the alert bar to the widget
+			            $('#widgetbody_Abre-Moods .widget_body').prepend(\"<div class='alert_bar'><div class='alert_bar_information_container'><p class='alert_details_name'>\"+ jsonData.name +\"</p><p class='alert_details_message'><span class='alert_details_message'>Marked: \"+ jsonData.message +\"</span></p><p class='alert_details_time'>\" + jsonData.time + \"</p></div><div class='alert_bar_close'><i class='material-icons alert_bar_close_icon'>close</i></div></div>\"
+			            )
+			        }
+			    });
+			    jQueryRequest.fail(function(data){
+			        console.log('Failed: '+data);
+			    });
+			};
+			setNamedInterval('TeacherHelp',TeacherHelpUpdater,1000);
+		});
+		</script>";
+	}
 ?>
