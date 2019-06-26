@@ -59,9 +59,6 @@ echo "<script type='text/javascript'>
 						});
 			        }
 			    });
-			    jQueryRequest.fail(function(data){
-			        console.log('Failed: '+data);
-			    });
 			};
 			//call updater every 1000ms and give it a name of TeacherHelp
 			setNamedInterval('TeacherHelp',TeacherHelpUpdater,1000);
