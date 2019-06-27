@@ -235,12 +235,23 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: rgba(0,0,0,.54);
+}
+
+.widget_emoji:hover {
+    color: rgba(0,0,0,.87);
 }
 
 .emoji_row {
     padding: 0;
-    width: 100%;
+}
+
+#shadow {
+    height: 1px;
+    width: 1px;
+    box-shadow: 0 0 40px 20px;
+    z-index: -1;
 }
 
 

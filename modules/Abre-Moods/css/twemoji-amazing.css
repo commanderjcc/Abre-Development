@@ -10,8 +10,10 @@ Preamble from https://ellekasai.github.io/twemoji-awesome/,
 licensed under MIT: https://ellekasai.mit-license.org/
 */
 
+/* this file has been customized to make the emoji look good in the widget */
+
 .twa {
-    display: inline-block;
+    /*display: inline-block;*/
     height: 1em;
     width: 1em;
     margin: 0 .05em 0 .1em;
@@ -19,6 +21,9 @@ licensed under MIT: https://ellekasai.mit-license.org/
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 1em 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .twa-lg {
