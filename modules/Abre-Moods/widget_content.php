@@ -34,8 +34,8 @@
 	//$pagerestrictions="student";
 	//if($_SESSION['usertype']=="student")
 	//if($pagerestrictions=="student")
-	$isStudent = false;
-	$isStaff = true;
+	$isStudent = true;
+	$isStaff = false;
 	if($isStudent)
 	{
 		//insert all the data from /Widget_View/Students/students_widget_content.php

@@ -32,7 +32,7 @@
 	$pageorder = 2;
 	$pagetitle = "Moods";
 	$description = "Track and communicate how your students are feeling!"; //changes the description in the store
-	$version = 0; //the version number (4.5.9)
+	$version = 0; //the version number
 	$repo = NULL;
 	$pageicon = "mood";
 	$pagepath = "moods";
@@ -40,6 +40,8 @@
 	require_once(dirname(__FILE__) .'/permissions.php');
 
 	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/main_0.0.9.css'>";
+	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/twemoji-amazing.css'>";
+
 
 	// This JS allows us to track each timer so that no two updaters are running at the same time
 	echo "<script type='text/javascript'>
