@@ -18,46 +18,80 @@
 
     //Required configuration files
 	require_once(dirname(__FILE__) . '/../../core/abre_verification.php');
-
-	if($_SESSION['usertype'] == "staff"){
-
-	}
+	require_once (dirname(__FILE__). '/permissions.php');
+	//echo "//$isStudent";
+	//echo "//$isStaff";
+	if($isStaff){
 		echo "
 		    'moods': function(name) {
 			    $('#navigation_top').hide();
 			    $('#content_holder').hide();
-			    $('.tooltipped').tooltip('remove');
 			    $('#loader').show();
 			    $('#titletext').text('Moods');
 			    document.title = 'Moods';
-					$('#content_holder').load('modules/".basename(__DIR__)."/page_menu_or_roster.php', function() { init_page(); });
-					$('#modal_holder').load('modules/".basename(__DIR__)."/modals.php');
-					ga('set', 'page', '/#moods/');
-					ga('send', 'pageview');";
-
-					if(CONSTANT('SITE_MODE') != 'DEMO'){
-					echo "$('#navigation_top').show();
-						$('#navigation_top').load('modules/".basename(__DIR__)."/menu.php', function() {
-							$('#navigation_top').show();
-							$('.tab_1').addClass('tabmenuover');
-						});";
-					}
-		    echo "},
-		    'moods/details': function(name) {
+				$('#content_holder').load('modules/".basename(__DIR__)."/fullscreen/teachers/overview.php', function() { init_page(); });
+				//$('#modal_holder').load('modules/".basename(__DIR__)."/modals.php');
+				//ga('set', 'page', '/#moods/');
+				//ga('send', 'pageview');
+				//$('#navigation_top').show();
+				//$('#navigation_top').load('modules/".basename(__DIR__)."/menu.php', function() {
+					//$('#navigation_top').show();
+					//$('.tab_1').addClass('tabmenuover');
+				//});
+			},
+				
+			'moods/student/:studentID': function(studentID) {
+				$('#navigation_top').hide();
+				$('#content_holder').hide();
+				$('#loader').show();
+				$('#titletext').text('Moods');
+				document.title = 'Mood History';
+				$('#content_holder').load('modules/".basename(__DIR__)."/fullscreen/teachers/single_student_view.php', {studentID:studentID} , function() { init_page(); });
+				//$('#navigation_top').show();
+				//$('#navigation_top').load('modules/".basename(__DIR__)."/menu.php', function() {
+					//$('#navigation_top').show();
+					//$('.tab_2').addClass('tabmenuover');
+				//});
+			},
+		";
+	} elseif ($isStudent) {
+		echo "
+			'moods': function(name) {
 			    $('#navigation_top').hide();
 			    $('#content_holder').hide();
-			    $('.tooltipped').tooltip('remove');
 			    $('#loader').show();
 			    $('#titletext').text('Moods');
-			    document.title = 'Moods Memory';
-					$('#content_holder').load('modules/".basename(__DIR__)."/page_history_or_overview.php', function() { init_page(); });
-					ga('set', 'page', '/#moods/details/');
-					ga('send', 'pageview');
-
+			    document.title = 'Moods';
+				$('#content_holder').load('modules/".basename(__DIR__)."/fullscreen/students/standard_view.php', function() { init_page(); });
+				//$('#modal_holder').load('modules/".basename(__DIR__)."/modals.php');
+				//ga('set', 'page', '/#moods/');
+				//ga('send', 'pageview');
+				console.log('testing moods registrations');
+				$('#navigation_top').show();
+				$('#navigation_top').load('modules/".basename(__DIR__)."/menu.php', function() {
 					$('#navigation_top').show();
-					$('#navigation_top').load('modules/".basename(__DIR__)."/menu.php', function() {
-						$('#navigation_top').show();
-						$('.tab_2').addClass('tabmenuover');
-					});
-		    },";
+					$('.tab_1').addClass('tabmenuover');
+				});
+			},
+			
+			'moods/history': function(name) {
+			    $('#navigation_top').hide();
+			    $('#content_holder').hide();
+			    $('#loader').show();
+			    $('#titletext').text('Moods');
+			    document.title = 'Moods';
+				$('#content_holder').load('modules/".basename(__DIR__)."/fullscreen/students/history_view.php', function() { init_page(); });
+				//$('#modal_holder').load('modules/".basename(__DIR__)."/modals.php');
+				//ga('set', 'page', '/#moods/');
+				//ga('send', 'pageview');
+				$('#navigation_top').show();
+				$('#navigation_top').load('modules/".basename(__DIR__)."/menu.php', function() {
+					$('#navigation_top').show();
+					$('.tab_2').addClass('tabmenuover');
+				});
+			},
+		";
+	}
+
+
 ?>
