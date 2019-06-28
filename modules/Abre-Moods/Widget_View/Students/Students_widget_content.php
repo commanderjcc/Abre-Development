@@ -123,7 +123,7 @@ echo "<script type='text/javascript'>
 
 echo " <script type='text/javascript'>
     //add jquery animations
-    var emojiAnimations = function() {
+    var addEmojiAnimations = function() {
         $('.emoji i').hover(function(){
            $(this).children().remove();
            $(this).append(`<div id='shadow'></div>`);
@@ -131,16 +131,33 @@ echo " <script type='text/javascript'>
            $(this).children().remove();
         });
     };
+    //define click function
+    var emojiClicked = function() {
+        let id = $(this).attr('id');
+        let studentID = '69';
+        console.log('posting with ' + id + ' and ' + studentID);
+        var jQueryRequest = $.post('/modules/Abre-Moods/Data_Access/Students/upload_mood.php', {studentID:studentID,id:id}, function(data) {
+						//log data to console for testing, can remove for production
+					    console.log(data);
+					});
+    };
+    //define function to add click funciton to all the divs
+    var addEmojiClickFunctions = function(){
+        $('div.widget_emoji').click(emojiClicked);
+    };
     
+    //Arrow expander
     $(document).ready(function(){
-        emojiAnimations();
+        addEmojiAnimations();
+        addEmojiClickFunctions()
         $('.arrow_container').click(function(){
             //add the additional Moods from above, added up there so things are closer together for layout
            $('.emoji.centered_container:not(.emoji_row)').append(additionalMoods);
            $(this).remove();
            //have to rerun to add new emoji
-           emojiAnimations();
-       });
+           addEmojiAnimations();
+           addEmojiClickFunctions()
+        });
     }); 
 </script>";
 //echo "<div class='widget_container widget_body' style='color:#666;'>Menu<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_menu_or_roster.php' data-reload='true'>menu</i></div>";
