@@ -21,11 +21,11 @@ require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
 echo "<script type='text/javascript'>
             //create updater function
 			var TeacherHelpUpdater = function() {
-			    var jQueryRequest = $.post('/modules/Abre-Moods/Data_Access/Teachers/i_need_help.php', {teacherID:'test'} ,function(data){
+			    var jQueryRequest = $.post('modules/Abre-Moods/data_access/teachers/i_need_help.php', {teacherId : 'test'},function(data){
 			        //log data to console, remove from production
-			        console.log(data);
+			        //console.log(data);
 			    });
-			    
+
 			    //if request succeeds insert alert bar
 			    jQueryRequest.done(function(data){
 			        if(data != null && data !=''){
@@ -33,7 +33,7 @@ echo "<script type='text/javascript'>
 			            var jsonData = JSON.parse(data);
 			            var spaceLessName = jsonData.name.replace(/\s+/g, '_');
 			            //string form of the alert bar
-			            var layout = ` 
+			            var layout = `
 			            	<div name='`+ spaceLessName +`' class='alert_bar'>
 								<div class='alert_bar_information_container'>
 									<p class='alert_details_name'>`+ jsonData.name +`</p>

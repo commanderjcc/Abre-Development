@@ -136,7 +136,7 @@ echo " <script type='text/javascript'>
         let id = $(this).attr('id');
         let studentID = '69';
         console.log('posting with ' + id + ' and ' + studentID);
-        var jQueryRequest = $.post('/modules/Abre-Moods/Data_Access/Students/upload_mood.php', {studentID:studentID,id:id}, function(data) {
+        var jQueryRequest = $.post('modules/Abre-Moods/data_access/students/upload_mood.php', {studentID:studentID,id:id}, function(data) {
 						//log data to console for testing, can remove for production
 					    console.log(data);
 					});
@@ -145,7 +145,7 @@ echo " <script type='text/javascript'>
     var addEmojiClickFunctions = function(){
         $('div.widget_emoji').click(emojiClicked);
     };
-    
+
     //Arrow expander
     $(document).ready(function(){
         addEmojiAnimations();
@@ -158,7 +158,7 @@ echo " <script type='text/javascript'>
            addEmojiAnimations();
            addEmojiClickFunctions()
         });
-    }); 
+    });
 </script>";
 //echo "<div class='widget_container widget_body' style='color:#666;'>Menu<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_menu_or_roster.php' data-reload='true'>menu</i></div>";
 //echo "<div class='widget_container widget_body' style='color:#666;'>History<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_history_or_overview.php' data-reload='true'>history</i></div>";

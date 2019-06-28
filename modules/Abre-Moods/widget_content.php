@@ -40,11 +40,11 @@
 	//$isStaff = false;
 	if($isStudent)
 	{
-		//insert all the data from /Widget_View/Students/students_widget_content.php
-		require(dirname(__FILE__) . "/Widget_View/Students/students_widget_content.php");
+		//insert all the data from /widget/students/students_widget_content.php
+		require(dirname(__FILE__) . "/widget/students/view.php");
 	}
 	else if($isStaff) {
-		//insert all the data from /Widget_View/Teachers/teachers_widget_content.php
-		require(dirname(__FILE__)."/Widget_View/Teachers/teacher_widget_content.php");
+		//insert all the data from /widget/teachers/view.php
+		require(dirname(__FILE__) . "/widget/teachers/view.php");
 	}
 ?>

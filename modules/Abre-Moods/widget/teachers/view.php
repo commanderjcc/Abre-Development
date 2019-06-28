@@ -20,7 +20,7 @@
 //This file serves the teacher widget once requested by jQuery through loadWidget (modules/steam/widgets.php)
 
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
-echo "<hr class='widget_hr'>"; //keep
+echo "<hr style='height:0' class='widget_hr'>"; //keep
 //echo "<div class='widget_holder'>"; //keep
 //echo "<div class='widget_container widget_body' style='color:#666;'>Roster<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_menu_or_roster.php' data-reload='true'>group</i></div>";
 //echo "<div class='widget_container widget_body' style='color:#666;'>Overview<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_history_or_overview.php' data-reload='true'>table_chart</i></div>";
@@ -61,61 +61,61 @@ echo "</div>";
 //creates and registers updater that uses post ajax calls to pull down latest data
 echo "<script type='text/javascript'>
                 //Updater as a function with a ajax post call
-			    var TeacherOverviewUpdater = function() {		         
-					var jQueryRequest = $.post('/modules/Abre-Moods/Data_Access/Teachers/get_all_students_history.php', {teacherID:'test'}, function(data) {
+			    var TeacherOverviewUpdater = function() {
+					var jQueryRequest = $.post('modules/Abre-Moods/data_access/teachers/get_all_students_history.php', {teacherID:'test'}, function(data) {
 						//log data to console for testing, can remove for production
 					    //console.log(data);
 					});
-					
+
 					//Do if request succeeded
 					jQueryRequest.done(function(data) {
 					    var jsonData = JSON.parse(data);
-					    
+
 					    //update text
 					    $('#total_bar .bar_text_container .bold_bar_text').html(jsonData.totalResponses+'/'+jsonData.totalStudents);
-					    
+
 					    //animate shaded bar across div
 					    $('#total_bar .shaded_bar').animate({
 					        'width': 100 * (jsonData.totalStudents - jsonData.totalResponses)/jsonData.totalStudents + '%'
 					    });
-					    
-					    
+
+
 					    //repeat for blue
 					    $('#blue_bar .bar_text_container .bold_bar_text').html(jsonData.blue+'/'+jsonData.totalStudents);
-					    
+
 					    //animate shaded bar across div
 					    $('#blue_bar .shaded_bar').animate({
 					        'width': 100 * (jsonData.totalStudents - jsonData.blue)/jsonData.totalStudents + '%'
 					    });
-					    
-					    
+
+
 					    //repeat for green
 					    $('#green_bar .bar_text_container .bold_bar_text').html(jsonData.green+'/'+jsonData.totalStudents);
-					    
+
 					    //animate shaded bar across div
 					    $('#green_bar .shaded_bar').animate({
 					        'width': 100 * (jsonData.totalStudents - jsonData.green)/jsonData.totalStudents + '%'
 					    });
-					    
-					    
+
+
 					    //repeat for yellow
 					    $('#yellow_bar .bar_text_container .bold_bar_text').html(jsonData.yellow+'/'+jsonData.totalStudents);
-					    
+
 					    //animate shaded bar across div
 					    $('#yellow_bar .shaded_bar').animate({
 					        'width': 100 * (jsonData.totalStudents - jsonData.yellow)/jsonData.totalStudents + '%'
 					    });
-					    
-					    
+
+
 					    //repeat for red
 					    $('#red_bar .bar_text_container .bold_bar_text').html(jsonData.red+'/'+jsonData.totalStudents);
-					    
+
 					    //animate shaded bar across div
 					    $('#red_bar .shaded_bar').animate({
 					        'width': 100 * (jsonData.totalStudents - jsonData.red)/jsonData.totalStudents + '%'
 					    });
 					});
 			    };
-			    //puts the function on a NAMED timer, name must be same for each updater. 
+			    //puts the function on a NAMED timer, name must be same for each updater.
 			    setNamedInterval('TeacherOverview',TeacherOverviewUpdater,1000);
 		</script>";
