@@ -29,8 +29,9 @@
     } elseif($_SESSION['usertype']=="staff"){
         $isStaff=true;
     }
-	//Check for Admin Authentication
 
-
+    //hardcoding for a bit
+    $isStudent = true;
+    $isStaff = false;
 
 ?>
