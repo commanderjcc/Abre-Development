@@ -62,9 +62,9 @@ echo "</div>";
 echo "<script type='text/javascript'>
                 //Updater as a function with a ajax post call
 			    var TeacherOverviewUpdater = function() {		         
-					var jQueryRequest = $.post('/modules/Abre-Moods/Retrieve_Data/Teachers/get_all_students_history.php', {teacherID:'test'}, function(data) {
+					var jQueryRequest = $.post('/modules/Abre-Moods/Data_Access/Teachers/get_all_students_history.php', {teacherID:'test'}, function(data) {
 						//log data to console for testing, can remove for production
-					    console.log(data);
+					    //console.log(data);
 					});
 					
 					//Do if request succeeded

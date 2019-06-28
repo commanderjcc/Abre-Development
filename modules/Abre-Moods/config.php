@@ -61,6 +61,6 @@
 
 	//if they are staff, add detection for students that need help
 	if($isStaff) {
-		require(dirname(__FILE__) .'/Retrieve_Data/Teachers/alert_displayer.php');
+		require(dirname(__FILE__) .'/Data_Access/Teachers/alert_displayer.php');
 	}
 ?>
