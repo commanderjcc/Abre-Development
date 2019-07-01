@@ -19,7 +19,7 @@
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php'); //required verification security
 
 //This file serves the teacher widget once requested by jQuery through loadWidget (modules/steam/widgets.php)
-
+echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(__DIR__,2))."/css/student/widget.css'>";
 echo "<hr class='widget_hr'>"; //keep
 //widget layout
 echo "<div class='emoji centered_container'>

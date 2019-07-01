@@ -1,0 +1,40 @@
+.widget_emoji {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 15px;
+    color: rgba(0,0,0,.54);
+}
+
+.widget_emoji:hover {
+    color: rgba(0,0,0,.87);
+}
+
+#shadow {
+    height: 1px;
+    width: 1px;
+    box-shadow: 0 0 40px 30px;
+    z-index: -1;
+}
+
+@media only screen and (max-device-width: 986px){
+    .vertical {
+        flex-direction: row;
+    }
+}
+
+@media only screen and  (max-device-width: 423px) {
+    .twa-8x {
+        height: 5em;
+        width: 5em;
+        margin: 0 0.5em 0 0.5em;
+        vertical-align: -0.5em;
+        background-size: 5em 5em;
+    }
+
+    #shadow {
+        box-shadow: 0 0 30px 15px;
+    }
+}

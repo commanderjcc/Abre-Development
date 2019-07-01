@@ -18,7 +18,8 @@
 //required verification files
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
 
-echo "<script type='text/javascript'>
+echo " <link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(__DIR__,2))."/css/teacher/alert.css'>
+    <script type='text/javascript'>
             //create updater function
 			var TeacherHelpUpdater = function() {
 			    var jQueryRequest = $.post('modules/Abre-Moods/data_access/teachers/i_need_help.php', {teacherId : 'test'},function(data){

@@ -1,0 +1,108 @@
+#entire_class {
+    height: 250px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.moods-section {
+    margin: 40px 40px 0 40px;
+}
+
+#class_head_bar {
+    color: rgba(0,0,0,.87);
+    padding: 20px;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.bell {
+    padding: 0 10px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.pick_bell {
+    background-color: rgba(0,0,0,0.03);
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.pick_bell:hover {
+    background-color: rgba(0,0,0,0.08);
+}
+
+.num_students {
+    margin-left: auto;
+}
+
+
+
+.students_container {
+
+}
+
+.student {
+
+}
+
+.student_image {
+
+}
+
+.student_mood {
+
+}
+
+.zone_head_bar {
+    color: #FFFFFF;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    position: relative;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-color: rgba(0,0,0,0.15);
+    padding: 10px;
+}
+
+
+
+.loading_bar {
+    width: 50%;
+    height: 100%;
+    position:absolute;
+    right: 0;
+    top: 0;
+    background-color: rgba(0,0,0, .1);
+}
+
+#zone_information {
+    justify-content: space-between;
+}
+
+.zone {
+    flex-basis: 260px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#blue .zone_head_bar{
+    background: #336699;
+}
+
+#green .zone_head_bar{
+    background: #44af69
+}
+
+#yellow .zone_head_bar{
+    background: #ffa216;
+}
+
+#red .zone_head_bar{
+    background: #F4594b;
+}

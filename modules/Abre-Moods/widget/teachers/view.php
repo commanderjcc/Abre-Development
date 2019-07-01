@@ -20,6 +20,7 @@
 //This file serves the teacher widget once requested by jQuery through loadWidget (modules/steam/widgets.php)
 
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
+echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(__DIR__,2))."/css/teacher/widget.css'>";
 echo "<hr style='height:0' class='widget_hr'>"; //keep
 //echo "<div class='widget_holder'>"; //keep
 //echo "<div class='widget_container widget_body' style='color:#666;'>Roster<i class='right material-icons widget_holder_refresh pointer' data-path='/modules/Abre-Moods/widget_menu_or_roster.php' data-reload='true'>group</i></div>";

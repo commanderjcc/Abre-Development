@@ -1,0 +1,32 @@
+.arrow_container {
+    padding-top: 0;
+}
+
+#arrow {
+    fill: rgba(0,0,0,.87);
+}
+
+#arrow:hover {
+    fill: rgba(0,0,0,.54);
+}
+
+.widget_emoji {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 15px;
+    color: rgba(0,0,0,.54);
+}
+
+.widget_emoji:hover {
+    color: rgba(0,0,0,.87);
+}
+
+#shadow {
+    height: 1px;
+    width: 1px;
+    box-shadow: 0 0 40px 20px;
+    z-index: -1;
+}

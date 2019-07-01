@@ -1,5 +1,6 @@
 <?php
 //echo "standard view";
+echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(__DIR__,2))."/css/student/fullscreen.css'>";
 ?>
 <div class="page_container mdl-shadow--4dp">
     <div id="normal_emoji_container" class="centered_container">
