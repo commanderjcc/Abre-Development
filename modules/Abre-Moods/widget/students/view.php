@@ -23,7 +23,7 @@ require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php'); //r
 echo "<hr class='widget_hr'>"; //keep
 //widget layout
 echo "<div class='emoji centered_container'>
-          <div class='emoji centered_container emoji_row'>
+          <div class='emoji centered_container no_padding'>
               <div id='widget_happy' class='emoji widget_emoji'>
                   <i class='twa twa-5x twa-slightly-smiling-face'></i>
                   Happy
@@ -37,7 +37,7 @@ echo "<div class='emoji centered_container'>
                   Down
               </div>
           </div>
-          <div class='emoji centered_container emoji_row'>
+          <div class='emoji centered_container no_padding'>
               <div id='widget_thrilled' class='emoji widget_emoji'>
                   <i class='twa twa-5x twa-beaming-face-with-smiling-eyes'></i>
                   Thrilled
@@ -61,7 +61,7 @@ echo "  <div class='centered_container arrow_container'>
 //save layout of additional moods
 echo "<script type='text/javascript'>
         let additionalMoods = `
-          <div class='emoji centered_container emoji_row'>
+          <div class='emoji centered_container no_padding'>
               <div id='widget_stressed' class='emoji widget_emoji'>
                   <i class='twa twa-5x twa-grimacing-face'></i>
                   Stressed
@@ -75,7 +75,7 @@ echo "<script type='text/javascript'>
                   Scared
               </div>
           </div>
-          <div class='emoji centered_container emoji_row'>
+          <div class='emoji centered_container no_padding'>
               <div id='widget_annoyed' class='emoji widget_emoji'>
                   <i class='twa twa-5x twa-unamused-face'></i>
                   Annoyed
@@ -89,7 +89,7 @@ echo "<script type='text/javascript'>
                   Frustrated
               </div>
           </div>
-          <div class='emoji centered_container emoji_row'>
+          <div class='emoji centered_container no_padding'>
               <div id='widget_allergic' class='emoji widget_emoji'>
                   <i class='twa twa-5x twa-sneezing-face'></i>
                   Allergic
@@ -103,7 +103,7 @@ echo "<script type='text/javascript'>
                   Tired
               </div>
           </div>
-          <div class='emoji centered_container emoji_row'>
+          <div class='emoji centered_container no_padding'>
               <div id='widget_speak_up' class='emoji widget_emoji'>
                   <i class='twa twa-5x twa-eye-in-speech-bubble'></i>
                   Speak Up
@@ -143,16 +143,18 @@ echo " <script type='text/javascript'>
     };
     //define function to add click funciton to all the divs
     var addEmojiClickFunctions = function(){
-        $('div.widget_emoji').click(emojiClicked);
+        var emojiDivs = $('div.widget_emoji');
+        emojiDivs.off('click');
+        emojiDivs.click(emojiClicked);
     };
 
     //Arrow expander
     $(document).ready(function(){
         addEmojiAnimations();
-        addEmojiClickFunctions()
+        addEmojiClickFunctions();
         $('.arrow_container').click(function(){
             //add the additional Moods from above, added up there so things are closer together for layout
-           $('.emoji.centered_container:not(.emoji_row)').append(additionalMoods);
+           $('.emoji.centered_container:not(.no_padding)').append(additionalMoods);
            $(this).remove();
            //have to rerun to add new emoji
            addEmojiAnimations();

@@ -66,7 +66,7 @@
 				//$('#modal_holder').load('modules/".basename(__DIR__)."/modals.php');
 				//ga('set', 'page', '/#moods/');
 				//ga('send', 'pageview');
-				console.log('testing moods registrations');
+				//console.log('testing moods registrations');
 				$('#navigation_top').show();
 				$('#navigation_top').load('modules/".basename(__DIR__)."/menu.php', function() {
 					$('#navigation_top').show();
