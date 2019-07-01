@@ -128,3 +128,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         </div>
     </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
