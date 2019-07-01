@@ -31,7 +31,7 @@
     }
 
     //hardcoding for a bit
-    $isStudent = true;
-    $isStaff = false;
+    $isStudent = false;
+    $isStaff = true;
 
 ?>

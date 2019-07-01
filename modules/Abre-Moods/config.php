@@ -40,7 +40,7 @@
 	require_once(dirname(__FILE__) .'/permissions.php');
 
 	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/twemoji-amazing.css'>";
-	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/main_0.0.9.css'>";
+	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/moods-general.css'>";
 
 
 
