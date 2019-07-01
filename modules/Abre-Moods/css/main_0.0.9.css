@@ -219,6 +219,9 @@
 
 }
 
+
+
+
 /* ###### Student Widget ########## */
 .centered_container {
     display: flex;
@@ -227,6 +230,10 @@
     padding: 10px;
     align-items: center;
     align-content: center;
+}
+
+.vertical {
+    flex-direction: column;
 }
 
 .widget_emoji {
@@ -239,7 +246,7 @@
     color: rgba(0,0,0,.54);
 }
 
-.emoji_row {
+.no_padding {
     padding: 0;
 }
 
@@ -265,6 +272,32 @@
 #arrow:hover {
     fill: rgba(0,0,0,.54);
 }
+
+@media only screen and (max-device-width: 986px){
+        .vertical {
+            flex-direction: row;
+        }
+}
+
+@media only screen and  (max-device-width: 423px) {
+    .twa-8x {
+        height: 5em;
+        width: 5em;
+        margin: 0 0.5em 0 0.5em;
+        vertical-align: -0.5em;
+        background-size: 5em 5em;
+    }
+
+    #shadow {
+        box-shadow: 0 0 30px 15px;
+    }
+}
+
+
+
+
+
+/*######## MEDIA REQUESTS ############
 
 /* anything over 992px results in a widget width of 326px */
 @media only screen and (min-device-width: 993px) {

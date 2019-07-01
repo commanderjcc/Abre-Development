@@ -66,6 +66,14 @@ licensed under MIT: https://ellekasai.mit-license.org/
     background-size: 5em 5em;
 }
 
+.twa-8x {
+    height: 8em;
+    width: 8em;
+    margin: 0 0.8em 0 0.8em;
+    vertical-align: -0.8em;
+    background-size: 8em 8em;
+}
+
 /* Generated a total of 1389 emoji CSS classes. */
 
 .twa-beaming-face-with-smiling-eyes {
