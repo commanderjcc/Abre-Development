@@ -64,7 +64,7 @@ echo "<script type='text/javascript'>
                 //Updater as a function with a ajax post call
 			    var TeacherOverviewUpdater = function() {
 						//should probably remove teacherID for security reasons... could theoretically use an obtained teacherID to snoop on students
-					var jQueryRequest = $.post('modules/Abre-Moods/data_access/teachers/get_all_students_history.php', {teacherID:'test'}, function(data) {
+					var jQueryRequest = $.post('modules/Abre-Moods/data_access/teachers/get_all_students_status.php', {amount:'counts'}, function(data) {
 						//log data to console for testing, can remove for production
 					    //console.log(data);
 					});

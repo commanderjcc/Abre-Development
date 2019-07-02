@@ -62,5 +62,5 @@ echo " <link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(
 			    });
 			};
 			//call updater every 1000ms and give it a name of TeacherHelp
-			setNamedInterval('TeacherHelp',TeacherHelpUpdater,1000);
+			setNamedInterval('TeacherHelp',TeacherHelpUpdater,30000);
 		</script>";
