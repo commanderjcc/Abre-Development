@@ -1,5 +1,6 @@
 <?php
 //echo "overivew";
+require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
 echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname(__DIR__, 2)) . "/css/teacher/moods-overview.css'>";
 ?>
 

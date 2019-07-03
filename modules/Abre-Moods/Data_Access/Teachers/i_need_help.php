@@ -1,5 +1,5 @@
 <?php
-
+require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
 //Just for testing purposes
 $timeZone = new DateTimeZone("America/New_York");
 $time = new DateTime("now",$timeZone);
@@ -21,4 +21,3 @@ if (false) {
     ];
     echo json_encode($jsonObj);
 };
-

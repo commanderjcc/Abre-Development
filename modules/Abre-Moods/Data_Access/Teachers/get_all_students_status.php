@@ -1,10 +1,13 @@
 <?php
-
-
-
+require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
 $bell = $_POST["bell"];
 $amount = $_POST["amount"];
-//TEMPORARY FILLER DATA FOR DEBUGGIN'
+
+
+
+
+
+//TEMPORARY FILLER DATA FOR show'
 
 $timeZone = new DateTimeZone("America/New_York");
 $time = new DateTime("now",$timeZone);
