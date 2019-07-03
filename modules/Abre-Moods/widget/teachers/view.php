@@ -74,7 +74,7 @@ echo "<script type='text/javascript'>
 					    var jsonData = JSON.parse(data);
 
 					    //update text
-					    $('#total_bar .bar_text_container .bold_bar_text').html(jsonData.totalResponses+'/'+jsonData.totalStudents);
+					    $('#total_bar .bar_text_container .bold_bar_text').text(jsonData.totalResponses+'/'+jsonData.totalStudents);
 
 					    //animate shaded bar across div
 					    $('#total_bar .shaded_bar').animate({
@@ -83,7 +83,7 @@ echo "<script type='text/javascript'>
 
 
 					    //repeat for blue
-					    $('#blue_bar .bar_text_container .bold_bar_text').html(jsonData.blue+'/'+jsonData.totalStudents);
+					    $('#blue_bar .bar_text_container .bold_bar_text').text(jsonData.blue+'/'+jsonData.totalStudents);
 
 					    //animate shaded bar across div
 					    $('#blue_bar .shaded_bar').animate({
@@ -92,7 +92,7 @@ echo "<script type='text/javascript'>
 
 
 					    //repeat for green
-					    $('#green_bar .bar_text_container .bold_bar_text').html(jsonData.green+'/'+jsonData.totalStudents);
+					    $('#green_bar .bar_text_container .bold_bar_text').text(jsonData.green+'/'+jsonData.totalStudents);
 
 					    //animate shaded bar across div
 					    $('#green_bar .shaded_bar').animate({
@@ -101,7 +101,7 @@ echo "<script type='text/javascript'>
 
 
 					    //repeat for yellow
-					    $('#yellow_bar .bar_text_container .bold_bar_text').html(jsonData.yellow+'/'+jsonData.totalStudents);
+					    $('#yellow_bar .bar_text_container .bold_bar_text').text(jsonData.yellow+'/'+jsonData.totalStudents);
 
 					    //animate shaded bar across div
 					    $('#yellow_bar .shaded_bar').animate({
@@ -110,7 +110,7 @@ echo "<script type='text/javascript'>
 
 
 					    //repeat for red
-					    $('#red_bar .bar_text_container .bold_bar_text').html(jsonData.red+'/'+jsonData.totalStudents);
+					    $('#red_bar .bar_text_container .bold_bar_text').text(jsonData.red+'/'+jsonData.totalStudents);
 
 					    //animate shaded bar across div
 					    $('#red_bar .shaded_bar').animate({
