@@ -32,6 +32,204 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             </div>
             Name
         </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
+        <div class="student">
+            <div class="student_image">
+                <i class="student_mood"></i>
+            </div>
+            Name
+        </div>
     </div>
 </div>
 <div id="zone_information" class="moods-section centered_container no_padding">
@@ -105,6 +303,30 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             <div class="loading_bar"></div>
         </div>
         <div class="students_container">
+            <div class="student">
+                <div class="student_image">
+                    <i class="student_mood"></i>
+                </div>
+                Name
+            </div>
+            <div class="student">
+                <div class="student_image">
+                    <i class="student_mood"></i>
+                </div>
+                Name
+            </div>
+            <div class="student">
+                <div class="student_image">
+                    <i class="student_mood"></i>
+                </div>
+                Name
+            </div>
+            <div class="student">
+                <div class="student_image">
+                    <i class="student_mood"></i>
+                </div>
+                Name
+            </div>
             <div class="student">
                 <div class="student_image">
                     <i class="student_mood"></i>

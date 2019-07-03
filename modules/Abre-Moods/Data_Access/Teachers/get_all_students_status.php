@@ -35,4 +35,4 @@ if ($amount == "full") {
         ];
 }
 
-//echo json_encode($TEMPstudentdata);
+echo json_encode($TEMPstudentdata);

@@ -1,5 +1,4 @@
 #entire_class {
-    height: 250px;
     border-radius: 4px;
     overflow: hidden;
 }
@@ -71,19 +70,37 @@ i.dd_inactive {
 
 
 .students_container {
-
+    padding: 20px;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .student {
-
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin: 5px;
 }
 
 .student_image {
-
+    background-image: url('/profile.jpg');
+    background-repeat: no-repeat;
+    background-size: 60px;
+    background-position: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    position: relative;
 }
 
 .student_mood {
-
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    margin: 0;
+    height: 50%;
+    background-size: 100%;
 }
 
 .zone_head_bar {
@@ -115,6 +132,7 @@ i.dd_inactive {
 
 #zone_information {
     justify-content: space-between;
+    align-items: flex-start;
 }
 
 .zone {
@@ -124,6 +142,7 @@ i.dd_inactive {
     border-radius: 4px;
     overflow: hidden;
     background: white;
+    margin-bottom: 40px;
 }
 
 #blue .zone_head_bar{
