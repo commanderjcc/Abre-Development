@@ -113,6 +113,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
             //Used arrow function here, allows for 'this' to reference the dataManager class instead of the funciton call
             jqxhr.done(data => {
+                console.log(data);
                 tempClasses = JSON.parse(data);
                 this.classes = tempClasses
             });
@@ -121,7 +122,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         updateData() {
             var jqxhr = $.post('/modules/Abre-Moods/data_access/teachers/get_all_students_status.php', {
                 "amount": "full",
-                "bell": selectedClass
+                "bell": selectedClass + 1
             });
             //Same here with the arrow function, it makes everything easier
             jqxhr.done(data => {
