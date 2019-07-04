@@ -65,7 +65,7 @@ if ($result === null) {
     $stmt->close();
 } else {
     //update existing row
-    $sql = "UPDATE moods SET lastMood = ?, moodHistory = ?, WHERE studentID = ? AND siteID = ?";
+    $sql = "UPDATE moods SET lastMood = ?, moodHistory = ? WHERE studentID = ? AND siteID = ?";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
     $stmt->bind_param("sssii", $lastMood, $newHistory, $studentID, $siteID);

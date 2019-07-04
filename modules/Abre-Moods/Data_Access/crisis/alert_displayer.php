@@ -22,7 +22,7 @@ echo " <link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(
     <script type='text/javascript'>
             //create updater function
 			var TeacherHelpUpdater = function() {
-			    var jQueryRequest = $.post('modules/Abre-Moods/data_access/teachers/i_need_help.php', {teacherId : 'test'},function(data){
+			    var jQueryRequest = $.post('modules/Abre-Moods/data_access/crisis/i_need_help.php', {teacherId : 'test'},function(data){
 			        //log data to console, remove from production
 			        //console.log(data);
 			    });
