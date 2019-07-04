@@ -3,7 +3,10 @@ require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
 $bell = $_POST["bell"];
 $amount = $_POST["amount"];
 
-
+$sqlp = "SELECT Value From abre_vendorlink_sis_studentpictures WHERE StudentID = '$studentid'";
+$resultp=mysqli_query($con,$sqlp);
+$picsr = mysqli_fetch_row($resultp);
+$picdecode=base64_decode($picsr[0]);
 
 
 

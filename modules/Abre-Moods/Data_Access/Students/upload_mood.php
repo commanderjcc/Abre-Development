@@ -26,18 +26,12 @@ $selectedMood = htmlspecialchars($_POST['mood']);
 $zone = htmlspecialchars($_POST['zone']);
 $time = htmlspecialchars($_POST['time']);
 
-$photo = htmlspecialchars($_SESSION['picture']);
 $siteID = intval($_SESSION['siteID']);
 $studentEmail = $_SESSION['escapedemail'];
 $studentID = intval(GetStudentUniqueID($studentEmail));
 
 //create lastMood JSON object
 $lastMood = '{"mood":'.$selectedMood.',"zone":'.$zone.',"time":'.$time.'}';
-
-//if no photo exists, use the blank one
-if ($photo == null) {
-    $photo = "/modules/directory/images/user.png";
-}
 
 //ask DB for history
 $sql = 'SELECT moodHistory FROM moods WHERE studentID = ? AND siteID = ?';
@@ -63,18 +57,18 @@ if ($result == null) {
 //if actually null
 if ($result === null) {
     //make new row
-    $sql = "INSERT into moods(studentID, photo, lastMood, moodHistory, siteID) values (?, ?, ?, ?, ?)";
+    $sql = "INSERT into moods(studentID, lastMood, moodHistory, siteID) values (?, ?, ?, ?)";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param("isssi", $studentID, $photo, $lastMood, $newHistory, $_SESSION['siteID']);
+    $stmt->bind_param("isssi", $studentID, $lastMood, $newHistory, $_SESSION['siteID']);
     $stmt->execute();
     $stmt->close();
 } else {
     //update existing row
-    $sql = "UPDATE moods SET lastMood = ?, moodHistory = ?, photo = ? WHERE studentID = ? AND siteID = ?";
+    $sql = "UPDATE moods SET lastMood = ?, moodHistory = ?, WHERE studentID = ? AND siteID = ?";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param("sssii", $lastMood, $newHistory, $photo, $studentID, $siteID);
+    $stmt->bind_param("sssii", $lastMood, $newHistory, $studentID, $siteID);
     $stmt->execute();
     $stmt->close();
 }
@@ -89,7 +83,6 @@ $response = [
     'studentID' => $studentID,
     'lastMood' => $lastMood,
     'moodHistory' => $newHistory,
-    'photo' => $photo,
 ];
 
 echo json_encode($response);
