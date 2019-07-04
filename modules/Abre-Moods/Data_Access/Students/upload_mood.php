@@ -18,15 +18,63 @@
 
 //required verification files
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
+require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
+require_once(dirname(__FILE__) . '/../../../../core/abre_functions.php');
+require_once('../../functions.php');
 
-//xdebug_break();
-//cut off the widget_ part of the id
-$mood = substr($_POST['id'],7);
-$studentID = $_POST['studentID'];
+$selectedMood = htmlspecialchars($_POST['mood']);
+$studentEmail = $_SESSION['escapedemail'];
+$zone = htmlspecialchars($_POST['zone']);
+$time = htmlspecialchars($_POST['time']);
+$siteID = intval($_SESSION['siteID']);
 
+$studentID = intval(GetStudentUniqueID($studentEmail));
+$lastMood = '{"mood":'.$selectedMood.',"zone":'.$zone.',"time":'.$time.'}';
+
+$sql = 'SELECT moodHistory FROM moods WHERE studentID = ? AND siteID = ?';
+$stmt = $db->stmt_init();
+$stmt->prepare($sql);
+$stmt->bind_param("ii", $studentID, $siteID);
+$stmt->execute();
+$stmt->bind_result($result);
+$stmt->fetch();
+$stmt->close();
+
+if ($result == null) {
+    $newHistory = [$time=>$selectedMood];
+    $newHistory = json_encode($newHistory);
+} else {
+    $result = json_decode($result, true);
+    $newHistory = [$time=>$selectedMood] + $result;
+    $newHistory = json_encode($newHistory);
+}
+
+if ($result === null) {
+    $sql = "INSERT into moods(studentID, lastMood, moodHistory, siteID) values (?, ?, ?, ?)";
+    $stmt = $db->stmt_init();
+    $stmt->prepare($sql);
+    $stmt->bind_param("issi", $studentID, $lastMood, $newHistory, $_SESSION['siteID']);
+    $stmt->execute();
+    $stmt->close();
+} else {
+    $sql = "UPDATE moods SET lastMood = ?, moodHistory = ? WHERE studentID = ? AND siteID = ?";
+    $stmt = $db->stmt_init();
+    $stmt->prepare($sql);
+    $stmt->bind_param("ssii", $lastMood, $newHistory, $studentID, $siteID);
+    $stmt->execute();
+    $stmt->close();
+}
+$db->close();
+
+//TAKE OUT FOR PRODUCTION, JUST for debuggin'
 $response = [
-    'mood' => $mood,
-    'studentID' => $studentID
+    'mood' => $selectedMood,
+    'studentEmail' => $studentEmail,
+    'zone' => $zone,
+    'time' => $time,
+    'studentID' => $studentID,
+    'lastMood' => $lastMood,
+    'moodHistory' => $newHistory
 ];
 
 echo json_encode($response);

@@ -24,6 +24,9 @@
 	$isStudent = False;
 	$isStaff = False;
 
+	//prevent parents...I hope. idk how parents work
+    $pagerestrictions = 'parent';
+
     if($_SESSION['usertype']=="student"){
         $isStudent=true;
     } elseif($_SESSION['usertype']=="staff"){
@@ -31,7 +34,7 @@
     }
 
     //hardcoding for a bit
-    $isStudent = false;
-    $isStaff = true;
+    $isStudent = true;
+    $isStaff = false;
 
 ?>

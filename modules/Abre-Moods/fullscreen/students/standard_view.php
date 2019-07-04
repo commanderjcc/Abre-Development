@@ -9,29 +9,29 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(_
             <div class="centered_container no_padding">
                 <div class="emoji centered_container vertical no_padding">
                     <div id='widget_happy' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-slightly-smiling-face'></i>
+                        <i class='twa twa-8x twa-happy'></i>
                         Happy
                     </div>
                     <div id='widget_okay' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-neutral-face'></i>
+                        <i class='twa twa-8x twa-okay'></i>
                         Okay
                     </div>
                     <div id='widget_down' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-confused-face'></i>
+                        <i class='twa twa-8x twa-down'></i>
                         Down
                     </div>
                 </div>
                 <div class='emoji centered_container vertical no_padding'>
                     <div id='widget_thrilled' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-beaming-face-with-smiling-eyes'></i>
+                        <i class='twa twa-8x twa-thrilled'></i>
                         Thrilled
                     </div>
                     <div id='widget_meh' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-expressionless-face'></i>
+                        <i class='twa twa-8x twa-meh'></i>
                         Meh
                     </div>
                     <div id='widget_sad' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-loudly-crying-face'></i>
+                        <i class='twa twa-8x twa-sad'></i>
                         Sad
                     </div>
                 </div>
@@ -39,43 +39,43 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(_
             <div>
                 <div class='emoji centered_container no_padding'>
                     <div id='widget_stressed' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-grimacing-face'></i>
+                        <i class='twa twa-8x twa-stressed'></i>
                         Stressed
                     </div>
                     <div id='widget_worried' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-fearful-face'></i>
+                        <i class='twa twa-8x twa-worried'></i>
                         Worried
                     </div>
                     <div id='widget_scared' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-face-screaming-in-fear'></i>
+                        <i class='twa twa-8x twa-scared'></i>
                         Scared
                     </div>
                 </div>
                 <div class='emoji centered_container no_padding'>
                     <div id='widget_annoyed' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-unamused-face'></i>
+                        <i class='twa twa-8x twa-annoyed'></i>
                         Annoyed
                     </div>
                     <div id='widget_angry' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-angry-face'></i>
+                        <i class='twa twa-8x twa-angry'></i>
                         Angry
                     </div>
                     <div id='widget_frustrated' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-face-with-steam-from-nose'></i>
+                        <i class='twa twa-8x twa-frustrated'></i>
                         Frustrated
                     </div>
                 </div>
                 <div class='emoji centered_container no_padding'>
                     <div id='widget_allergic' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-sneezing-face'></i>
+                        <i class='twa twa-8x twa-allergic'></i>
                         Allergic
                     </div>
                     <div id='widget_sick' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-face-with-thermometer'></i>
+                        <i class='twa twa-8x twa-sick'></i>
                         Sick
                     </div>
                     <div id='widget_tired' class='emoji widget_emoji'>
-                        <i class='twa twa-8x twa-sleeping-face'></i>
+                        <i class='twa twa-8x twa-tired'></i>
                         Tired
                     </div>
                 </div>
@@ -83,16 +83,16 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(_
         </div>
         <div class="normal-help">
             <div class='emoji centered_container vertical no_padding'>
-                <div id='widget_speak_up' class='emoji widget_emoji'>
-                    <i class='twa twa-8x twa-eye-in-speech-bubble'></i>
+                <div id='widget_wants_to_speak_up' class='emoji widget_emoji'>
+                    <i class='twa twa-8x twa-wants_to_speak_up'></i>
                     Speak Up
                 </div>
                 <div id='widget_needs_help' class='emoji widget_emoji'>
-                    <i class='twa twa-8x twa-sos-button'></i>
+                    <i class='twa twa-8x twa-needs_help'></i>
                     I need help
                 </div>
-                <div id='widget_needs_talk' class='emoji widget_emoji'>
-                    <i class='twa twa-8x twa-speech-balloon'></i>
+                <div id="widget_needs_to_talk" class='emoji widget_emoji'>
+                    <i class='twa twa-8x twa-needs_to_talk'></i>
                     I need to talk
                 </div>
             </div>
@@ -111,13 +111,45 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(_
         });
     };
     //define click function
+    var determineZone = function(mood) {
+        switch (mood) {
+            case "meh":
+            case "sad":
+            case "down":
+            case "allergic":
+            case "sick":
+            case "tired":
+                return "blue";
+            case "happy":
+            case "thrilled":
+            case "okay":
+                return "green";
+            case "stressed":
+            case "worried":
+            case "annoyed":
+            case "frustrated":
+                return "yellow";
+            case "scared":
+            case "angry":
+                return "red";
+            case "wants_to_speak_up":
+            case "needs_help":
+            case "needs_to_talk":
+                return "crisis";
+        }
+    };
+
+    //define click function
     var emojiClicked = function() {
-        let id = $(this).attr('id');
-        let studentID = '69';
-        console.log('posting with ' + id + ' and ' + studentID);
-        var jQueryRequest = $.post('modules/Abre-Moods/data_access/students/upload_mood.php', {studentID:studentID,id:id}, function(data) {
+        let mood = $(this).attr('id').substring(7);
+        let zone = determineZone(mood);
+        let d = new Date();
+        let time = d.toISOString();
+        console.log('posting with mood: ' + mood + ', zone: ' + zone + ', time: ' + time);
+        var jQueryRequest = $.post('modules/Abre-Moods/data_access/students/upload_mood.php', {mood:mood,time:time,zone:zone}, function(data) {
             //log data to console for testing, can remove for production
             console.log(data);
+            console.log(JSON.parse(data));
         });
     };
     //define function to add click funciton to all the divs
