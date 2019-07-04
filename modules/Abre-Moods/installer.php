@@ -60,6 +60,15 @@
 		}
 		$db->close();
 
+		//Check for photo field
+		require(dirname(__FILE__) . '/../../core/abre_dbconnect.php');
+		if(!$db->query("SELECT photo FROM moods LIMIT 1"))
+		{
+			$sql = "ALTER TABLE `moods` ADD `photo` text NOT NULL;";
+			$db->multi_query($sql);
+		}
+		$db->close();
+
 		//Check for last_mood field
 		require(dirname(__FILE__) . '/../../core/abre_dbconnect.php');
 		if(!$db->query("SELECT lastMood FROM moods LIMIT 1"))

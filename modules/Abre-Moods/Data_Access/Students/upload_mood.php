@@ -20,17 +20,26 @@
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
 require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
 require_once(dirname(__FILE__) . '/../../../../core/abre_functions.php');
-require_once('../../functions.php');
 
+//Pull data from Session and POST request
 $selectedMood = htmlspecialchars($_POST['mood']);
-$studentEmail = $_SESSION['escapedemail'];
 $zone = htmlspecialchars($_POST['zone']);
 $time = htmlspecialchars($_POST['time']);
-$siteID = intval($_SESSION['siteID']);
 
+$photo = htmlspecialchars($_SESSION['picture']);
+$siteID = intval($_SESSION['siteID']);
+$studentEmail = $_SESSION['escapedemail'];
 $studentID = intval(GetStudentUniqueID($studentEmail));
+
+//create lastMood JSON object
 $lastMood = '{"mood":'.$selectedMood.',"zone":'.$zone.',"time":'.$time.'}';
 
+//if no photo exists, use the blank one
+if ($photo == null) {
+    $photo = "/modules/directory/images/user.png";
+}
+
+//ask DB for history
 $sql = 'SELECT moodHistory FROM moods WHERE studentID = ? AND siteID = ?';
 $stmt = $db->stmt_init();
 $stmt->prepare($sql);
@@ -40,27 +49,32 @@ $stmt->bind_result($result);
 $stmt->fetch();
 $stmt->close();
 
+//if result is null or ''
 if ($result == null) {
+    //dont worry about past history
     $newHistory = [$time=>$selectedMood];
     $newHistory = json_encode($newHistory);
 } else {
+    //worry about past history
     $result = json_decode($result, true);
     $newHistory = [$time=>$selectedMood] + $result;
     $newHistory = json_encode($newHistory);
 }
-
+//if actually null
 if ($result === null) {
-    $sql = "INSERT into moods(studentID, lastMood, moodHistory, siteID) values (?, ?, ?, ?)";
+    //make new row
+    $sql = "INSERT into moods(studentID, photo, lastMood, moodHistory, siteID) values (?, ?, ?, ?, ?)";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param("issi", $studentID, $lastMood, $newHistory, $_SESSION['siteID']);
+    $stmt->bind_param("isssi", $studentID, $photo, $lastMood, $newHistory, $_SESSION['siteID']);
     $stmt->execute();
     $stmt->close();
 } else {
-    $sql = "UPDATE moods SET lastMood = ?, moodHistory = ? WHERE studentID = ? AND siteID = ?";
+    //update existing row
+    $sql = "UPDATE moods SET lastMood = ?, moodHistory = ?, photo = ? WHERE studentID = ? AND siteID = ?";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param("ssii", $lastMood, $newHistory, $studentID, $siteID);
+    $stmt->bind_param("sssii", $lastMood, $newHistory, $photo, $studentID, $siteID);
     $stmt->execute();
     $stmt->close();
 }
@@ -74,7 +88,8 @@ $response = [
     'time' => $time,
     'studentID' => $studentID,
     'lastMood' => $lastMood,
-    'moodHistory' => $newHistory
+    'moodHistory' => $newHistory,
+    'photo' => $photo,
 ];
 
 echo json_encode($response);

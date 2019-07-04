@@ -15,222 +15,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         <div class="loading_bar class_progress_bar"></div>
     </div>
     <div class="students_container">
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
-        <div class="student">
-            <div class="student_image">
-                <i class="student_mood"></i>
-            </div>
-            Name
-        </div>
+
     </div>
 </div>
 <div id="zone_information" class="moods-section centered_container no_padding">
@@ -241,18 +26,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             <div class="loading_bar"></div>
         </div>
         <div class="students_container">
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
+
         </div>
     </div>
     <div id="green" class="zone mdl-shadow--4dp">
@@ -262,18 +36,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             <div class="loading_bar"></div>
         </div>
         <div class="students_container">
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
+
         </div>
     </div>
     <div id="yellow" class="zone mdl-shadow--4dp">
@@ -283,18 +46,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             <div class="loading_bar"></div>
         </div>
         <div class="students_container">
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
+
         </div>
     </div>
     <div id="red" class="zone mdl-shadow--4dp">
@@ -304,49 +56,22 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             <div class="loading_bar"></div>
         </div>
         <div class="students_container">
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
-            <div class="student">
-                <div class="student_image">
-                    <i class="student_mood"></i>
-                </div>
-                Name
-            </div>
+
+
         </div>
     </div>
 </div>
 <script type="text/javascript">
     var selectedClass = 0;
 
-    var closeDropdown = function() {
+    var layout = `<div class="student">
+                      <div class="student_image">
+                          <i class="student_mood"></i>
+                      </div>
+                      Name
+                  </div>`;
+
+    var closeDropdown = function () {
         $('.select_dropdown').remove();
         $('.click_catcher').remove();
         $('.pick_bell').removeClass('dd_active').addClass('dd_inactive');
@@ -410,22 +135,23 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         }
 
         displayData() {
-            this.updateDisplayBars()
-            this.updateDisplayNums()
+            this.updateDisplayBars();
+            this.updateDisplayNums();
+            this.updatePeopleLocations();
         }
 
         updateDisplayBars() {
             var data = this.studentData;
             //animate total bar
-            $('.class_progress_bar').animate({'width': 100 * (data.totalStudents - data.totalResponses)/data.totalStudents + '%'});
+            $('.class_progress_bar').animate({'width': 100 * (data.totalStudents - data.totalResponses) / data.totalStudents + '%'});
             //animate blue bar
-            $('#blue .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.blue)/data.totalStudents + '%'});
+            $('#blue .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.blue) / data.totalStudents + '%'});
             //animate green bar
-            $('#green .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.green)/data.totalStudents + '%'});
+            $('#green .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.green) / data.totalStudents + '%'});
             //
-            $('#yellow .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.yellow)/data.totalStudents + '%'});
+            $('#yellow .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.yellow) / data.totalStudents + '%'});
             //
-            $('#red .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.red)/data.totalStudents + '%'});
+            $('#red .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.red) / data.totalStudents + '%'});
         }
 
         updateDisplayNums() {
@@ -452,7 +178,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
     setNamedInterval("data", pageDataManager.updateData.bind(pageDataManager), 100);
 
     $(document).ready(function () {
-        $('.pick_bell').click(function(){
+        $('.pick_bell').click(function () {
             var arrow = $(this);
             if (arrow.hasClass('dd_active')) {
                 closeDropdown();
