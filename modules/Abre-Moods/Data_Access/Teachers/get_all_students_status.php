@@ -1,44 +1,64 @@
 <?php
+
+/*
+	* Copyright (C) 2019 Mason City Schools
+	*
+	* This program is free software: you can redistribute it and/or modify
+    * it under the terms of the Affero General Public License version 3
+    * as published by the Free Software Foundation.
+	*
+    * This program is distributed in the hope that it will be useful,
+    * but WITHOUT ANY WARRANTY; without even the implied warranty of
+    * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    * GNU Affero General Public License for more details.
+	*
+    * You should have received a copy of the Affero General Public License
+    * version 3 along with this program.  If not, see https://www.gnu.org/licenses/agpl-3.0.en.html.
+    */
+
+//required verification files
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
+require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
+require_once(dirname(__FILE__) . '/../../../../core/abre_functions.php');
+
+$email = $_SESSION['escapedemail'];
+$staffID = intval(GetStaffUniqueID($email));
+$siteID = intval($_SESSION['siteID']);
+
 $bell = $_POST["bell"];
 $amount = $_POST["amount"];
 
-$sqlp = "SELECT Value From abre_vendorlink_sis_studentpictures WHERE StudentID = '$studentid'";
-$resultp=mysqli_query($con,$sqlp);
-$picsr = mysqli_fetch_row($resultp);
-$picdecode=base64_decode($picsr[0]);
-
-
-
-//TEMPORARY FILLER DATA FOR show'
-
-$timeZone = new DateTimeZone("America/New_York");
-$time = new DateTime("now",$timeZone);
-$formattedTime = $time->format("s");
-$integerTime = intval($formattedTime);
-$normalTime = $time->format("Y-m-d h:m A");
-
-if ($amount == "counts" || $amount == "full") {
-    $TEMPstudentdata = [
-        "totalStudents"=>60,
-        "totalResponses"=>$integerTime,
-        "blue"=>intval($integerTime * .3),
-        "green"=>intval($integerTime * .5),
-        "yellow"=>intval($integerTime * .15),
-        "red"=>intval($integerTime * .05)
-    ];
+$sql = 'SELECT StudentID FROM Abre_StudentSchedules WHERE StaffID = '.$staffID.' AND Period = '.$bell.' AND siteID = '.$siteID;
+$result = $db->query($sql);
+$studentIDs = [];
+while ($row = $result->fetch_assoc()) {
+    array_push($studentIDs, intval($row['StudentID']));
 }
 
-if ($amount == "full") {
-    $TEMPstudentdata +=
-        [
-            "studentData" => [
-                "Jeff Gordon"=> ["mood" => "happy", "time" => $normalTime],
-                "Jeff Bordon"=> ["mood" => "sad", "time" => $normalTime],
-                "Jeff cool"=> ["mood" => "angry", "time" => $normalTime],
-                "Jeff silly"=> ["mood" => "frustrated", "time" => $normalTime]
-            ]
+$outputArray = [];
+
+foreach ($studentIDs as $studentID){
+    //get picture
+    $sql = "SELECT Value From abre_vendorlink_sis_studentpictures WHERE StudentID = ".$studentID." And siteID = ".$siteID;
+    $result=$db->query($sql);
+    $picsr = $result->fetch_assoc();
+    $picDecoded=base64_decode($picsr["Value"]);
+
+    //get lastMood
+    $sql = "SELECT lastMood FROM moods where StudentID = ".$studentID." And siteID = ".$siteID;
+    $result=$db->query($sql);
+    $row = $result->fetch_assoc();
+    $lastMood = $row['lastMood'];
+    $lastMoodDecoded = json_decode($lastMood,true);
+
+    //make studentdata object
+    $student = [
+        "mood" => $lastMoodDecoded['mood'],
+        "time" => $lastMoodDecoded['time'],
+        'zone' => $lastMoodDecoded['zone'],
+        'photo' => $picDecoded,
         ];
+    //add by studetnt id to the output
+    $outputArray[$studentID] = $student;
 }
-
-echo json_encode($TEMPstudentdata);
+echo json_encode($outputArray);

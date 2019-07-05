@@ -31,8 +31,12 @@ $studentEmail = $_SESSION['escapedemail'];
 $studentID = intval(GetStudentUniqueID($studentEmail));
 
 //create lastMood JSON object
-$lastMood = '{"mood":'.$selectedMood.',"zone":'.$zone.',"time":'.$time.'}';
-
+$lastMood = [
+        'mood' => $selectedMood, 
+        'zone' => $zone,
+        'time' => $time,
+        ];
+$lastMood = json_encode($lastMood);
 //ask DB for history
 $sql = 'SELECT moodHistory FROM moods WHERE studentID = ? AND siteID = ?';
 $stmt = $db->stmt_init();
@@ -60,7 +64,7 @@ if ($result === null) {
     $sql = "INSERT into moods(studentID, lastMood, moodHistory, siteID) values (?, ?, ?, ?)";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param("isssi", $studentID, $lastMood, $newHistory, $_SESSION['siteID']);
+    $stmt->bind_param("issi", $studentID, $lastMood, $newHistory, $_SESSION['siteID']);
     $stmt->execute();
     $stmt->close();
 } else {
@@ -68,7 +72,7 @@ if ($result === null) {
     $sql = "UPDATE moods SET lastMood = ?, moodHistory = ? WHERE studentID = ? AND siteID = ?";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param("sssii", $lastMood, $newHistory, $studentID, $siteID);
+    $stmt->bind_param("ssii", $lastMood, $newHistory, $studentID, $siteID);
     $stmt->execute();
     $stmt->close();
 }
