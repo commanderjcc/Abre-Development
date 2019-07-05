@@ -17,8 +17,9 @@
 
 //required verification files
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
+require_once(dirname(__FILE__) . '/../../../../core/abre_functions.php');
 
-echo " <link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(__DIR__,2))."/css/teacher/alert.css'>
+echo " <link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(__DIR__,2))."/css/teacher/alert.css'>";?>
     <script type='text/javascript'>
             //create updater function
 			var TeacherHelpUpdater = function() {
@@ -29,10 +30,12 @@ echo " <link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(
 
 			    //if request succeeds insert alert bar
 			    jQueryRequest.done(function(data){
-			        if(data != null && data !=''){
+			        if(data != null && data !== ''){
 			            //parsing the data into a useable Javascript obj
+                        var staffID = <?php echo GetStaffUniqueID($_SESSION['escapedemail']);?>;
 			            var jsonData = JSON.parse(data);
 			            var spaceLessName = jsonData.name.replace(/\s+/g, '_');
+			            var studentID = jsonData.studentID;
 			            //string form of the alert bar
 			            var layout = `
 			            	<div name='`+ spaceLessName +`' class='alert_bar'>
@@ -42,7 +45,8 @@ echo " <link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(
 									<p class='alert_details_time'>` + jsonData.time + `</p>
 								</div>
 								<div class='alert_bar_close'>
-									<i class='material-icons alert_bar_close_icon'>close</i>
+									 <a class='waves-effect waves-light btn-flat resolved'>Mark as Resolved</a>
+									 <i class='material-icons alert_bar_close_icon'>close</i>
 								</div>
 							</div>
 			    		`;
@@ -51,16 +55,24 @@ echo " <link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(
 						//this prepends the alert bar to the widget
 						$('#widgetbody_Abre-Moods .widget_body').prepend(layout);
 						//make close button clickable
-						$('[name='+spaceLessName+'] .alert_bar_close').click(function(){
+						$('[name='+spaceLessName+'] .alert_bar_close_icon').click(function(){
 						    $('[name='+spaceLessName+']').remove();
 						});
+						//make Resolved button clickable
+                        $('[name='+spaceLessName+'] .resolved').click(function(){
+                            $.post('/modules/Abre-Moods/data_access/crisis/crisis_averted.php',{StaffID:staffID, StudentID:studentID},function(){
+                                $('[name='+spaceLessName+']').remove();
+                            });
+
+                        });
 						//make clicking name take you to menu !!!!!NOT WORKING YET!!!!!
-						$('[name='+spaceLessName+']').click(function(){
+						$('[name='+spaceLessName+'] .alert_bar_information_container' ).click(function(){
 						    window.location.href = '#moods';
 						});
 			        }
 			    });
 			};
+			TeacherHelpUpdater();
 			//call updater every 1000ms and give it a name of TeacherHelp
 			setNamedInterval('TeacherHelp',TeacherHelpUpdater,30000);
-		</script>";
+		</script>
