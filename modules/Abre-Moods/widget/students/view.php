@@ -169,7 +169,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(_
         let mood = $(this).attr('id').substring(7);
         let zone = determineZone(mood);
         let d = new Date();
-        let time = d.toISOString();
+        let time = d.getUTCFullYear()+'-'+d.getUTCMonth()+'-'+d.getUTCDate()+"T"+d.getUTCHours()+":"+d.getUTCMinutes()+":"+d.getUTCSeconds()+"."+d.getUTCMilliseconds()+"+0000";
         console.log('posting with mood: ' + mood + ', zone: ' + zone + ', time: ' + time);
         var jQueryRequest = $.post('modules/Abre-Moods/data_access/students/upload_mood.php', {mood:mood,time:time,zone:zone}, function(data) {
 						//log data to console for testing, can remove for production

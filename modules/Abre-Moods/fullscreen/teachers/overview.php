@@ -126,6 +126,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             });
             //Same here with the arrow function, it makes everything easier
             jqxhr.done(data => {
+                console.log(data);
                 if (data === JSON.stringify(this.studentData)) {
 
                 } else {
@@ -176,7 +177,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
     var pageDataManager = new dataManager();
     //Have to use .bind to set it to the correct object
-    setNamedInterval("data", pageDataManager.updateData.bind(pageDataManager), 100);
+    //setNamedInterval("data", pageDataManager.updateData.bind(pageDataManager), 3000);
 
     $(document).ready(function () {
         $('.pick_bell').click(function () {
