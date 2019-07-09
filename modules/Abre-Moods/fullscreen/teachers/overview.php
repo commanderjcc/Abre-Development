@@ -98,6 +98,156 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         });
     };
 
+    class schedule {
+        now;
+        day;
+        hour;
+        minute;
+        startTimes = {
+            0: [
+                {7: moment().day(-2).hour(13).minute(38)},
+                {1: moment().day(1).hour(7).minute(30)},
+            ],
+            1: [
+                {7: moment().day(-2).hour(13).minute(38)},
+                //need last class of previous day in 0th position to check if its before school in morning
+                //moments are calculated from the end of the class before them
+                {1: moment().day(1).hour(7).minute(30)},
+                {2: moment().day(1).hour(8).minute(35)},
+                {3: moment().day(1).hour(9).minute(27)},
+                {4: moment().day(1).hour(10).minute(19)},
+                {5: moment().day(1).hour(11).minute(54)},
+                {6: moment().day(1).hour(12).minute(46)},
+                {7: moment().day(1).hour(13).minute(38)},
+            ],
+            2: [
+                {7: moment().day(1).hour(13).minute(38)},
+                //need last class of previous day
+                {1: moment().day(2).hour(7).minute(30)},
+                {3: moment().day(2).hour(8).minute(55)},
+                {4: moment().day(2).hour(10).minute(10)},
+                {6: moment().day(2).hour(12).minute(0)},
+                {7: moment().day(2).hour(13).minute(15)},
+            ],
+            3: [
+                {7: moment().day(2).hour(13).minute(15)},
+                //need last class of previous day
+                {2: moment().day(3).hour(7).minute(30)},
+                {5: moment().day(3).hour(8).minute(55)},
+                {3: moment().day(3).hour(10).minute(10)},
+                {'connect1': moment().day(3).hour(12).minute(0)},
+                {'connect2': moment().day(3).hour(12).minute(40)},
+                {6: moment().day(3).hour(13).minute(15)},
+
+            ],
+            4: [
+                {6: moment().day(3).hour(13).minute(15)},
+                //need last class of previous day
+                {1: moment().day(4).hour(7).minute(30)},
+                {2: moment().day(4).hour(8).minute(55)},
+                {4: moment().day(4).hour(10).minute(10)},
+                {5: moment().day(4).hour(12).minute(0)},
+                {7: moment().day(4).hour(13).minute(15)},
+            ],
+            5: [
+                {7: moment().day(4).hour(13).minute(15)},
+                //need last class of previous day
+                {1: moment().day(5).hour(7).minute(30)},
+                {2: moment().day(5).hour(8).minute(35)},
+                {3: moment().day(5).hour(9).minute(27)},
+                {4: moment().day(5).hour(10).minute(19)},
+                {5: moment().day(5).hour(11).minute(54)},
+                {6: moment().day(5).hour(12).minute(46)},
+                {7: moment().day(5).hour(13).minute(38)},
+            ],
+            6: [
+                {7: moment().day(5).hour(13).minute(38)},
+                {1: moment().day(8).hour(7).minute(30)},
+            ]
+        };
+
+        constructor() {
+            this.update();
+        }
+
+        update() {
+            this.now = moment();
+            this.day = this.now.day();
+            this.hour = this.now.hour();
+            this.minute = this.now.minute();
+        }
+
+        getCurrentPeriod() {
+            this.update();
+            //for each of the start times of today
+            var output;
+            this.startTimes[this.day].forEach((periodObj, slot, day) => {
+                var selectedPeriod;
+                var nextPeriod;
+                // if the next slot will be outside of the number of slots for the day then dont compare
+                if (slot + 1 !== day.length) {
+                    //get the period in that slot, have to use this weird method bc we dont know the period
+                    for (var period in periodObj) {
+                        if (periodObj.hasOwnProperty(period)){
+                            selectedPeriod = periodObj[period];
+                        }
+                    }
+                    //get the next period in that slot, have to use this weird method bc we dont know the period
+                    for (var next in day[slot + 1]) {
+                        if (day[slot + 1].hasOwnProperty(next)) {
+                            nextPeriod = day[slot+1][next];
+                        }
+                    }
+                } else {
+                    //get the period in that slot, have to use this weird method bc we dont know the period
+                    for (var period in periodObj) {
+                        if (periodObj.hasOwnProperty(period)){
+                            selectedPeriod = periodObj[period];
+                        }
+                    }
+                    //get the first class of the next day
+                    for (var next in this.startTimes[this.day+1][1]) {
+                        if (this.startTimes[this.day+1][1].hasOwnProperty(next)) {
+                            nextPeriod = this.startTimes[this.day+1][1][next];
+                        }
+                    }
+                }
+                //if we are currently between the selectedPeriod and the start of the next period, then we must
+                //be in the selectedPeriod so return the object containing the period number and the period times
+                if (this.now.isBetween(selectedPeriod,nextPeriod)) {
+                    output = periodObj;
+                }
+            });
+            return output;
+        }
+
+        getSlotStart(slot, day = this.day) {
+            return this.startTimes[day][slot]
+        }
+
+        getPeriodStart(period, day = this.day) {
+            var available = this.startTimes[day];
+            var output;
+            available.forEach((periodObj, slot)=> {
+                if (slot !== 0) {
+                    for (var periodProp in periodObj) {
+                        if (periodObj.hasOwnProperty(periodProp)){
+                            if (periodProp == period) {
+                                output = periodObj;
+                            }
+                        }
+                    }
+                }
+            });
+            return output
+        }
+
+        //this is a boolean test for if the lastupdate of the mood was in this period
+        isAfterPeriodStart(updateTime, periodStart = this.getCurrentPeriod()) {
+            return updateTime.isAfter(periodStart);
+        }
+    }
+
     class dataManager {
         studentData = {};
         classes = [];
