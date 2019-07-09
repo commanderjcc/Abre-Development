@@ -286,6 +286,34 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             });
         }
 
+        static determineZone(mood) {
+            switch (mood) {
+                case "meh":
+                case "sad":
+                case "down":
+                case "allergic":
+                case "sick":
+                case "tired":
+                    return "blue";
+                case "happy":
+                case "thrilled":
+                case "okay":
+                    return "green";
+                case "stressed":
+                case "worried":
+                case "annoyed":
+                case "frustrated":
+                    return "yellow";
+                case "scared":
+                case "angry":
+                    return "red";
+                case "wants_to_speak_up":
+                case "needs_help":
+                case "needs_to_talk":
+                    return "crisis";
+            }
+        };
+
         displayData() {
             this.updateDisplayBars();
             this.updateDisplayNums();
