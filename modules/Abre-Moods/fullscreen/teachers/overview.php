@@ -170,15 +170,15 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             this.update();
         }
 
-        update() {
-            this.now = moment();
+        update(when = moment()) {
+            this.now = when;
             this.day = this.now.day();
             this.hour = this.now.hour();
             this.minute = this.now.minute();
         }
 
-        getCurrentPeriod() {
-            this.update();
+        getCurrentPeriod(when = moment()) {
+            this.update(when);
             //for each of the start times of today
             var output;
             this.startTimes[this.day].forEach((periodObj, slot, day) => {
@@ -286,7 +286,30 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 if (data === JSON.stringify(this.studentData)) {
 
                 } else {
-                    this.studentData = JSON.parse(data);
+                    var tempData = JSON.parse(data);
+                    var output = {
+                        'unanswered':[],
+                        'blue':[],
+                        'green':[],
+                        'yellow':[],
+                        'red':[],
+                        'crisis':[]
+                    };
+                    for (var studentID in tempData) {
+                        if (tempData.hasOwnProperty(studentID)) {
+                            var lastUpdateMoment = moment(tempData[studentID]['time']);
+                            //add one so the selected class matches the appearance-based naming of the classes
+                            var selectedPeriodStartTime = masonSchedule.getPeriodStart(selectedClass + 1);
+                            if (masonSchedule.isAfterPeriodStart(lastUpdateMoment, selectedPeriodStartTime)) {
+                                var zone = dataManager.tempData[studentID]['zone'];
+                                output[zone][output[zone].length] = {[studentID] : tempData[studentID]};
+                            } else {
+                                output['unanswered'][output['unanswered'].length] = {[studentID] : tempData[studentID]};
+                            }
+                        }
+                    }
+
+                    this.studentData = output;
                     this.displayData();
                 }
             });
@@ -360,6 +383,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
     }
 
     var masonSchedule = new schedule();
+
     var pageDataManager = new dataManager();
     //Have to use .bind to set it to the correct object
     //setNamedInterval("data", pageDataManager.updateData.bind(pageDataManager), 3000);
