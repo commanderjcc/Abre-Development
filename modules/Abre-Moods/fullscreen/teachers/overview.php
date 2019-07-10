@@ -205,10 +205,16 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                             selectedPeriod = periodObj[period];
                         }
                     }
+
+                    var currentDay = this.day;
+                    if (this.day === 6) {
+                        currentDay = -1;
+                    }
+
                     //get the first class of the next day
-                    for (var next in this.startTimes[this.day+1][1]) {
-                        if (this.startTimes[this.day+1][1].hasOwnProperty(next)) {
-                            nextPeriod = this.startTimes[this.day+1][1][next];
+                    for (var next in this.startTimes[currentDay+1][1]) {
+                        if (this.startTimes[currentDay+1][1].hasOwnProperty(next)) {
+                            nextPeriod = this.startTimes[currentDay+1][1][next];
                         }
                     }
                 }
@@ -353,6 +359,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         }
     }
 
+    var masonSchedule = new schedule();
     var pageDataManager = new dataManager();
     //Have to use .bind to set it to the correct object
     //setNamedInterval("data", pageDataManager.updateData.bind(pageDataManager), 3000);
