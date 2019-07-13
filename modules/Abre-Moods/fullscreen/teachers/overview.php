@@ -94,7 +94,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         $('.class_select_dropdown').click(function () {
             selectedClass = $(this).data('index') - 1;
             closeDropdown();
-            pageDataManager.displayData();
+            pageDataManager.classChanged();
+            pageDataManager.updateData();
         });
     };
 
@@ -188,20 +189,20 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 if (slot + 1 !== day.length) {
                     //get the period in that slot, have to use this weird method bc we dont know the period
                     for (var period in periodObj) {
-                        if (periodObj.hasOwnProperty(period)){
+                        if (periodObj.hasOwnProperty(period)) {
                             selectedPeriod = periodObj[period];
                         }
                     }
                     //get the next period in that slot, have to use this weird method bc we dont know the period
                     for (var next in day[slot + 1]) {
                         if (day[slot + 1].hasOwnProperty(next)) {
-                            nextPeriod = day[slot+1][next];
+                            nextPeriod = day[slot + 1][next];
                         }
                     }
                 } else {
                     //get the period in that slot, have to use this weird method bc we dont know the period
                     for (var period in periodObj) {
-                        if (periodObj.hasOwnProperty(period)){
+                        if (periodObj.hasOwnProperty(period)) {
                             selectedPeriod = periodObj[period];
                         }
                     }
@@ -212,15 +213,15 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                     }
 
                     //get the first class of the next day
-                    for (var next in this.startTimes[currentDay+1][1]) {
-                        if (this.startTimes[currentDay+1][1].hasOwnProperty(next)) {
-                            nextPeriod = this.startTimes[currentDay+1][1][next];
+                    for (var next in this.startTimes[currentDay + 1][1]) {
+                        if (this.startTimes[currentDay + 1][1].hasOwnProperty(next)) {
+                            nextPeriod = this.startTimes[currentDay + 1][1][next];
                         }
                     }
                 }
                 //if we are currently between the selectedPeriod and the start of the next period, then we must
                 //be in the selectedPeriod so return the object containing the period number and the period times
-                if (this.now.isBetween(selectedPeriod,nextPeriod)) {
+                if (this.now.isBetween(selectedPeriod, nextPeriod)) {
                     output = periodObj;
                 }
             });
@@ -234,10 +235,10 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         getPeriodStart(period, day = this.day) {
             var available = this.startTimes[day];
             var output;
-            available.forEach((periodObj, slot)=> {
+            available.forEach((periodObj, slot) => {
                 if (slot !== 0) {
                     for (var periodProp in periodObj) {
-                        if (periodObj.hasOwnProperty(periodProp)){
+                        if (periodObj.hasOwnProperty(periodProp)) {
                             if (periodProp == period) {
                                 output = periodObj;
                             }
@@ -255,64 +256,45 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
     }
 
     class dataManager {
-        studentData = {};
+        parsedStudentData = {};
+        sortedStudentData = {
+            'unanswered': [],
+            'blue': [],
+            'green': [],
+            'yellow': [],
+            'red': [],
+            'crisis': [],
+        };
+        rawStudentData = {};
         classes = [];
 
-        constructor() {
-            this.updateClasses();
-            this.updateData();
-        }
+        static isEquivalent(a, b) {
+            if (a == null || b == null || a == undefined || b == undefined) {
+                return false
+            }
 
-        updateClasses() {
-            var tempClasses;
-            var jqxhr = $.post('/modules/Abre-Moods/data_access/teachers/get_classes.php');
+            // Create arrays of property names
+            var aProps = Object.getOwnPropertyNames(a);
+            var bProps = Object.getOwnPropertyNames(b);
 
-            //Used arrow function here, allows for 'this' to reference the dataManager class instead of the funciton call
-            jqxhr.done(data => {
-                console.log(data);
-                tempClasses = JSON.parse(data);
-                this.classes = tempClasses
-            });
-        }
+            // If number of properties is different,
+            // objects are not equivalent
+            if (aProps.length != bProps.length) {
+                return false;
+            }
 
-        updateData() {
-            var jqxhr = $.post('/modules/Abre-Moods/data_access/teachers/get_all_students_status.php', {
-                "amount": "full",
-                "bell": selectedClass + 1
-            });
-            //Same here with the arrow function, it makes everything easier
-            jqxhr.done(data => {
-                console.log(JSON.parse(data));
-                if (data === JSON.stringify(this.studentData)) {
-
-                } else {
-                    var tempData = JSON.parse(data);
-                    var output = {
-                        'unanswered':[],
-                        'blue':[],
-                        'green':[],
-                        'yellow':[],
-                        'red':[],
-                        'crisis':[]
-                    };
-                    for (var studentID in tempData) {
-                        if (tempData.hasOwnProperty(studentID)) {
-                            var lastUpdateMoment = moment(tempData[studentID]['time']);
-                            //add one so the selected class matches the appearance-based naming of the classes
-                            var selectedPeriodStartTime = masonSchedule.getPeriodStart(selectedClass + 1);
-                            if (masonSchedule.isAfterPeriodStart(lastUpdateMoment, selectedPeriodStartTime)) {
-                                var zone = dataManager.tempData[studentID]['zone'];
-                                output[zone][output[zone].length] = {[studentID] : tempData[studentID]};
-                            } else {
-                                output['unanswered'][output['unanswered'].length] = {[studentID] : tempData[studentID]};
-                            }
-                        }
-                    }
-
-                    this.studentData = output;
-                    this.displayData();
+            var areEqual = true;
+            aProps.forEach((propName) => {
+                // If values of same property are not equal,
+                // objects are not equivalent
+                if (a[propName] !== b[propName]) {
+                    areEqual = false;
                 }
             });
+
+            // If we made it this far, objects
+            // are considered equivalent
+            return areEqual;
         }
 
         static determineZone(mood) {
@@ -343,42 +325,170 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             }
         };
 
+        constructor() {
+
+            this.updateClasses();
+            this.updateData();
+        }
+
+        updateClasses() {
+            var tempClasses;
+            var jqxhr = $.post('/modules/Abre-Moods/data_access/teachers/get_classes.php');
+
+            //Used arrow function here, allows for 'this' to reference the dataManager class instead of the funciton call
+            jqxhr.done(data => {
+                console.log(data);
+                tempClasses = JSON.parse(data);
+                this.classes = tempClasses;
+                $('#class_picker .class_name').html(this.classes[selectedClass]);
+                $('#class_picker .bell').html('Bell '+(selectedClass+1));
+            });
+
+        }
+
+        classChanged() {
+            this.parsedStudentData = {};
+            this.sortedStudentData = {
+                'unanswered': [],
+                'blue': [],
+                'green': [],
+                'yellow': [],
+                'red': [],
+                'crisis': [],
+            };
+            this.rawStudentData = '';
+            $('.student').remove();
+            $('#class_picker .class_name').html(this.classes[selectedClass]);
+            $('#class_picker .bell').html('Bell '+(selectedClass+1));
+        }
+
+        updateData() {
+            var jqxhr = $.post('/modules/Abre-Moods/data_access/teachers/get_all_students_status.php', {
+                "amount": "full",
+                "bell": selectedClass + 1
+            });
+            //Same here with the arrow function, it makes everything easier
+            jqxhr.done(data => {
+                console.log('updating');
+                //var tempData = JSON.parse(data);
+                if (data === this.rawStudentData) {
+
+                } else {
+                    console.log('re-processing');
+                    var tempData = JSON.parse(data);
+
+
+                    for (var studentID in tempData) {
+                        if (tempData.hasOwnProperty(studentID)) {
+                            if (!dataManager.isEquivalent(tempData[studentID], this.parsedStudentData[studentID])) {
+                                var zone;
+                                var lastUpdateMoment = moment(tempData[studentID]['time']);
+                                //add one so the selected class matches the appearance-based naming of the classes
+                                var selectedPeriodStartTime = masonSchedule.getPeriodStart(selectedClass + 1);
+                                if (masonSchedule.isAfterPeriodStart(lastUpdateMoment, selectedPeriodStartTime)) {
+                                    zone = tempData[studentID]['zone'];
+
+                                } else {
+                                    zone = 'unanswered';
+                                }
+                                var containers = Object.getOwnPropertyNames(this.sortedStudentData);
+                                containers.forEach((zoneArr)=>{
+                                    //remove student from other zones, have to search them all...
+                                    this.sortedStudentData[zoneArr].forEach((foundStudent, foundLocation, array)=>{
+                                        if(foundStudent.hasOwnProperty(studentID)) {
+                                            array.splice(foundLocation, 1);
+                                        }
+                                    });
+                                });
+                                    this.sortedStudentData[zone][this.sortedStudentData[zone].length] = {[studentID]: tempData[studentID]};
+                                this.parsedStudentData[studentID] = tempData[studentID];
+                                this.updateLocation(studentID,zone);
+                            } //else do nothing
+                        }
+                    }
+                    //this.parsedStudentData = tempData;
+                    this.rawStudentData = data;
+                    this.displayData();
+                }
+            });
+        }
+
+
         displayData() {
             this.updateDisplayBars();
             this.updateDisplayNums();
-            this.updatePeopleLocations();
+            //this.updatePeopleLocations();
         }
 
         updateDisplayBars() {
-            var data = this.studentData;
+            var data = this.sortedStudentData;
+            var total = data['unanswered'].length + data['blue'].length + data ['green'].length + data['yellow'].length + data['red'].length + data['crisis'].length;
             //animate total bar
-            $('.class_progress_bar').animate({'width': 100 * (data.totalStudents - data.totalResponses) / data.totalStudents + '%'});
+            $('.class_progress_bar').animate({'width': 100 * (data['unanswered'].length) / total + '%'});
             //animate blue bar
-            $('#blue .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.blue) / data.totalStudents + '%'});
+            $('#blue .zone_head_bar .loading_bar').animate({'width': 100 * (total - data['blue'].length) / total + '%'});
             //animate green bar
-            $('#green .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.green) / data.totalStudents + '%'});
+            $('#green .zone_head_bar .loading_bar').animate({'width': 100 * (total - data['green'].length) / total + '%'});
             //
-            $('#yellow .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.yellow) / data.totalStudents + '%'});
+            $('#yellow .zone_head_bar .loading_bar').animate({'width': 100 * (total - data['yellow'].length) / total + '%'});
             //
-            $('#red .zone_head_bar .loading_bar').animate({'width': 100 * (data.totalStudents - data.red) / data.totalStudents + '%'});
+            $('#red .zone_head_bar .loading_bar').animate({'width': 100 * (total - data['red'].length) / total + '%'});
         }
 
         updateDisplayNums() {
-            var data = this.studentData;
+            var data = this.sortedStudentData;
+            var total = data['unanswered'].length + data['blue'].length + data ['green'].length + data['yellow'].length + data['red'].length + data['crisis'].length;
             //update class
-            $('#class_head_bar span.num_students').text(data.totalResponses + "/" + data.totalStudents);
+            console.log('total: ' + total);
+            $('#class_head_bar span.num_students').text(total - data['unanswered'].length + "/" + total);
             //update blue
-            $('#blue .zone_head_bar .num_students').text(data.blue + "/" + data.totalStudents);
+            $('#blue .zone_head_bar .num_students').text(data['blue'].length + "/" + total);
             //update green
-            $('#green .zone_head_bar .num_students').text(data.green + "/" + data.totalStudents);
+            $('#green .zone_head_bar .num_students').text(data['green'].length + "/" + total);
             //update yellow
-            $('#yellow .zone_head_bar .num_students').text(data.yellow + "/" + data.totalStudents);
+            $('#yellow .zone_head_bar .num_students').text(data['yellow'].length + "/" + total);
             //update red
-            $('#red .zone_head_bar .num_students').text(data.red + "/" + data.totalStudents);
+            $('#red .zone_head_bar .num_students').text(data['red'].length + "/" + total);
         }
 
-        updatePeopleLocations() {
+        updateLocation(studentID,zone) {
+            let data = this.sortedStudentData;
+            let containers = {
+               'unanswered': $('#entire_class .students_container'),
+                'blue' : $('#blue .students_container'),
+                'green' : $('#green .students_container'),
+                'yellow' : $('#yellow .students_container'),
+                'red' : $('#red .students_container'),
+                'crisis': $('#red .students_container'),
+            };
 
+            let studentGroup = $('#' + studentID);
+            let studentData = this.parsedStudentData[studentID];
+            let mood = studentData['mood'];
+            if (studentGroup.length === 1) {
+                studentGroup.detach().appendTo(containers[zone]);
+                let moodImg = studentGroup.find('.student_mood');
+                let previousMood = moodImg.attr('class').split(' ').pop();
+                moodImg.removeClass(previousMood);
+                moodImg.addClass('twa-'+mood);
+
+            } else {
+                studentGroup.remove();
+                let studentLayout = [
+                    `<div id="`, `" class='student'>
+                    <div style="background-image: url('`, `')" class="student_image">
+                        <i class="student_mood twa twa-3x twa-`, `"></i>
+                    </div>
+                        <span class='student_name'>`, `</span>
+                </div>`
+                ];
+                var createStudent = function (studentId, imgURL, mood, name) {
+                    return studentLayout[0] + studentId + studentLayout[1] + imgURL + studentLayout[2] + mood + studentLayout[3] + name + studentLayout[4]
+                };
+                let photo = this.parsedStudentData[studentID]['photo'];
+                let name = this.parsedStudentData[studentID]['name'];
+                containers[zone].append(createStudent(studentID, photo, mood, name));
+            }
         }
     }
 
@@ -386,7 +496,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
     var pageDataManager = new dataManager();
     //Have to use .bind to set it to the correct object
-    //setNamedInterval("data", pageDataManager.updateData.bind(pageDataManager), 3000);
+    setNamedInterval("data", pageDataManager.updateData.bind(pageDataManager), 10000);
 
     $(document).ready(function () {
         $('.pick_bell').click(function () {

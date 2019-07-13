@@ -51,12 +51,19 @@ foreach ($studentIDs as $studentID){
     $lastMood = $row['lastMood'];
     $lastMoodDecoded = json_decode($lastMood,true);
 
+    //get name
+    $sql = "SELECT FirstName, LastName FROM Abre_Students where StudentID = ".$studentID." And siteID = ".$siteID;
+    $result=$db->query($sql);
+    $row = $result->fetch_assoc();
+    $studentName = $row['FirstName'] . " " . substr($row['LastName'],0,1) .".";
+
     //make studentdata object
     $student = [
         "mood" => $lastMoodDecoded['mood'],
         "time" => $lastMoodDecoded['time'],
         'zone' => $lastMoodDecoded['zone'],
         'photo' => $picDecoded,
+        'name' => $studentName,
         ];
     //add by studetnt id to the output
     $outputArray[$studentID] = $student;
