@@ -398,7 +398,7 @@ require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');?>
             } else {
                 studentGroup.remove();
                 let studentLayout = [
-                    `<div id="`, `" class='student'>
+                    `<div id="`, `" class='student' onclick="studentClicked.bind(this)()">
                     <div style="background-image: url('`, `')" class="student_image">
                         <i class="student_mood twa twa-3x twa-`, `"></i>
                     </div>

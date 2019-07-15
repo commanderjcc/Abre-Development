@@ -92,6 +92,11 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         });
     };
 
+    var studentClicked = function() {
+        console.log(this.id);
+        window.location = '/#moods/student/' + this.id;
+    };
+
     // class schedule {
     //     now;
     //     day;
