@@ -3,7 +3,7 @@
     height:64px;
 }
 
-.shaded_bar{
+.loading_bar{
     background: rgba(0,0,0,0.1);
     position: absolute;
     z-index: 1;
@@ -25,24 +25,24 @@
     padding: 0 10px;
 }
 
-.bold_bar_text{
+.num_students{
     font-weight: 900;
 }
 
-#total_bar {
+#class_head_bar {
     background: #FFFFFF;
     color: #202020;
 }
 
-#blue_bar{
+#blue{
     background: #336699;
 }
-#green_bar{
+#green{
     background: #44af69
 }
-#yellow_bar{
+#yellow{
     background: #ffa216;
 }
-#red_bar{
+#red{
     background: #F4594b;
 }

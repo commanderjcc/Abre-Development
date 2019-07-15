@@ -57,7 +57,7 @@ foreach ($studentIDs as $studentID){
     $row = $result->fetch_assoc();
     $studentName = $row['FirstName'] . " " . substr($row['LastName'],0,1) .".";
 
-    //make studentdata object
+    //make student data object
     $student = [
         "mood" => $lastMoodDecoded['mood'],
         "time" => $lastMoodDecoded['time'],
