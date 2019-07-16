@@ -1,0 +1,268 @@
+#historyPage {
+    color: rgba(0,0,0,.87);
+    height: 100%;
+    margin: 20px;
+    display: flex;
+    flex-flow: row wrap-reverse;
+    justify-content: stretch;
+}
+
+#content {
+    height: 90%;
+}
+
+#content_holder {
+    height: 100%;
+}
+
+#informationPane {
+    height: 100%;
+}
+
+.mcontainer {
+    padding: 20px;
+    margin: 20px;
+    border-radius:2px;
+}
+
+.student_image {
+    background-image: url('/profile.jpg');
+    background-repeat: no-repeat;
+    background-size: 60px;
+    background-position: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    position: relative;
+}
+
+.student_mood {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    margin: 0;
+    height: 50%;
+    background-size: 100%;
+}
+
+#student_name {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+#lastMood {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(0,0,0,.54);
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.detail-container {
+    padding: 0;
+    background-color: white;
+}
+
+#moodHistory {
+    overflow: auto;
+    height: calc(100% - 150px);
+}
+
+.mood {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 17px 15px 13px;
+    border-bottom: solid 1px rgba(0,0,0,0.08);
+}
+
+.moodDetails {
+    padding-left: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.moodName {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.moodTime {
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    color: rgba(0,0,0,.54);
+}
+
+.moodDate {
+    padding-left: 4px;
+    font-weight: 300;
+    font-size: 14px;
+    color: rgba(0,0,0,.38);
+}
+
+#graphHolder {
+    flex-grow: 1;
+}
+
+#currentMoodInfo {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 1;
+    padding: 15px;
+}
+
+#studentDetails {
+    padding-left: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-device-width: 1000px) {
+    #historyPage {
+        color: rgba(0,0,0,.87);
+        height: unset !important;
+        margin: 20px;
+        display: flex;
+        flex-flow: row wrap-reverse;
+        justify-content: stretch;
+    }
+
+    #content {
+        height: unset !important;
+    }
+
+    #content_holder {
+        height: unset !important;
+    }
+
+    #informationPane {
+        height: unset !important;
+    }
+
+    .mcontainer {
+        padding: 20px;
+        margin: 20px;
+        border-radius:2px;
+    }
+
+    .student_image {
+        background-image: url('/profile.jpg');
+        background-repeat: no-repeat;
+        background-size: 60px;
+        background-position: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        position: relative;
+    }
+
+    .student_mood {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        margin: 0;
+        height: 50%;
+        background-size: 100%;
+    }
+
+    #student_name {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    #lastMood {
+        font-size: 16px;
+        font-weight: 300;
+        color: rgba(0,0,0,.54);
+        font-style: italic;
+        margin-top: 5px;
+    }
+
+    .detail-container {
+        padding: 0;
+        background-color: white;
+    }
+
+    #moodHistory {
+        overflow: auto;
+        height: calc(100% - 150px);
+    }
+
+    .mood {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 15px 17px 15px 13px;
+        border-bottom: solid 1px rgba(0,0,0,0.08);
+    }
+
+    .moodDetails {
+        padding-left: 10px;
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    .moodName {
+        font-weight: 500;
+        font-size: 18px;
+    }
+
+    .moodTime {
+        font-style: italic;
+        font-weight: 300;
+        letter-spacing: -0.5px;
+        color: rgba(0,0,0,.54);
+    }
+
+    .moodDate {
+        padding-left: 4px;
+        font-weight: 300;
+        font-size: 14px;
+        color: rgba(0,0,0,.38);
+    }
+
+
+    #graphHolder {
+        flex-grow: 1;
+    }
+
+
+
+    #currentMoodInfo {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: flex-start;
+        flex-shrink: 1;
+        padding: 15px;
+    }
+
+    #studentDetails {
+        padding-left: 10px;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-device-width: 600px) {
+
+}
