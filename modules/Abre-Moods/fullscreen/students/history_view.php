@@ -24,8 +24,12 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             </div>
         </div>
     </div>
-    <div id="graphHolder" class="mdl-card mdl-shadow--4dp mcontainer">
-
+    <div id="graphHolder" class="mdl-shadow--4dp mcontainer">
+        <div id="graphAspect">
+            <div id="graph">
+                <canvas id="ctx"></canvas>
+            </div>
+        </div>
     </div>
 
 </div>
