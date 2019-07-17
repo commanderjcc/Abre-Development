@@ -39,7 +39,8 @@
 
 	require_once(dirname(__FILE__) .'/permissions.php');
 
-	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/twemoji-amazing.css'>";
+	//echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/twemoji-amazing.css'>";
+	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/twemoji-amazing-offline.css'>";
 	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/moods-general.css'>";
 	echo "<script type='text/javascript' src='/modules/".basename(__DIR__)."/js/moment.js'></script>";
 	//echo "<script type='text/javascript' src='/modules/".basename(__DIR__)."/js/moment.min.js'></script>";
