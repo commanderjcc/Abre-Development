@@ -42,6 +42,8 @@
 	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/twemoji-amazing.css'>";
 	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/moods-general.css'>";
 	echo "<script type='text/javascript' src='/modules/".basename(__DIR__)."/js/moment.js'></script>";
+	echo "<link rel=\"stylesheet\" href=\"//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css\">";
+    echo "<script src=\"//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js\"></script>";
 	//echo "<script type='text/javascript' src='/modules/".basename(__DIR__)."/js/moment.min.js'></script>";
 
 
