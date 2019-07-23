@@ -33,7 +33,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
     </div>
 
 </div>
-<script type="text/javascript">
+<script defer type="text/javascript">
     var data = {
 
 
@@ -42,36 +42,36 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             {
                 name: 'mood',
                 data: [
-                    // {x: new moment().year(2018).month(11).day(1).unix(), y: 4},
-                    {x: new moment().year(2019).month(0).day(1).unix(), y: 2},
-                    // {x: new moment().year(2018).month(12).day(31).unix(), y: 3},
-                    {x: new moment().year(2019).month(1).day(1).unix(), y: 2},
-                    {x: new moment().year(2019).month(1).day(2).unix(), y: 2},
-                    {x: new moment().year(2019).month(1).day(3).unix(), y: 2},
-                    {x: new moment().year(2019).month(1).day(4).unix(), y: 2},
-                    // {x: new moment().year(2019).month(1).day(31).unix(), y: 1},
-                    {x: new moment().year(2019).month(2).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(2).day(28).unix(), y: 4},
-                    {x: new moment().year(2019).month(3).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(3).day(31).unix(), y: 4},
-                    {x: new moment().year(2019).month(4).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(4).day(30).unix(), y: 4},
-                    {x: new moment().year(2019).month(5).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(5).day(31).unix(), y: 4},
-                    {x: new moment().year(2019).month(6).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(6).day(30).unix(), y: 4},
-                    {x: new moment().year(2019).month(7).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(7).day(31).unix(), y: 4},
-                    {x: new moment().year(2019).month(8).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(8).day(30).unix(), y: 4},
-                    {x: new moment().year(2019).month(9).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(9).day(31).unix(), y: 4},
-                    {x: new moment().year(2019).month(10).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(10).day(31).unix(), y: 4},
-                    {x: new moment().year(2019).month(11).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(11).day(30).unix(), y: 4},
-                    {x: new moment().year(2020).month(0).day(1).unix(), y: 4},
-                    {x: new moment().year(2019).month(12).day(31).unix(), y: 4},
+                    {x: new moment().year(2018).month(11).day(1).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(0).day(1).valueOf(), y: 2},
+                    // {x: new moment().year(2018).month(12).day(31).valueOf(), y: 3},
+                    {x: new moment().year(2019).month(1).day(1).valueOf(), y: 2},
+                    {x: new moment().year(2019).month(1).day(2).valueOf(), y: 2},
+                    {x: new moment().year(2019).month(1).day(3).valueOf(), y: 2},
+                    {x: new moment().year(2019).month(1).day(4).valueOf(), y: 2},
+                    // {x: new moment().year(2019).month(1).day(31).valueOf(), y: 1},
+                    {x: new moment().year(2019).month(2).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(2).day(28).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(3).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(3).day(31).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(4).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(4).day(30).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(5).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(5).day(31).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(6).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(6).day(30).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(7).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(7).day(31).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(8).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(8).day(30).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(9).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(9).day(31).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(10).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(10).day(31).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(11).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(11).day(30).valueOf(), y: 4},
+                    {x: new moment().year(2020).month(0).day(1).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(12).day(31).valueOf(), y: 4},
 
                 ]
             }
@@ -103,9 +103,9 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             type: Chartist.FixedScaleAxis,
             // high: new Date(2019, 11, 31),
             // low: new Date(2019,0,1),
-            high: new moment().year(2019).month(11).day(31).unix(),
-            low: new moment().year(2019).month(0).day(1).unix(),
-            referenceValue: new moment().year(2019).month(0).day(1).unix(),
+            high: new moment().year(2019).month(11).day(31).valueOf(),
+            low: new moment().year(2019).month(0).day(1).valueOf(),
+            referenceValue: new moment().year(2019).month(0).day(1).valueOf(),
             divisor: 13,
             // ticks: [
             //     new Date(2019,0,1,0,0,0,0),
@@ -122,8 +122,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             //     new Date(2019,11,1,0,0,0,0),
             // ],
             labelInterpolationFnc: function(value) {
-                console.log(value*1000);
-                return moment(value*1000).format('MMM D YY');
+                console.log(value);
+                return moment(value).format('MMM D YY');
             }
         },
     };
