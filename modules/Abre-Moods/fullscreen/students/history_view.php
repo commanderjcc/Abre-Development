@@ -48,7 +48,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                     {x: new moment().year(2019).month(1).day(1).valueOf(), y: 2},
                     {x: new moment().year(2019).month(1).day(2).valueOf(), y: 2},
                     {x: new moment().year(2019).month(1).day(3).valueOf(), y: 2},
-                    {x: new moment().year(2019).month(1).day(4).valueOf(), y: 2},
+                    {x: new moment(1555555555555).valueOf(), y: 2},
                     // {x: new moment().year(2019).month(1).day(31).valueOf(), y: 1},
                     {x: new moment().year(2019).month(2).day(1).valueOf(), y: 4},
                     // {x: new moment().year(2019).month(2).day(28).valueOf(), y: 4},
@@ -100,7 +100,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             },
         },
         axisX: {
-            type: Chartist.StepAxis,
+            type: Chartist.FixedScaleAxis,
             high: new moment('20191231').valueOf(),
             low: new moment('20190101').valueOf(),
             // high: new moment().year(2019).month(11).day(31).valueOf(),
@@ -131,9 +131,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 anchorToPoint: true,
                 appendToBody: true,
                 transformTooltipTextFnc: function(value) {
-                    console.log(value.split(',')[0]*1000);
-
-                    return new moment(value.split(',')[0]*1000).format('MMM D');
+                    console.log(value);
+                    return new moment(parseInt(value.split(',')[0])).format('MMM D');
                 }
             }),
         ],
