@@ -33,7 +33,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
     </div>
 
 </div>
-<script type="text/javascript">
+<script defer type="text/javascript">
     var data = {
 
 
@@ -42,36 +42,36 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             {
                 name: 'mood',
                 data: [
-                    // {x: new moment().year(2018).month(11).day(1).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2019).month(0).day(1).unix(), y: 2},
-                    // {x: new moment().year(2018).month(12).day(31).unix(), y: 3},
-                    {meta: 'yeet',x: new moment().year(2019).month(1).day(1).unix(), y: 2},
-                    {meta: 'yeet',x: new moment().year(2019).month(1).day(2).unix(), y: 2},
-                    {meta: 'yeet',x: new moment().year(2019).month(1).day(3).unix(), y: 2},
-                    {meta: 'yeet',x: new moment().year(2019).month(1).day(4).unix(), y: 2},
-                    // {x: new moment().year(2019).month(1).day(31).unix(), y: 1},
-                    {meta: 'yeet',x: new moment().year(2019).month(2).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(2).day(28).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2019).month(3).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(3).day(31).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2019).month(4).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(4).day(30).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2019).month(5).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(5).day(31).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2019).month(6).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(6).day(30).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2019).month(7).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(7).day(31).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2019).month(8).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(8).day(30).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2019).month(9).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(9).day(31).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2019).month(10).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(10).day(31).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2019).month(11).day(1).unix(), y: 4},
-                    // {x: new moment().year(2019).month(11).day(30).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2020).month(0).day(1).unix(), y: 4},
-                    {meta: 'yeet',x: new moment().year(2019).month(12).day(31).unix(), y: 4},
+                    {x: new moment().year(2018).month(11).day(1).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(0).day(1).valueOf(), y: 2},
+                    // {x: new moment().year(2018).month(12).day(31).valueOf(), y: 3},
+                    {x: new moment().year(2019).month(1).day(1).valueOf(), y: 2},
+                    {x: new moment().year(2019).month(1).day(2).valueOf(), y: 2},
+                    {x: new moment().year(2019).month(1).day(3).valueOf(), y: 2},
+                    {x: new moment(1555555555555).valueOf(), y: 2},
+                    // {x: new moment().year(2019).month(1).day(31).valueOf(), y: 1},
+                    {x: new moment().year(2019).month(2).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(2).day(28).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(3).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(3).day(31).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(4).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(4).day(30).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(5).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(5).day(31).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(6).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(6).day(30).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(7).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(7).day(31).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(8).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(8).day(30).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(9).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(9).day(31).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(10).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(10).day(31).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(11).day(1).valueOf(), y: 4},
+                    // {x: new moment().year(2019).month(11).day(30).valueOf(), y: 4},
+                    {x: new moment().year(2020).month(0).day(1).valueOf(), y: 4},
+                    {x: new moment().year(2019).month(12).day(31).valueOf(), y: 4},
 
                 ]
             }
@@ -101,29 +101,29 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         },
         axisX: {
             type: Chartist.FixedScaleAxis,
-            // high: new Date(2019, 11, 31),
-            // low: new Date(2019,0,1),
-            high: new moment().year(2019).month(11).day(31).unix(),
-            low: new moment().year(2019).month(0).day(1).unix(),
-            referenceValue: new moment().year(2019).month(0).day(1).unix(),
-            divisor: 13,
-            // ticks: [
-            //     new Date(2019,0,1,0,0,0,0),
-            //     new Date(2019,1,1,0,0,0,0),
-            //     new Date(2019,2,1,0,0,0,0),
-            //     new Date(2019,3,1,0,0,0,0),
-            //     new Date(2019,4,1,0,0,0,0),
-            //     new Date(2019,5,1,0,0,0,0),
-            //     new Date(2019,6,1,0,0,0,0),
-            //     new Date(2019,7,1,0,0,0,0),
-            //     new Date(2019,8,1,0,0,0,0),
-            //     new Date(2019,9,1,0,0,0,0),
-            //     new Date(2019,10,1,0,0,0,0),
-            //     new Date(2019,11,1,0,0,0,0),
-            // ],
+            high: new moment('20191231').valueOf(),
+            low: new moment('20190101').valueOf(),
+            // high: new moment().year(2019).month(11).day(31).valueOf(),
+            // low: new moment().year(2019).month(0).day(1).valueOf(),
+            // referenceValue: new moment().year(2019).month(0).day(1).valueOf(),
+            // divisor: 13,
+            ticks: [
+                new moment('20190101').valueOf(),
+                new moment('20190201').valueOf(),
+                new moment('20190301').valueOf(),
+                new moment('20190401').valueOf(),
+                new moment('20190501').valueOf(),
+                new moment('20190601').valueOf(),
+                new moment('20190701').valueOf(),
+                new moment('20190801').valueOf(),
+                new moment('20190901').valueOf(),
+                new moment('20191001').valueOf(),
+                new moment('20191101').valueOf(),
+                new moment('20191201').valueOf(),
+            ],
             labelInterpolationFnc: function(value) {
-                console.log(value*1000);
-                return moment(value*1000).format('MMM D YY');
+                console.log(value);
+                return moment(value).format('MMM D YY');
             }
         },
         plugins: [
@@ -131,9 +131,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 anchorToPoint: true,
                 appendToBody: true,
                 transformTooltipTextFnc: function(value) {
-                    console.log(value.split(',')[0]*1000);
-
-                    return new moment(value.split(',')[0]*1000).format('MMM D');
+                    console.log(value);
+                    return new moment(parseInt(value.split(',')[0])).format('MMM D');
                 }
             }),
         ],
