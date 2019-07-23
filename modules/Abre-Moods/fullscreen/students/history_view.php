@@ -126,6 +126,17 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 return moment(value).format('MMM D YY');
             }
         },
+        plugins: [
+            Chartist.plugins.tooltip({
+                anchorToPoint: true,
+                appendToBody: true,
+                transformTooltipTextFnc: function(value) {
+                    console.log(value.split(',')[0]*1000);
+
+                    return new moment(value.split(',')[0]*1000).format('MMM D');
+                }
+            }),
+        ],
     };
 
     // In the global name space Chartist we call the Line function to initialize a line chart. As a first parameter we pass in a selector where we would like to get our chart created. Second parameter is the actual data object and as a third parameter we pass in our options
