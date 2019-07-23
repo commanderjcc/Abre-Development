@@ -43,35 +43,35 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 name: 'mood',
                 data: [
                     // {x: new moment().year(2018).month(11).day(1).unix(), y: 4},
-                    {x: new moment().year(2019).month(0).day(1).unix(), y: 2},
+                    {meta: 'yeet',x: new moment().year(2019).month(0).day(1).unix(), y: 2},
                     // {x: new moment().year(2018).month(12).day(31).unix(), y: 3},
-                    {x: new moment().year(2019).month(1).day(1).unix(), y: 2},
-                    {x: new moment().year(2019).month(1).day(2).unix(), y: 2},
-                    {x: new moment().year(2019).month(1).day(3).unix(), y: 2},
-                    {x: new moment().year(2019).month(1).day(4).unix(), y: 2},
+                    {meta: 'yeet',x: new moment().year(2019).month(1).day(1).unix(), y: 2},
+                    {meta: 'yeet',x: new moment().year(2019).month(1).day(2).unix(), y: 2},
+                    {meta: 'yeet',x: new moment().year(2019).month(1).day(3).unix(), y: 2},
+                    {meta: 'yeet',x: new moment().year(2019).month(1).day(4).unix(), y: 2},
                     // {x: new moment().year(2019).month(1).day(31).unix(), y: 1},
-                    {x: new moment().year(2019).month(2).day(1).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2019).month(2).day(1).unix(), y: 4},
                     // {x: new moment().year(2019).month(2).day(28).unix(), y: 4},
-                    {x: new moment().year(2019).month(3).day(1).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2019).month(3).day(1).unix(), y: 4},
                     // {x: new moment().year(2019).month(3).day(31).unix(), y: 4},
-                    {x: new moment().year(2019).month(4).day(1).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2019).month(4).day(1).unix(), y: 4},
                     // {x: new moment().year(2019).month(4).day(30).unix(), y: 4},
-                    {x: new moment().year(2019).month(5).day(1).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2019).month(5).day(1).unix(), y: 4},
                     // {x: new moment().year(2019).month(5).day(31).unix(), y: 4},
-                    {x: new moment().year(2019).month(6).day(1).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2019).month(6).day(1).unix(), y: 4},
                     // {x: new moment().year(2019).month(6).day(30).unix(), y: 4},
-                    {x: new moment().year(2019).month(7).day(1).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2019).month(7).day(1).unix(), y: 4},
                     // {x: new moment().year(2019).month(7).day(31).unix(), y: 4},
-                    {x: new moment().year(2019).month(8).day(1).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2019).month(8).day(1).unix(), y: 4},
                     // {x: new moment().year(2019).month(8).day(30).unix(), y: 4},
-                    {x: new moment().year(2019).month(9).day(1).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2019).month(9).day(1).unix(), y: 4},
                     // {x: new moment().year(2019).month(9).day(31).unix(), y: 4},
-                    {x: new moment().year(2019).month(10).day(1).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2019).month(10).day(1).unix(), y: 4},
                     // {x: new moment().year(2019).month(10).day(31).unix(), y: 4},
-                    {x: new moment().year(2019).month(11).day(1).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2019).month(11).day(1).unix(), y: 4},
                     // {x: new moment().year(2019).month(11).day(30).unix(), y: 4},
-                    {x: new moment().year(2020).month(0).day(1).unix(), y: 4},
-                    {x: new moment().year(2019).month(12).day(31).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2020).month(0).day(1).unix(), y: 4},
+                    {meta: 'yeet',x: new moment().year(2019).month(12).day(31).unix(), y: 4},
 
                 ]
             }
@@ -126,6 +126,17 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 return moment(value*1000).format('MMM D YY');
             }
         },
+        plugins: [
+            Chartist.plugins.tooltip({
+                anchorToPoint: true,
+                appendToBody: true,
+                transformTooltipTextFnc: function(value) {
+                    console.log(value.split(',')[0]*1000);
+
+                    return new moment(value.split(',')[0]*1000).format('MMM D');
+                }
+            }),
+        ],
     };
 
     // In the global name space Chartist we call the Line function to initialize a line chart. As a first parameter we pass in a selector where we would like to get our chart created. Second parameter is the actual data object and as a third parameter we pass in our options
