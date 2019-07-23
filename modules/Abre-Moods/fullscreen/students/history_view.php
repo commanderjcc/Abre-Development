@@ -78,7 +78,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         ]
     };
 
-    var zoneConversion = ['Error','Blue','Green','Yellow','Red',''];
+    var zoneConversion = ['','Blue','Green','Yellow','Red',''];
 
     // As options we currently only set a static size of 300x200 px
     var options = {
@@ -89,10 +89,11 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         onlyInteger: true,
         axisY: {
 
-            type: Chartist.FixedStepAxis,
+            type: Chartist.FixedScaleAxis,
             high: 5,
-            low: 1,
-
+            low: 0,
+            divisor: 5,
+            showGrid: false,
             referenceValue: 1,
             labelInterpolationFnc: function(value) {
                 return zoneConversion[value];
