@@ -32,14 +32,15 @@ $studentID = intval(GetStudentUniqueID($studentEmail));
 
 //create lastMood JSON object
 $lastMood = [
-        'mood' => $selectedMood, 
-        'zone' => $zone,
-        'time' => $time,
-        ];
+    'mood' => $selectedMood,
+    'zone' => $zone,
+    'time' => $time,
+];
 $lastMood = json_encode($lastMood);
+
 //ask DB for history
-$sql = 'SELECT moodHistory FROM moods WHERE studentID = ? AND siteID = ?';
 $stmt = $db->stmt_init();
+$sql = 'SELECT mood_History FROM moods WHERE studentID = ? AND siteID = ?';
 $stmt->prepare($sql);
 $stmt->bind_param("ii", $studentID, $siteID);
 $stmt->execute();
@@ -50,18 +51,20 @@ $stmt->close();
 //if result is null or ''
 if ($result == null) {
     //dont worry about past history
-    $newHistory = [$time=>$selectedMood];
-    $newHistory = json_encode($newHistory);
+    $newHistory = '[]';
 } else {
-    //worry about past history
-    $result = json_decode($result, true);
-    $newHistory = [$time=>$selectedMood] + $result;
-    $newHistory = json_encode($newHistory);
+    $newHistory = $result;
 }
+//worry about past history
+$newHistory = json_decode($newHistory, true);
+//    $newHistory = [$time=>$selectedMood] + $result;
+array_unshift($newHistory, ['mood' => $selectedMood, 'zone' => $zone, 'time' => $time]);
+$newHistory = json_encode($newHistory);
+
 //if actually null
 if ($result === null) {
     //make new row
-    $sql = "INSERT into moods(studentID, lastMood, moodHistory, siteID) values (?, ?, ?, ?)";
+    $sql = "INSERT into moods(studentID, last_Mood, mood_History, siteID) values (?, ?, ?, ?)";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
     $stmt->bind_param("issi", $studentID, $lastMood, $newHistory, $_SESSION['siteID']);
@@ -69,7 +72,7 @@ if ($result === null) {
     $stmt->close();
 } else {
     //update existing row
-    $sql = "UPDATE moods SET lastMood = ?, moodHistory = ? WHERE studentID = ? AND siteID = ?";
+    $sql = "UPDATE moods SET last_Mood = ?, mood_History = ? WHERE studentID = ? AND siteID = ?";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
     $stmt->bind_param("ssii", $lastMood, $newHistory, $studentID, $siteID);
