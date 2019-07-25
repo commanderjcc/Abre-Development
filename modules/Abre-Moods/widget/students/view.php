@@ -171,7 +171,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(_
         let now = moment();
         let time = now.format();
         console.log('posting with mood: ' + mood + ', zone: ' + zone + ', time: ' + time);
-        var jQueryRequest = $.post('modules/Abre-Moods/data_access/students/upload_mood.php', {mood:mood,time:time,zone:zone}, function(data) {
+        var jQueryRequest = $.post('modules/Abre-Moods/Data_Access/students/upload_mood.php', {mood:mood,time:time,zone:zone}, function(data) {
 						//log data to console for testing, can remove for production
             console.log(data);
             console.log(JSON.parse(data));

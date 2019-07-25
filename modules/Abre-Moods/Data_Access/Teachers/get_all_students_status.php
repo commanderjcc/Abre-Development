@@ -55,7 +55,7 @@ $picStmt->prepare($picSql);
 $picStmt->bind_param("i", $studentID);
 //prepare mood statement
 $moodStmt = $db->stmt_init();
-$moodSql = "SELECT lastMood FROM moods where StudentID = ? And siteID = ".$siteID;
+$moodSql = "SELECT last_Mood FROM moods where StudentID = ? And siteID = ".$siteID;
 $moodStmt->prepare($moodSql);
 $moodStmt->bind_param('i', $studentID);
 //prepare name statement

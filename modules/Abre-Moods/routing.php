@@ -62,7 +62,7 @@
 			    $('#loader').show();
 			    $('#titletext').text('Moods');
 			    document.title = 'Moods';
-				$('#content_holder').load('modules/".basename(__DIR__)."/fullscreen/', function() { init_page(); });
+				$('#content_holder').load('modules/".basename(__DIR__)."/fullscreen/students/standard_view.php', function() { init_page(); });
 				//$('#modal_holder').load('modules/".basename(__DIR__)."/modals.php');
 				//ga('set', 'page', '/#moods/');
 				//ga('send', 'pageview');
