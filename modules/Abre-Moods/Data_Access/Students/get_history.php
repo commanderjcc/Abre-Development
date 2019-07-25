@@ -65,7 +65,7 @@ $nameResult = $nameStmt->get_result();
 $nameRow = $nameResult->fetch_assoc();
 $firstName = $nameRow['FirstName'];
 $lastName = $nameRow['LastName'];
-$studentName = $firstName . " " . substr($lastName, 0, 1) . ".";
+$studentName = $firstName . " " . $lastName;
 //get mood
 $moodStmt->execute();
 $moodResult = $moodStmt->get_result();
