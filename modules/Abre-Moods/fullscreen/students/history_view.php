@@ -34,6 +34,11 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
 </div>
 <script defer type="text/javascript">
+
+    var jqxhr = $.post('/modules/Abre-Moods/Data_Access/Students/get_history.php',{studentID:<?php echo intval($_POST['studentID']); ?>});
+    jqxhr.done(function(data){
+        console.log(JSON.parse(data))
+    });
     var data = {
 
 
