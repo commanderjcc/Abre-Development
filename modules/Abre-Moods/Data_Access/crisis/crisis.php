@@ -18,6 +18,22 @@
 
 //required verification files
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
-require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
-require_once(dirname(__FILE__) . '/../../../../core/abre_functions.php');
 
+
+
+function handleCrisis($mood, $studentId, $displayName, $studentEmail, $siteID) {
+    require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
+    $result = null;
+    $stmt = $db->stmt_init();
+    $sql = 'Select emailAdmin, emailCounselors, willLink, link from moods_settings where buttonName = ?  and siteID =' .$siteID;
+    $stmt->prepare($sql);
+    $stmt->bind_param('s',$mood);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $emailAdmin = $row['emailAdmin'];
+    $emailCounselors = $row['emailCounselors'];
+    $willLink = $row['willLink'];
+    $link = $row['link'];
+    return $link;
+}

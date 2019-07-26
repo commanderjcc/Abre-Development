@@ -146,10 +146,14 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(_
         let d = new Date();
         let time = d.toISOString();
         console.log('posting with mood: ' + mood + ', zone: ' + zone + ', time: ' + time);
-        var jQueryRequest = $.post('modules/Abre-Moods/Data_Access/students/upload_mood.php', {mood:mood,time:time,zone:zone}, function(data) {
+        var jQueryRequest = $.post('modules/Abre-Moods/Data_Access/students/upload_mood.php', {mood:mood,time:time,zone:zone});
+        jQueryRequest.done(function(data) {
             //log data to console for testing, can remove for production
             console.log(data);
             console.log(JSON.parse(data));
+            if(data['willLink']===1 && data['link']!= null) {
+                window.location.href = data['link'];
+            }
         });
     };
     //define function to add click funciton to all the divs

@@ -29,6 +29,19 @@ $time = htmlspecialchars($_POST['time']);
 $siteID = intval($_SESSION['siteID']);
 $studentEmail = $_SESSION['escapedemail'];
 $studentID = intval(GetStudentUniqueID($studentEmail));
+$displayName = $_SESSION['displayName'];
+
+//interupt if is part of crisis mode
+if ($zone === 'crisis') {
+    require(dirname(__FILE__).'/../crisis/crisis.php');
+    $link = handleCrisis($selectedMood,$studentID,$displayName,$studentEmail, $siteID);
+    if ($link != null) {
+        echo "{'willLink':1,'link':".$link."}";
+    }
+    exit;
+}
+
+
 
 //create lastMood JSON object
 $lastMood = [
@@ -83,6 +96,9 @@ $db->close();
 
 //TAKE OUT FOR PRODUCTION, JUST for debuggin'
 $response = [
+    'willLink'=>1,
+    'link' => $link,
+
     'mood' => $selectedMood,
     'studentEmail' => $studentEmail,
     'zone' => $zone,
