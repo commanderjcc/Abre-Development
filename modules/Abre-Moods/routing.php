@@ -91,6 +91,21 @@
 				});
 			},
 		";
+	} elseif(superadmin()) {
+		echo "
+			'moods/settings': function(name) {
+			    $('#navigation_top').hide();
+			    $('#content_holder').hide();
+			    $('#loader').show();
+			    $('#titletext').text('Moods');
+			    document.title = 'Moods';
+				$('#content_holder').load('modules/".basename(__DIR__)."/fullscreen/admin/settings.php', function() { init_page(); });
+				//$('#modal_holder').load('modules/".basename(__DIR__)."/modals.php');
+				ga('set', 'page', '/#moods/settings');
+				ga('send', 'pageview');
+				//console.log('testing moods registrations');
+			},
+		";
 	}
 
 
