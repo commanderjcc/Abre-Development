@@ -21,7 +21,8 @@ require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
 
 
 
-function handleCrisis($mood, $studentId, $displayName, $studentEmail, $siteID) {
+function handleCrisis($mood, $time, $studentId, $displayName, $studentEmail, $siteID) {
+    //connect to the database and get the current settings
     require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
     $result = null;
     $stmt = $db->stmt_init();
@@ -35,5 +36,18 @@ function handleCrisis($mood, $studentId, $displayName, $studentEmail, $siteID) {
     $emailCounselors = $row['emailCounselors'];
     $willLink = $row['willLink'];
     $link = $row['link'];
+
+    //if we should email the admin
+    if ($emailAdmin == 1) {
+        //for each admin email
+        foreach($emailAdmin as $email) {
+            //email them
+            mail($email,$displayName ." ". $mood,"At ".$time. " " .$displayName." marked that they ".$mood);
+        }
+    }
+
+
+
+    //return a link
     return $link;
 }

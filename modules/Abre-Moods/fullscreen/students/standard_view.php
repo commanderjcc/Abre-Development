@@ -150,7 +150,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(_
         jQueryRequest.done(function(data) {
             //log data to console for testing, can remove for production
             console.log(data);
-            console.log(JSON.parse(data));
+            data = JSON.parse(data);
+            console.log(data);
             if(data['willLink']===1 && data['link']!= null) {
                 window.location.href = data['link'];
             }

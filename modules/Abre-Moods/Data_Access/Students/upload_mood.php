@@ -34,9 +34,9 @@ $displayName = $_SESSION['displayName'];
 //interupt if is part of crisis mode
 if ($zone === 'crisis') {
     require(dirname(__FILE__).'/../crisis/crisis.php');
-    $link = handleCrisis($selectedMood,$studentID,$displayName,$studentEmail, $siteID);
+    $link = handleCrisis($selectedMood,$time,$studentID,$displayName,$studentEmail, $siteID);
     if ($link != null) {
-        echo "{'willLink':1,'link':".$link."}";
+        echo '{"willLink":1,"link":"'.$link.'"}';
     }
     exit;
 }
