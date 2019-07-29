@@ -1,0 +1,17 @@
+#emailSettings {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.emailList {
+    width: 50%;
+}
+
+.mdl-textfield {
+    width: 80%;
+
+}
+.mdl-textfield__input {
+    background-color: whitesmoke;
+}
