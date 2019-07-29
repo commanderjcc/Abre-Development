@@ -145,4 +145,27 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
     // In the global name space Chartist we call the Line function to initialize a line chart. As a first parameter we pass in a selector where we would like to get our chart created. Second parameter is the actual data object and as a third parameter we pass in our options
     var chart = new Chartist.Line('.ct-chart', data, options);
+        chart.on('draw', function (data) {
+            if (data.type === 'grid') {
+
+                if (data.axis.units.pos === 'y') {
+                    if (data.element.parent().querySelector('.bar' + data.index) != null) {
+                        data.element.parent().querySelector('.bar' + data.index).remove();
+                    }
+
+                    var offsetHeight = data.axis.chartRect.height() / 10;
+                    var pos = {
+                        'y1': data.element._node.attributes.y1.value,
+                        'x1': data.element._node.attributes.x1.value,
+                    };
+                    var foreignObj = data.element.foreignObject('<div class="moodbar"></div>', {
+                        'y': pos.y1 - offsetHeight,
+                        'x': pos.x1,
+                        'height': 2 * offsetHeight,
+                        'width': "100%",
+                    }, 'bar' + data.index, true);
+                    data.element.parent().append(foreignObj);
+                }
+            }
+        });
 </script>

@@ -134,10 +134,31 @@
 
 #graph {
     height:100%;
-    background: linear-gradient(to bottom, #336699 0%,#336699 19%,#44af69 26%,#44af69 47%,#ffa216 51%,#ffa216 75%,#f4594b 83%,#f4594b 100%);
 }
 
+.bar1 {
+    background: #33669950;
+}
 
+.bar2 {
+    background: #44af6950;
+}
+
+.bar3 {
+    background: #ffa21650;
+}
+
+.bar4 {
+    background: #F4594b50;
+}
+
+.ct-line, .ct-point {
+    stroke: rgb(17,17,17) !important;
+}
+
+.ct-line {
+    stroke: rgba(0,0,0,.7) !important;
+}
 
 
 
