@@ -132,7 +132,9 @@
     background-color: whitesmoke;
 }
 
-
+#graph {
+    background: linear-gradient(to bottom, #336699 0%,#336699 19%,#44af69 26%,#44af69 47%,#ffa216 51%,#ffa216 75%,#f4594b 83%,#f4594b 100%);
+}
 
 
 
