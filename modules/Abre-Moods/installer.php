@@ -36,7 +36,7 @@
 
 
 		//###################### DATABASE STRUCTURE ###########################
-		//    ID      |  studentID   |  lastMood  |  moodHistory  |  siteID
+		//    ID      |  studentID   |  last_Mood  |  mood_History  |  siteID
 		// -------------------------------------------------------------------
  		//   int(11)  |  int(11)   | text(JSON)  |   text(JSON)   |  int(11)
 
@@ -62,18 +62,18 @@
 
 		//Check for last_mood field
 		require(dirname(__FILE__) . '/../../core/abre_dbconnect.php');
-		if(!$db->query("SELECT lastMood FROM moods LIMIT 1"))
+		if(!$db->query("SELECT last_Mood FROM moods LIMIT 1"))
 		{
-			$sql = "ALTER TABLE `moods` ADD `lastMood` text NOT NULL;";
+			$sql = "ALTER TABLE `moods` ADD `last_Mood` text NOT NULL;";
 			$db->multi_query($sql);
 		}
 		$db->close();
 
 		//Check for mood_history field
 		require(dirname(__FILE__) . '/../../core/abre_dbconnect.php');
-		if(!$db->query("SELECT moodHistory FROM moods LIMIT 1"))
+		if(!$db->query("SELECT mood_History FROM moods LIMIT 1"))
 		{
-			$sql = "ALTER TABLE `moods` ADD `moodHistory` text NOT NULL;";
+			$sql = "ALTER TABLE `moods` ADD `mood_History` text NOT NULL;";
 			$db->multi_query($sql);
 		}
 		$db->close();

@@ -84,7 +84,7 @@ foreach ($studentIDs as $studentID) {
     $moodStmt->execute();
     $moodResult = $moodStmt->get_result();
     $moodRow = $moodResult->fetch_assoc();
-    $moodJson = $moodRow['lastMood'];
+    $moodJson = $moodRow['last_Mood'];
     $lastMoodDecoded = json_decode($moodJson,true);
 
     //make student data object
