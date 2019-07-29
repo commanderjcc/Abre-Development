@@ -10,8 +10,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 <i class="student_mood twa twa-3x"></i>
             </div>
             <div id="studentDetails" class="">
-                <span id="student_name" class="">Joshua Christensen</span>
-                <span id="lastMood" class="">"Frustrated" at 12:12 AM</span>
+                <span id="student_name" class=""></span>
+                <span id="lastMood" class=""></span>
             </div>
         </div>
         <div id="moodHistory" class="mdl-shadow--2dp detail-container mcontainer">
