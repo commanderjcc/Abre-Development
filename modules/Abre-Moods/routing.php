@@ -91,7 +91,9 @@
 				});
 			},
 		";
-	} elseif(superadmin()) {
+	}
+
+	if(admin()) {
 		echo "
 			'moods/settings': function(name) {
 			    $('#navigation_top').hide();
@@ -103,7 +105,7 @@
 				//$('#modal_holder').load('modules/".basename(__DIR__)."/modals.php');
 				ga('set', 'page', '/#moods/settings');
 				ga('send', 'pageview');
-				//console.log('testing moods registrations');
+				console.log('testing moods registrations');
 			},
 		";
 	}
