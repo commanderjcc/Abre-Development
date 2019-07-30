@@ -29,7 +29,7 @@ if($_SESSION['usertype']=="staff"){
     $staffID = intval(GetStaffUniqueID($email));
     $studentID = $_POST['studentID'];
 } else {
-    $studentID = GetStudentUniqueID($studentEmail);
+    $studentID = GetStudentUniqueID($email);
 }
 
 //prepare picture statement

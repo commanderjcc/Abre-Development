@@ -47,7 +47,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                     data: data.history.map((moodObj)=>{
                         console.log(moodObj);
                         return {'meta':moodObj.mood,'x':moment(moodObj.time).valueOf(),'y':zoneConversion.indexOf(capitalizeFirst(moodObj.zone))}
-                    })
+                    }).reverse()
                 }
             ]
         };
@@ -139,7 +139,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 </div>
             </div>`];
         data.history.forEach((moodObj)=>{
-            $('#moodHistory').append(outline[0]+data.mood+outline[1]+data.name+outline[2]+moment(data.time).format('h:mm A')+outline[3]+moment(data.time).format('dddd[,] MMM Do'))
+            console.log(moodObj);
+            $('#moodHistory').append(outline[0]+moodObj.mood+outline[1]+capitalizeFirst(moodObj.mood)+outline[2]+moment(moodObj.time).format('h:mm A')+outline[3]+moment(moodObj.time).format('dddd[,] MMM Do'))
         })
 
     });
