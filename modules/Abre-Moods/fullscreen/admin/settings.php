@@ -203,14 +203,14 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(_
         let link = $('input[type="url"][id="'+aliasConversion[button]+'url"]')[0];
 
         var checkboxes = {
-            'emailAdmin': admin.value,
-            'emailCounselors': counselors.value,
-            'emailTeacher': teacher.value,
-            'willLink': willLink.value,
-            'link': link.value,
+            'emailAdmin': admin.value === "on" ? 1:0,
+            'emailCounselors': counselors.value=== "on" ? 1:0,
+            'emailTeacher': teacher.value=== "on" ? 1:0,
+            'willLink': willLink.value=== "on" ? 1:0,
+            'link': link.value=== "on" ? 1:0,
         };
-        var adminEmails = adminemails.value.replace(/\s/g, '').split(",");
-        var counselorEmails = counseloremails.value.replace(/\s/g, '').split(",");
+        var adminEmails;// = adminemails.value.replace(/\s/g, '').split(",");
+        var counselorEmails;// = counseloremails.value.replace(/\s/g, '').split(",");
 
         var jqxhr = $.post('/modules/Abre-Moods/Data_Access/admin/post_settings.php',{
             'data': {
