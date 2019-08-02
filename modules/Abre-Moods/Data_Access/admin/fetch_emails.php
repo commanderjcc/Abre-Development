@@ -17,6 +17,25 @@
 
 //required verifications
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php'); //required verification security
-$data = $_POST['data'];
+require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
 
-$sql();
+$button = $_POST['button'];
+$siteID = intval($_SESSION['siteID']);
+
+$sql = "Select id, email, admin, counselor FROM moods_contact_list WHERE buttonName = '" . $button . "' AND siteID = " . $siteID;
+$result = $db->query($sql);
+
+$emails = [];
+if ($result) {
+    while($emailrow = $result->fetch_assoc()) {
+        $emailObj = [
+            'id' => $emailrow['id'],
+            'email' => $emailrow['email'],
+            'admin' => $emailrow['admin'],
+            'counselor' => $emailrow['counselor'],
+        ];
+        array_push($emails, $emailObj);
+    }
+}
+
+echo json_encode($emails);

@@ -22,12 +22,13 @@ require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
 $button = $_POST['button'];
 $siteID = intval($_SESSION['siteID']);
 
-$sql = "Select emailAdmin, emailCounselors, emailTeacher, willLink, link FROM moods_settings WHERE buttonName = '".$button."' AND siteID = ".$siteID;
+$sql = "Select id, emailAdmin, emailCounselors, emailTeacher, willLink, link FROM moods_settings WHERE buttonName = '".$button."' AND siteID = ".$siteID;
 $result = $db->query($sql);
 
 if($result) {
     $row = $result->fetch_assoc();
     $checkboxes = [
+        'id' => $row['id'],
         'emailAdmin' => $row['emailAdmin'],
         'emailCounselors' => $row['emailCounselors'],
         'emailTeacher' => $row['emailTeacher'],
@@ -43,24 +44,5 @@ if($result) {
     $stmt->close();
 }
 
-$sql = "Select email, admin, counselor FROM moods_contact_list WHERE buttonName = '".$button."' AND siteID = ".$siteID;
-$result = $db->query($sql);
-
-$adminEmails = [];
-$counselorEmails = [];
-if($result) {
-    $emailrow = $result->fetch_assoc();
-    if($emailrow['admin'] == '1') {
-        array_push($adminEmails, $emailrow['email']);
-    }
-
-    if($emailrow['counselor'] == '1') {
-        array_push($counselorEmails, $emailrow['email']);
-    }
-}
 $db->close();
-echo json_encode([
-    'checkboxes'=>$checkboxes,
-    'adminEmails'=>$adminEmails,
-    'counselorEmails'=>$counselorEmails,
-]);
+echo json_encode($checkboxes);
