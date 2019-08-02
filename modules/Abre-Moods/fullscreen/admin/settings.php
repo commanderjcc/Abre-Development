@@ -152,7 +152,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
                 <!--div for keeping checkbox and link on same line-->
                 <div class="link-box">
-                    <label class="not-full-width mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="needs_help-link">
+                    <label class="not-full-width mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"
+                           for="needs_help-link">
                         <input type="checkbox" id="needs_help-link" class="mdl-checkbox__input">
                         <span class="mdl-checkbox__label">Send to Link</span>
                     </label>
@@ -220,7 +221,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
                 <!--div for keeping checkbox and link on same line-->
                 <div class="link-box">
-                    <label class="not-full-width mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="needs_to_talk-link">
+                    <label class="not-full-width mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"
+                           for="needs_to_talk-link">
                         <input type="checkbox" id="needs_to_talk-link" class="mdl-checkbox__input">
                         <span class="mdl-checkbox__label">Send to Link</span>
                     </label>
@@ -248,7 +250,9 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         jqObj.parent()[0].MaterialCheckbox.uncheck(); //the [0] is used to get the actual DOM element
     };
 
-    var save = function (button) {
+    //When theres a change in the checkboxes save them to the db
+    var saveCheckboxes = function (button) {
+        //find the checkboxes, the [0] is to make them into DOM elements instead of jquery so that .value works
         let admin = $('input[type="checkbox"][id="' + button + 'admin"]')[0];
         let counselors = $('input[type="checkbox"][id="' + button + 'counselors"]')[0];
         let teacher = $('input[type="checkbox"][id="' + button + 'teacher"]')[0];
@@ -256,6 +260,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
         let link = $('input[type="url"][id="' + button + 'url"]')[0];
 
+        //convert their 'on'/'off' to 1/0
         var checkboxes = {
             'emailAdmin': admin.value === "on" ? 1 : 0,
             'emailCounselors': counselors.value === "on" ? 1 : 0,
@@ -269,8 +274,100 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 'checkboxes': checkboxes,
             }
         });
+    };
+
+    //adds a row to the table and optionally to the db
+    var addRow = function (button, id, email, admin, counselor, db) {
+        //get table we are adding into
+        let tableBody = $('#' + button + '-panel tbody');
+        //make outline for rows with gaps for supplied data
+        let rowOutline = [`
+        <tr data-id="`, `">
+            <td class="mdl-data-table__cell--non-numeric">
+                <input onchange="updateRow("` + button + `")"  data-id="`, `"class="email" type="text" value="`, `">
+            </td>
+            <td>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
+                       for="`, `">
+                    <input onchange="updateRow("` + button + `")" data-id="`, `" type="checkbox" id="`, `" class="mdl-checkbox__input">
+                </label>
+            </td>
+            <td>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
+                       for="`, `">
+                    <input onchange="updateRow("` + button + `")" data-id="`, `"type="checkbox" id="`, `" class="mdl-checkbox__input">
+                </label>
+            </td>
+            <td>
+                <i onclick="deleteRow("` + button + `")" data-id="`, `" class="pointer material-icons">delete</i>
+            </td>
+        </tr>
+    `];
+        //assemble row from outline and email data
+        let newRow = rowOutline[0] + id + rowOutline[1] + id + rowOutline[2] + email + rowOutline[3] + button + '-isAdmin' + id + rowOutline[4] + id + rowOutline[5] + button + '-isAdmin' + id + rowOutline[6] + button + '-isCounselor' + id + rowOutline[7] + id + rowOutline[8] + button + '-isCounselor' + id + rowOutline[9] + id + rowOutline[10];
+        //append it to the body of the table
+        tableBody.append(newRow);
+        //find the new buttons
+        let adminButton = $('#' + button + '-isAdmin' + id + '[data-id="' + id + '"]');
+        let counselorButton = $('#' + button + '-isCounselor' + id + '[data-id="' + id + '"]');
+        //upgrade them with mdl so that they can be auto-checked
+        componentHandler.upgradeElement(adminButton.parent()[0]);
+        componentHandler.upgradeElement(counselorButton.parent()[0]);
+        //check buttons if data says to
+        if (admin) {
+            makeChecked(adminButton);
+        } else {
+            makeUnchecked(adminButton);
+        }
+
+        if (counselor) {
+            makeChecked(counselorButton);
+        } else {
+            makeUnchecked(counselorButton);
+        }
 
 
+        if (db) {
+            let data = {
+                'email': email,
+                'admin': admin,
+                'counselor': counselor,
+            };
+            //add to the db
+            $.post('modules/Abre-Moods/Data_Access/admin/post_emails.php', {'data': data, 'operation': 'add'})
+        }
+    };
+
+    //when a row in the table is changed, update the row in the db
+    var updateRow = function (button) {
+        //find row with id from updated item, use [0] to get DOM element for .value use
+        let id = $(this).data('id');
+        let row = $('tr[data-id = "' + id + '"]');
+        let email = row.child('.email')[0].value;
+        let admin = row.child('#' + button + '-isAdmin' + id)[0].value === "on" ? 1 : 0;
+        let counselor = row.child('#' + button + '-isCounselor' + id)[0].value === "on" ? 1 : 0;
+        let data = {
+            'id': id,
+            'email': email,
+            'admin': admin,
+            'counselor': counselor,
+        };
+        var jqxhr = $.post('modules/Abre-Moods/Data_Access/admin/post_emails.php', {
+            'data': data,
+            'operation': 'update'
+        });
+    };
+
+    //deletes the row from the db and page
+    var deleteRow = function (button) {
+        let id = $(this).data('id');
+        let data = {
+            'id':id,
+        }
+        var jqxhr = $.post('modules/Abre-Moods/Data_Access/admin/post_emails.php', {
+            'data': data,
+            'operation': 'delete',
+        })
     };
 
     //update the checkbox section of the site
@@ -317,54 +414,10 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         //clear table for filling up later
         let tableBody = $('#' + button + '-panel tbody');
         tableBody.empty();
-        //make outline for rows with gaps for supplied data
-        let rowOutline = [`
-        <tr data-id="`, `">
-            <td class="mdl-data-table__cell--non-numeric">
-                <input data-id="`, `"class="email" type="text" value="`, `">
-            </td>
-            <td>
-                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
-                       for="`, `">
-                    <input data-id="`, `" type="checkbox" id="`, `" class="mdl-checkbox__input">
-                </label>
-            </td>
-            <td>
-                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
-                       for="`, `">
-                    <input data-id="`, `"type="checkbox" id="`, `" class="mdl-checkbox__input">
-                </label>
-            </td>
-            <td>
-                <i data-id="`, `" class="pointer material-icons">delete</i>
-            </td>
-        </tr>
-    `];
 
         //for each email make a new row
         data.forEach((emailObj) => {
-            //assemble row from outline and email data
-            let newRow = rowOutline[0] + emailObj['id'] + rowOutline[1] + emailObj['id'] + rowOutline[2] + emailObj['email'] + rowOutline[3] + button + '-isAdmin' + rowOutline[4] + emailObj['id'] + rowOutline[5] + button + '-isAdmin' + rowOutline[6] + button + '-isCounselor' + rowOutline[7] + emailObj['id'] + rowOutline[8] + button + '-isCounselor' + rowOutline[9] + emailObj['id'] + rowOutline[10];
-            //append it to the body of the table
-            tableBody.append(newRow);
-            //find the new buttons
-            let adminButton = $('#' + button + '-isAdmin[data-id="'+emailObj['id']+'"]');
-            let counselorButton = $('#' + button + '-isCounselor[data-id="'+emailObj['id']+'"]');
-            //upgrade them with mdl so that they can be auto-checked
-            componentHandler.upgradeElement(adminButton.parent()[0]);
-            componentHandler.upgradeElement(counselorButton.parent()[0]);
-            //check buttons if we should
-            if (emailObj['admin'] == "1") {
-                makeChecked(adminButton);
-            } else {
-                makeUnchecked(adminButton);
-            }
-
-            if (emailObj['counselor'] == "1") {
-                makeChecked(counselorButton);
-            } else {
-                makeUnchecked(counselorButton);
-            }
+            addRow(button, emailObj['id'], emailObj['email'], emailObj['admin'], emailObj['counselor'], false)
         });
     };
 
