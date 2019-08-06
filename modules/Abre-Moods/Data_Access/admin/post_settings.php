@@ -17,6 +17,13 @@
 
 //required verifications
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php'); //required verification security
+require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
 $data = $_POST['data'];
+$siteID = intval($_SESSION['siteID']);
 
-$sql();
+$sql = 'UPDATE moods_settings Set emailAdmin = ?, emailCounselors = ?, emailTeacher = ?, willLink = ?, link = ? where buttonName = ? and siteID = ?';
+$stmt = $db->stmt_init();
+$stmt->prepare($sql);
+$stmt->bind_param('iiiissi', intval($data['emailAdmin']), intval($data['emailCounselors']), intval($data['emailTeacher']), intval($data['willLink']), $data['link'], $data['button'], $siteID);
+$stmt->execute();
+$stmt->close();

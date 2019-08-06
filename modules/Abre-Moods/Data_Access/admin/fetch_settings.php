@@ -25,10 +25,9 @@ $siteID = intval($_SESSION['siteID']);
 $sql = "Select id, emailAdmin, emailCounselors, emailTeacher, willLink, link FROM moods_settings WHERE buttonName = '".$button."' AND siteID = ".$siteID;
 $result = $db->query($sql);
 
-if($result) {
+if($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $checkboxes = [
-        'id' => $row['id'],
         'emailAdmin' => $row['emailAdmin'],
         'emailCounselors' => $row['emailCounselors'],
         'emailTeacher' => $row['emailTeacher'],
@@ -36,13 +35,22 @@ if($result) {
         'link' => $row['link'],
     ];
 } else {
-    $sql = 'INSERT into moods_settings(buttonName, emailAdmin, emailCounselors, emailTeacher, willLink, link, siteID) values (?,?,?,?,?,?,?)';
+    $emptystring = '';
+    $sql = 'INSERT into moods_settings(buttonName, emailAdmin, emailCounselors, emailTeacher, willLink, link, siteID) values (?,0,0,0,0,?,?)';
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param('siiiisi',$button,0,0,0,0,'',$siteID);
+    $stmt->bind_param('ssi',$button,$emptystring,$siteID);
     $stmt->execute();
     $stmt->close();
+    $checkboxes = [
+        'emailAdmin' => 0,
+        'emailCounselors' => 0,
+        'emailTeacher' => 0,
+        'willLink' => 0,
+        'link' => '',
+    ];
 }
 
 $db->close();
 echo json_encode($checkboxes);
+//echo 'done';

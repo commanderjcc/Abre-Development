@@ -50,18 +50,18 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                         </td>
                         <td>
                             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
-                                   for="suadmin">
-                                <input type="checkbox" id="suadmin" class="mdl-checkbox__input">
+                                   for="speak_up-adminNew">
+                                <input type="checkbox" id="speak_up-adminNew" class="mdl-checkbox__input">
                             </label>
                         </td>
                         <td>
                             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
-                                   for="suadmin">
-                                <input type="checkbox" id="suadmin" class="mdl-checkbox__input">
+                                   for="speak_up-counselorNew">
+                                <input type="checkbox" id="speak_up-counselorNew" class="mdl-checkbox__input">
                             </label>
                         </td>
                         <td>
-                            <i class="pointer material-icons">add</i>
+                            <i onclick="addNewRow('speak_up', this)" class="pointer material-icons">add</i>
                         </td>
                     </tr>
                     </tfoot>
@@ -70,26 +70,26 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 <!--checkboxes-->
                 <br>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="speak_up-admin">
-                    <input type="checkbox" id="speak_up-admin" class="mdl-checkbox__input">
+                    <input onchange="saveCheckboxes('speak_up')" type="checkbox" id="speak_up-admin" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Admin</span>
                 </label>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="speak_up-counselors">
-                    <input type="checkbox" id="speak_up-counselors" class="mdl-checkbox__input">
+                    <input onchange="saveCheckboxes('speak_up')" type="checkbox" id="speak_up-counselors" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Counselors</span>
                 </label>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="speak_up-teacher">
-                    <input type="checkbox" id="speak_up-teacher" class="mdl-checkbox__input">
+                    <input onchange="saveCheckboxes('speak_up')" type="checkbox" id="speak_up-teacher" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Teacher</span>
                 </label>
 
                 <!--div for keeping checkbox and link on same line-->
                 <div class="link-box">
                     <label class="not-full-width mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="speak_up-link">
-                        <input type="checkbox" id="speak_up-link" class="mdl-checkbox__input">
+                        <input onchange="saveCheckboxes('speak_up')" type="checkbox" id="speak_up-link" class="mdl-checkbox__input">
                         <span class="mdl-checkbox__label">Send to Link</span>
                     </label>
                     <div class="input-field col s12">
-                        <input id="speak_up-url" type="url" class="validate">
+                        <input onchange="saveCheckboxes('speak_up')" id="speak_up-url" type="url" class="validate">
                         <label for="speak_up-url"></label>
                     </div>
                 </div>
@@ -118,18 +118,18 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                         </td>
                         <td>
                             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
-                                   for="suadmin">
-                                <input type="checkbox" id="suadmin" class="mdl-checkbox__input">
+                                   for="needs_help-adminNew">
+                                <input type="checkbox" id="needs_help-adminNew" class="mdl-checkbox__input">
                             </label>
                         </td>
                         <td>
                             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
-                                   for="suadmin">
-                                <input type="checkbox" id="suadmin" class="mdl-checkbox__input">
+                                   for="needs_help-counselorNew">
+                                <input type="checkbox" id="needs_help-counselorNew" class="mdl-checkbox__input">
                             </label>
                         </td>
                         <td>
-                            <i class="pointer material-icons">add</i>
+                            <i onclick="addNewRow('needs_help', this)" class="pointer material-icons">add</i>
                         </td>
                     </tr>
                     </tfoot>
@@ -138,15 +138,15 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 <!--checkboxes-->
                 <br>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="needs_help-admin">
-                    <input type="checkbox" id="needs_help-admin" class="mdl-checkbox__input">
+                    <input onchange="saveCheckboxes('needs_help')" type="checkbox" id="needs_help-admin" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Admin</span>
                 </label>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="needs_help-counselors">
-                    <input type="checkbox" id="needs_help-counselors" class="mdl-checkbox__input">
+                    <input onchange="saveCheckboxes('needs_help')" type="checkbox" id="needs_help-counselors" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Counselors</span>
                 </label>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="needs_help-teacher">
-                    <input type="checkbox" id="needs_help-teacher" class="mdl-checkbox__input">
+                    <input onchange="saveCheckboxes('needs_help')" type="checkbox" id="needs_help-teacher" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Teacher</span>
                 </label>
 
@@ -154,11 +154,11 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 <div class="link-box">
                     <label class="not-full-width mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"
                            for="needs_help-link">
-                        <input type="checkbox" id="needs_help-link" class="mdl-checkbox__input">
+                        <input onchange="saveCheckboxes('needs_help')" type="checkbox" id="needs_help-link" class="mdl-checkbox__input">
                         <span class="mdl-checkbox__label">Send to Link</span>
                     </label>
                     <div class="input-field col s12">
-                        <input id="needs_help-url" type="url" class="validate">
+                        <input onchange="saveCheckboxes('needs_help')" id="needs_help-url" type="url" class="validate">
                         <label for="needs_help-url"></label>
                     </div>
                 </div>
@@ -187,18 +187,18 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                         </td>
                         <td>
                             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
-                                   for="suadmin">
-                                <input type="checkbox" id="suadmin" class="mdl-checkbox__input">
+                                   for="needs_to_talk-adminNew">
+                                <input type="checkbox" id="needs_to_talk-adminNew" class="mdl-checkbox__input">
                             </label>
                         </td>
                         <td>
                             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
-                                   for="suadmin">
-                                <input type="checkbox" id="suadmin" class="mdl-checkbox__input">
+                                   for="needs_to_talk-counselorNew">
+                                <input type="checkbox" id="needs_to_talk-counselorNew" class="mdl-checkbox__input">
                             </label>
                         </td>
                         <td>
-                            <i class="pointer material-icons">add</i>
+                            <i onclick="addNewRow('needs_to_talk', this)" class="pointer material-icons">add</i>
                         </td>
                     </tr>
                     </tfoot>
@@ -207,15 +207,15 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 <!--checkboxes-->
                 <br>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="needs_to_talk-admin">
-                    <input type="checkbox" id="needs_to_talk-admin" class="mdl-checkbox__input">
+                    <input onchange="saveCheckboxes('needs_to_talk')" type="checkbox" id="needs_to_talk-admin" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Admin</span>
                 </label>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="needs_to_talk-counselors">
-                    <input type="checkbox" id="needs_to_talk-counselors" class="mdl-checkbox__input">
+                    <input onchange="saveCheckboxes('needs_to_talk')" type="checkbox" id="needs_to_talk-counselors" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Counselors</span>
                 </label>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="needs_to_talk-teacher">
-                    <input type="checkbox" id="needs_to_talk-teacher" class="mdl-checkbox__input">
+                    <input onchange="saveCheckboxes('needs_to_talk')" type="checkbox" id="needs_to_talk-teacher" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Teacher</span>
                 </label>
 
@@ -223,11 +223,11 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 <div class="link-box">
                     <label class="not-full-width mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"
                            for="needs_to_talk-link">
-                        <input type="checkbox" id="needs_to_talk-link" class="mdl-checkbox__input">
+                        <input onchange="saveCheckboxes('needs_to_talk')" type="checkbox" id="needs_to_talk-link" class="mdl-checkbox__input">
                         <span class="mdl-checkbox__label">Send to Link</span>
                     </label>
                     <div class="input-field col s12">
-                        <input id="needs_to_talk-url" type="url" class="validate">
+                        <input onchange="saveCheckboxes('needs_to_talk')" id="needs_to_talk-url" type="url" class="validate">
                         <label for="needs_to_talk-url"></label>
                     </div>
                 </div>
@@ -253,53 +253,77 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
     //When theres a change in the checkboxes save them to the db
     var saveCheckboxes = function (button) {
         //find the checkboxes, the [0] is to make them into DOM elements instead of jquery so that .value works
-        let admin = $('input[type="checkbox"][id="' + button + 'admin"]')[0];
-        let counselors = $('input[type="checkbox"][id="' + button + 'counselors"]')[0];
-        let teacher = $('input[type="checkbox"][id="' + button + 'teacher"]')[0];
-        let willLink = $('input[type="checkbox"][id="' + button + 'link"]')[0];
+        let admin = $('input[type="checkbox"][id="' + button + '-admin"]')[0];
+        let counselors = $('input[type="checkbox"][id="' + button + '-counselors"]')[0];
+        let teacher = $('input[type="checkbox"][id="' + button + '-teacher"]')[0];
+        let willLink = $('input[type="checkbox"][id="' + button + '-link"]')[0];
 
-        let link = $('input[type="url"][id="' + button + 'url"]')[0];
+        let link = $('input[type="url"][id="' + button + '-url"]')[0];
 
         //convert their 'on'/'off' to 1/0
-        var checkboxes = {
-            'emailAdmin': admin.value === "on" ? 1 : 0,
-            'emailCounselors': counselors.value === "on" ? 1 : 0,
-            'emailTeacher': teacher.value === "on" ? 1 : 0,
-            'willLink': willLink.value === "on" ? 1 : 0,
-            'link': link.value === "on" ? 1 : 0,
+        var data = {
+            'emailAdmin': admin.checked ? 1 : 0,
+            'emailCounselors': counselors.checked ? 1 : 0,
+            'emailTeacher': teacher.checked ? 1 : 0,
+            'willLink': willLink.checked ? 1 : 0,
+            'link': link.value,
+            'button':button,
         };
 
         var jqxhr = $.post('/modules/Abre-Moods/Data_Access/admin/post_settings.php', {
-            'data': {
-                'checkboxes': checkboxes,
-            }
+            'data': data,
         });
     };
 
     //adds a row to the table and optionally to the db
-    var addRow = function (button, id, email, admin, counselor, db) {
+    var addNewRow = function (button, self) {
+        let row = $(self).parents('tr'); //find the parent table row
+        let email = row.find('.email')[0].value;  //using child to only get checkboxes from that row
+        let admin = row.find('#' + button + '-adminNew')[0].checked ? "1" : "0"; // get the value of the checkboxes and convert "true/false" to 1/0
+        let counselor = row.find('#' + button + '-counselorNew')[0].checked ? "1" : "0";
+
+        let data = {
+            'email': email.value,
+            'admin': admin,
+            'counselor': counselor,
+            'button': button,
+        };
+
+        //add to the db
+        var jqxhr = $.post('/modules/Abre-Moods/Data_Access/admin/post_emails.php', {'data': data, 'operation': 'add'});
+        jqxhr.done(function(data) {
+            //call the add row function
+            addRow(button, data, email, admin, counselor, true);
+            //reset input area to blank
+            row.find('.email')[0].value = '';
+            row.find("label[for='" + button + "-adminNew']")[0].MaterialCheckbox.uncheck();
+            row.find("label[for='" + button + "-counselorNew']")[0].MaterialCheckbox.uncheck();
+        });
+    };
+
+    var addRow = function (button, id, email, admin, counselor) {
         //get table we are adding into
         let tableBody = $('#' + button + '-panel tbody');
         //make outline for rows with gaps for supplied data
         let rowOutline = [`
         <tr data-id="`, `">
             <td class="mdl-data-table__cell--non-numeric">
-                <input onchange="updateRow("` + button + `")"  data-id="`, `"class="email" type="text" value="`, `">
+                <input onchange="updateRow('` + button + `', this)"  data-id="`, `"class="email" type="text" value="`, `">
             </td>
             <td>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
                        for="`, `">
-                    <input onchange="updateRow("` + button + `")" data-id="`, `" type="checkbox" id="`, `" class="mdl-checkbox__input">
+                    <input onchange="updateRow('` + button + `', this)" data-id="`, `" type="checkbox" id="`, `" class="mdl-checkbox__input">
                 </label>
             </td>
             <td>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
                        for="`, `">
-                    <input onchange="updateRow("` + button + `")" data-id="`, `"type="checkbox" id="`, `" class="mdl-checkbox__input">
+                    <input onchange="updateRow('` + button + `', this)" data-id="`, `"type="checkbox" id="`, `" class="mdl-checkbox__input">
                 </label>
             </td>
             <td>
-                <i onclick="deleteRow("` + button + `")" data-id="`, `" class="pointer material-icons">delete</i>
+                <i onclick="deleteRow('` + button + `', this)" data-id="`, `" class="pointer material-icons">delete</i>
             </td>
         </tr>
     `];
@@ -314,44 +338,36 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         componentHandler.upgradeElement(adminButton.parent()[0]);
         componentHandler.upgradeElement(counselorButton.parent()[0]);
         //check buttons if data says to
-        if (admin) {
+        if (admin == "1") {
             makeChecked(adminButton);
         } else {
             makeUnchecked(adminButton);
         }
 
-        if (counselor) {
+        if (counselor == "1") {
             makeChecked(counselorButton);
         } else {
             makeUnchecked(counselorButton);
         }
-
-
-        if (db) {
-            let data = {
-                'email': email,
-                'admin': admin,
-                'counselor': counselor,
-            };
-            //add to the db
-            $.post('modules/Abre-Moods/Data_Access/admin/post_emails.php', {'data': data, 'operation': 'add'})
-        }
     };
 
     //when a row in the table is changed, update the row in the db
-    var updateRow = function (button) {
+    var updateRow = function (button, self) {
         //find row with id from updated item, use [0] to get DOM element for .value use
-        let id = $(this).data('id');
+        console.log(self);
+        let id = $(self).data('id');
         let row = $('tr[data-id = "' + id + '"]');
-        let email = row.child('.email')[0].value;
-        let admin = row.child('#' + button + '-isAdmin' + id)[0].value === "on" ? 1 : 0;
-        let counselor = row.child('#' + button + '-isCounselor' + id)[0].value === "on" ? 1 : 0;
+        let email = row.find('.email')[0].value;  //using child to only get checkboxes from that row
+        let admin = row.find('#' + button + '-isAdmin' + id)[0].checked ? 1 : 0; // convert "true/false" to 1/0
+        let counselor = row.find('#' + button + '-isCounselor' + id)[0].checked ? 1 : 0;
         let data = {
             'id': id,
+            'button': button,
             'email': email,
             'admin': admin,
             'counselor': counselor,
         };
+        //post update to db
         var jqxhr = $.post('modules/Abre-Moods/Data_Access/admin/post_emails.php', {
             'data': data,
             'operation': 'update'
@@ -359,15 +375,22 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
     };
 
     //deletes the row from the db and page
-    var deleteRow = function (button) {
-        let id = $(this).data('id');
+    var deleteRow = function (button, self) {
+        let id = $(self).data('id'); //get id and do everything based of the id
         let data = {
-            'id':id,
-        }
+            'id': id,
+            'button': button,
+        };
+        //post delete operation to db
         var jqxhr = $.post('modules/Abre-Moods/Data_Access/admin/post_emails.php', {
             'data': data,
             'operation': 'delete',
-        })
+        });
+        jqxhr.done(()=>{
+            //find row with id and remove
+            let row = $('tr[data-id="'+ id +'"]');
+            row.remove();
+        });
     };
 
     //update the checkbox section of the site
@@ -378,7 +401,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         let teacher = $('input[type="checkbox"][id="' + button + '-teacher"]');
         let willLink = $('input[type="checkbox"][id="' + button + '-link"]');
 
-        let link = $('div > input[type="url"][id="' + button + '-url"]')[0];
+        let link = $('input[type="url"][id="' + button + '-url"]')[0];
 
         //if the data is true set the checkbox to checked if not make it unchecked
         if (data.emailAdmin == "1") {
@@ -417,12 +440,15 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
         //for each email make a new row
         data.forEach((emailObj) => {
-            addRow(button, emailObj['id'], emailObj['email'], emailObj['admin'], emailObj['counselor'], false)
+            addRow(button, emailObj['id'], emailObj['email'], emailObj['admin'], emailObj['counselor'])
         });
     };
 
     //update the selected button
     var updateData = function (button) {
+        //all data is separated into two categories, the email related data and then the button related data.
+        //the button related data is anything related to checkboxes or settings and is below the table
+        //the email related data is anything related to emails and is contained in the table
         var jqxhrCheckboxes = $.post('/modules/Abre-Moods/Data_Access/admin/fetch_settings.php', {'button': button});
         jqxhrCheckboxes.done((data) => {
             console.log(data);
@@ -432,13 +458,12 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         });
         var jqxhrEmails = $.post('/modules/Abre-Moods/Data_Access/admin/fetch_emails.php', {'button': button});
         jqxhrEmails.done((data) => {
-            console.log(data);
             data = JSON.parse(data);
-            console.log(data);
             updateEmails(button, data);
         });
-    }
+    };
 
+    //register clicks without interfering with mdl, I hope
     $('a[href^="#speak_up"]').click(function () {
         updateData('speak_up');
     });
@@ -449,13 +474,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         updateData('needs_to_talk')
     });
 
-    var jqxhr = $.post('/modules/Abre-Moods/Data_Access/admin/fetch_settings.php', {'button': 'speak_up'});
-    jqxhr.done((data) => {
-        console.log(data);
-        data = JSON.parse(data);
-        console.log(data);
-        updateData('speak_up');
-    });
+    //we start on speak_up so we'll update that first
+    updateData('speak_up');
 
 
 </script>
