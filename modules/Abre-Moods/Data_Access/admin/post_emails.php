@@ -24,24 +24,25 @@ $operation = $_POST['operation'];
 $data = $_POST['data'];
 
 if ($operation === 'update') {
-    $sql = "UPDATE moods_contact set email = ?, admin = ?, counselor = ? Where id = ? and siteID =" . $siteID;
+    $sql = "UPDATE moods_contact_list set email = ?, admin = ?, counselor = ? Where ID = ? and buttonName = ? and siteID = " . $siteID;
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param('siii',$data['email'],intval($data['admin']),intval($data['counselor']),intval($data['id']));
+    $stmt->bind_param('siiis',$data['email'],intval($data['admin']),intval($data['counselor']),intval($data['id']),$data['button']);
     $stmt->execute();
     $stmt->close();
 } elseif ($operation === 'delete') {
-    $sql = "Delete From moods_contact Where id = ? and siteID =" . $siteID;
+    $sql = "Delete From moods_contact_list Where id = ? and buttonName = ? and siteID =" . $siteID;
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param('i',intval($data['id']));
+    $stmt->bind_param('is',intval($data['id']),$data['button']);
     $stmt->execute();
     $stmt->close();
 } elseif ($operation === 'add') {
-    $sql = "INSERT INTO moods_contact(email,admin,counselors,siteID) values (?,?,?,?)";
+    $sql = "INSERT INTO moods_contact_list(buttonName,email,admin,counselor,siteID) values (?,?,?,?,?)";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
-    $stmt->bind_param('siii', $data['email'], intval($data['admin']), intval($data['counselor']), intval($data['id']));
+    $stmt->bind_param('ssiii', $data['button'], $data['email'], intval($data['admin']), intval($data['counselor']), $siteID);
     $stmt->execute();
+    echo $stmt->insert_id;
     $stmt->close();
 }
