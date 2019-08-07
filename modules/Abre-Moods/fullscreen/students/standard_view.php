@@ -145,8 +145,9 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(_
         let zone = determineZone(mood);
         let d = new Date();
         let time = d.toISOString();
+        let currentPeriod = Object.keys(masonSchedule.getCurrentPeriod(now))[0]; //getCurrentPeriod returns an object that includes a period number as a key. Objects.keys returns an array of keys and [0] grabs first one
         console.log('posting with mood: ' + mood + ', zone: ' + zone + ', time: ' + time);
-        var jQueryRequest = $.post('modules/Abre-Moods/Data_Access/students/upload_mood.php', {mood:mood,time:time,zone:zone});
+        var jQueryRequest = $.post('modules/Abre-Moods/Data_Access/students/upload_mood.php', {mood:mood,time:time,zone:zone,currentPeriod:currentPeriod});
         jQueryRequest.done(function(data) {
             //log data to console for testing, can remove for production
             console.log(data);
@@ -157,6 +158,9 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(dirname(_
             }
         });
     };
+
+    var masonSchedule = new schedule();
+
     //define function to add click funciton to all the divs
     var addEmojiClickFunctions = function(){
         var emojiDivs = $('div.widget_emoji');
