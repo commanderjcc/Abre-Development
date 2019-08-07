@@ -25,6 +25,7 @@ require_once(dirname(__FILE__) . '/../../../../core/abre_functions.php');
 $selectedMood = htmlspecialchars($_POST['mood']);
 $zone = htmlspecialchars($_POST['zone']);
 $time = htmlspecialchars($_POST['time']);
+$currentPeriod = intval($_POST['currentPeriod']);
 
 $siteID = intval($_SESSION['siteID']);
 $studentEmail = $_SESSION['escapedemail'];
@@ -34,9 +35,11 @@ $displayName = $_SESSION['displayName'];
 //interupt if is part of crisis mode
 if ($zone === 'crisis') {
     require(dirname(__FILE__).'/../crisis/crisis.php');
-    $link = handleCrisis($selectedMood,$time,$studentID,$displayName,$studentEmail, $siteID);
+    $link = handleCrisis($selectedMood,$time,$currentPeriod, $studentID,$displayName,$studentEmail, $siteID);
     if ($link != null) {
         echo '{"willLink":1,"link":"'.$link.'"}';
+    } else {
+        echo '{"willLink":0}';
     }
     exit;
 }

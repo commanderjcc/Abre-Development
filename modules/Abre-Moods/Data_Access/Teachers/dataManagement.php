@@ -17,7 +17,8 @@
     */
 
 //required verification files
-require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');?>
+require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
+require_once(dirname(__FILE__) . '/../../permissions.php');?>
 
 <script type="text/javascript">
     var selectedClass = 0;
@@ -177,7 +178,7 @@ require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');?>
             return updateTime.isAfter(periodStart);
         }
     }
-
+<?php if($isStaff) { //only allow access to dataManager class if they are a teacher?>
     class dataManager {
         parsedStudentData = {};
         sortedStudentData = {
@@ -414,7 +415,7 @@ require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');?>
             }
         }
     }
-
+<?php } ?>
     //var masonSchedule = new schedule();
 
     //var pageDataManager = new dataManager();
