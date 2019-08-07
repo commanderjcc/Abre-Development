@@ -24,13 +24,13 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
             <!--Tabs at the top of the page -->
             <div class="mdl-tabs__tab-bar">
-                <a href="#speak_up-panel" class="mdl-tabs__tab is-active">Speak Up</a>
+                <a href="#wants_to_speak_up-panel" class="mdl-tabs__tab is-active">Speak Up</a>
                 <a href="#needs_help-panel" class="mdl-tabs__tab">I Need Help</a>
                 <a href="#needs_to_talk-panel" class="mdl-tabs__tab">I Need To Talk</a>
             </div>
             <br>
             <!--Speak up tab-->
-            <div class="mdl-tabs__panel is-active" id="speak_up-panel">
+            <div class="mdl-tabs__panel is-active" id="wants_to_speak_up-panel">
                 <!--email table-->
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--3dp">
                     <thead>
@@ -50,18 +50,18 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                         </td>
                         <td>
                             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
-                                   for="speak_up-adminNew">
-                                <input type="checkbox" id="speak_up-adminNew" class="mdl-checkbox__input">
+                                   for="wants_to_speak_up-adminNew">
+                                <input type="checkbox" id="wants_to_speak_up-adminNew" class="mdl-checkbox__input">
                             </label>
                         </td>
                         <td>
                             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect not-full-width"
-                                   for="speak_up-counselorNew">
-                                <input type="checkbox" id="speak_up-counselorNew" class="mdl-checkbox__input">
+                                   for="wants_to_speak_up-counselorNew">
+                                <input type="checkbox" id="wants_to_speak_up-counselorNew" class="mdl-checkbox__input">
                             </label>
                         </td>
                         <td>
-                            <i onclick="addNewRow('speak_up', this)" class="pointer material-icons">add</i>
+                            <i onclick="addNewRow('wants_to_speak_up', this)" class="pointer material-icons">add</i>
                         </td>
                     </tr>
                     </tfoot>
@@ -69,28 +69,28 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
                 <!--checkboxes-->
                 <br>
-                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="speak_up-admin">
-                    <input onchange="saveCheckboxes('speak_up')" type="checkbox" id="speak_up-admin" class="mdl-checkbox__input">
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="wants_to_speak_up-admin">
+                    <input onchange="saveCheckboxes('wants_to_speak_up')" type="checkbox" id="wants_to_speak_up-admin" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Admin</span>
                 </label>
-                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="speak_up-counselors">
-                    <input onchange="saveCheckboxes('speak_up')" type="checkbox" id="speak_up-counselors" class="mdl-checkbox__input">
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="wants_to_speak_up-counselors">
+                    <input onchange="saveCheckboxes('wants_to_speak_up')" type="checkbox" id="wants_to_speak_up-counselors" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Counselors</span>
                 </label>
-                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="speak_up-teacher">
-                    <input onchange="saveCheckboxes('speak_up')" type="checkbox" id="speak_up-teacher" class="mdl-checkbox__input">
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="wants_to_speak_up-teacher">
+                    <input onchange="saveCheckboxes('wants_to_speak_up')" type="checkbox" id="wants_to_speak_up-teacher" class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">Email Teacher</span>
                 </label>
 
                 <!--div for keeping checkbox and link on same line-->
                 <div class="link-box">
-                    <label class="not-full-width mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="speak_up-link">
-                        <input onchange="saveCheckboxes('speak_up')" type="checkbox" id="speak_up-link" class="mdl-checkbox__input">
+                    <label class="not-full-width mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="wants_to_speak_up-link">
+                        <input onchange="saveCheckboxes('wants_to_speak_up')" type="checkbox" id="wants_to_speak_up-link" class="mdl-checkbox__input">
                         <span class="mdl-checkbox__label">Send to Link</span>
                     </label>
                     <div class="input-field col s12">
-                        <input onchange="saveCheckboxes('speak_up')" id="speak_up-url" type="url" class="validate">
-                        <label for="speak_up-url"></label>
+                        <input onchange="saveCheckboxes('wants_to_speak_up')" id="wants_to_speak_up-url" type="url" class="validate">
+                        <label for="wants_to_speak_up-url"></label>
                     </div>
                 </div>
 
@@ -283,7 +283,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         let counselor = row.find('#' + button + '-counselorNew')[0].checked ? "1" : "0";
 
         let data = {
-            'email': email.value,
+            'email': email,
             'admin': admin,
             'counselor': counselor,
             'button': button,
@@ -464,8 +464,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
     };
 
     //register clicks without interfering with mdl, I hope
-    $('a[href^="#speak_up"]').click(function () {
-        updateData('speak_up');
+    $('a[href^="#wants_to_speak_up"]').click(function () {
+        updateData('wants_to_speak_up');
     });
     $('a[href^="#needs_help"]').click(function () {
         updateData('needs_help')
@@ -474,8 +474,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         updateData('needs_to_talk')
     });
 
-    //we start on speak_up so we'll update that first
-    updateData('speak_up');
+    //we start on wants_to_speak_up so we'll update that first
+    updateData('wants_to_speak_up');
 
 
 </script>
