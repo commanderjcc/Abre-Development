@@ -99,7 +99,7 @@ $db->close();
 
 //TAKE OUT FOR PRODUCTION, JUST for debuggin'
 $response = [
-    'willLink'=>1,
+    'willLink'=>0,
     'link' => $link,
 
     'mood' => $selectedMood,

@@ -33,6 +33,7 @@ function determineZone(String $mood) {
         case "happy":
         case "thrilled":
         case "okay":
+        case "crappy":
             return "green";
             break;
         case "stressed":

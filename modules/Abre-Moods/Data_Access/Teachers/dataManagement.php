@@ -23,83 +23,86 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
 <script type="text/javascript">
     var selectedClass = 0;
 
+    //contains a schedule for mason, so you'll probably need to adapt it to other schools
     class schedule {
-        now;
-        day;
-        hour;
-        minute;
-        startTimes = {
+        now; //a moment() for right now
+        day; //the day of the week
+        hour; //current hour
+        minute; //current minute
+        startTimes = { //starting times for each period, here 'starting' times are defined as when the last period is over (passing periods count as the next period)
             0: [
-                {7: moment().day(-2).hour(13).minute(38)},
-                {1: moment().day(1).hour(7).minute(30)},
+                {7: moment().day(-2).hour(13).minute(38).seconds(0)},
+                {1: moment().day(1).hour(7).minute(30).seconds(0).seconds(0)},
             ],
             1: [
-                {7: moment().day(-2).hour(13).minute(38)},
+                {7: moment().day(-2).hour(13).minute(38).seconds(0).seconds(0)},
                 //need last class of previous day in 0th position to check if its before school in morning
                 //moments are calculated from the end of the class before them
-                {1: moment().day(1).hour(7).minute(30)},
-                {2: moment().day(1).hour(8).minute(35)},
-                {3: moment().day(1).hour(9).minute(27)},
-                {4: moment().day(1).hour(10).minute(19)},
-                {5: moment().day(1).hour(11).minute(54)},
-                {6: moment().day(1).hour(12).minute(46)},
-                {7: moment().day(1).hour(13).minute(38)},
+                {1: moment().day(1).hour(7).minute(30).seconds(0)},
+                {2: moment().day(1).hour(8).minute(35).seconds(0)},
+                {3: moment().day(1).hour(9).minute(27).seconds(0)},
+                {4: moment().day(1).hour(10).minute(19).seconds(0)},
+                {5: moment().day(1).hour(11).minute(54).seconds(0)},
+                {6: moment().day(1).hour(12).minute(46).seconds(0)},
+                {7: moment().day(1).hour(13).minute(38).seconds(0)},
             ],
             2: [
-                {7: moment().day(1).hour(13).minute(38)},
+                {7: moment().day(1).hour(13).minute(38).seconds(0)},
                 //need last class of previous day
-                {1: moment().day(2).hour(7).minute(30)},
-                {3: moment().day(2).hour(8).minute(55)},
-                {4: moment().day(2).hour(10).minute(10)},
-                {6: moment().day(2).hour(12).minute(0)},
-                {7: moment().day(2).hour(13).minute(15)},
+                {1: moment().day(2).hour(7).minute(30).seconds(0)},
+                {3: moment().day(2).hour(8).minute(55).seconds(0)},
+                {4: moment().day(2).hour(10).minute(10).seconds(0)},
+                {6: moment().day(2).hour(12).minute(0).seconds(0)},
+                {7: moment().day(2).hour(13).minute(15).seconds(0)},
             ],
             3: [
-                {7: moment().day(2).hour(13).minute(15)},
+                {7: moment().day(2).hour(13).minute(15).seconds(0)},
                 //need last class of previous day
-                {2: moment().day(3).hour(7).minute(30)},
-                {5: moment().day(3).hour(8).minute(55)},
-                {3: moment().day(3).hour(10).minute(10)},
-                {'connect1': moment().day(3).hour(12).minute(0)},
-                {'connect2': moment().day(3).hour(12).minute(40)},
-                {6: moment().day(3).hour(13).minute(15)},
+                {2: moment().day(3).hour(7).minute(30).seconds(0)},
+                {5: moment().day(3).hour(8).minute(55).seconds(0)},
+                {3: moment().day(3).hour(10).minute(10).seconds(0)},
+                {'connect1': moment().day(3).hour(12).minute(0).seconds(0)},
+                {'connect2': moment().day(3).hour(12).minute(40).seconds(0)},
+                {6: moment().day(3).hour(13).minute(15).seconds(0)},
 
             ],
             4: [
-                {6: moment().day(3).hour(13).minute(15)},
+                {6: moment().day(3).hour(13).minute(15).seconds(0)},
                 //need last class of previous day
-                {1: moment().day(4).hour(7).minute(30)},
-                {2: moment().day(4).hour(8).minute(55)},
-                {4: moment().day(4).hour(10).minute(10)},
-                {5: moment().day(4).hour(12).minute(0)},
-                {7: moment().day(4).hour(13).minute(15)},
+                {1: moment().day(4).hour(7).minute(30).seconds(0)},
+                {2: moment().day(4).hour(8).minute(55).seconds(0)},
+                {4: moment().day(4).hour(10).minute(10).seconds(0)},
+                {5: moment().day(4).hour(12).minute(0).seconds(0)},
+                {7: moment().day(4).hour(13).minute(15).seconds(0)},
             ],
             5: [
-                {7: moment().day(4).hour(13).minute(15)},
+                {7: moment().day(4).hour(13).minute(15).seconds(0)},
                 //need last class of previous day
-                {1: moment().day(5).hour(7).minute(30)},
-                {2: moment().day(5).hour(8).minute(35)},
-                {3: moment().day(5).hour(9).minute(27)},
-                {4: moment().day(5).hour(10).minute(19)},
-                {5: moment().day(5).hour(11).minute(54)},
-                {6: moment().day(5).hour(12).minute(46)},
-                {7: moment().day(5).hour(13).minute(38)},
+                {1: moment().day(5).hour(7).minute(30).seconds(0)},
+                {2: moment().day(5).hour(8).minute(35).seconds(0)},
+                {3: moment().day(5).hour(9).minute(27).seconds(0)},
+                {4: moment().day(5).hour(10).minute(19).seconds(0)},
+                {5: moment().day(5).hour(11).minute(54).seconds(0)},
+                {6: moment().day(5).hour(12).minute(46).seconds(0)},
+                {7: moment().day(5).hour(13).minute(38).seconds(0)},
             ],
             6: [
-                {7: moment().day(5).hour(13).minute(38)},
-                {1: moment().day(8).hour(7).minute(30)},
+                {7: moment().day(5).hour(13).minute(38).seconds(0)},
+                {1: moment().day(8).hour(7).minute(30).seconds(0)},
             ]
         };
 
         constructor() {
-            this.update();
+            this.update();//initialize all values
+            selectedClass = this.getCurrentPeriod();
         }
 
-        update(when = moment()) {
+        update(when = moment()) { //updates all the times to be current
             this.now = when;
             this.day = this.now.day();
             this.hour = this.now.hour();
             this.minute = this.now.minute();
+
         }
 
         getCurrentPeriod(when = moment()) {
@@ -133,7 +136,7 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
 
                     var currentDay = this.day;
                     if (this.day === 6) {
-                        currentDay = -1;
+                        currentDay = -1; //used to wrap the week around to the front, use -1 bc when you add 1 later its 0
                     }
 
                     //get the first class of the next day
@@ -152,18 +155,18 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
             return output;
         }
 
-        getSlotStart(slot, day = this.day) {
+        getSlotStart(slot, day = this.day) { //used to get the time that a 'slot' or one of the class blocks of that day starts
             return this.startTimes[day][slot]
         }
 
         getPeriodStart(period, day = this.day) {
             var available = this.startTimes[day];
             var output;
-            available.forEach((periodObj, slot) => {
-                if (slot !== 0) {
-                    for (var periodProp in periodObj) {
+            available.forEach((periodObj, slot) => { //loop through all the 'slots' aka blocks
+                if (slot !== 0) { //omit the first one, which is from yesterday and isn't important
+                    for (var periodProp in periodObj) { //loop through all the properties
                         if (periodObj.hasOwnProperty(periodProp)) {
-                            if (periodProp == period) {
+                            if (periodProp == period) { //if that period exists (not every day has every period) return it
                                 output = periodObj;
                             }
                         }
@@ -180,8 +183,8 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
     }
 <?php if($isStaff) { //only allow access to dataManager class if they are a teacher?>
     class dataManager {
-        parsedStudentData = {};
-        sortedStudentData = {
+        parsedStudentData = {}; //a data object with the student data
+        sortedStudentData = { //data object with the student data sorted by zone
             'unanswered': [],
             'blue': [],
             'green': [],
@@ -189,12 +192,12 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
             'red': [],
             'crisis': [],
         };
-        rawStudentData = {};
-        classes = [];
+        rawStudentData = {}; //raw data used for quick testing for updates
+        classes = []; //the available classes for the teachers
 
-        static isEquivalent(a, b) {
+        static isEquivalent(a, b) { //used to test equivalence later
             if (a == null || b == null || a == undefined || b == undefined) {
-                return false
+                return false //return false for any null, undef values
             }
 
             // Create arrays of property names
@@ -221,6 +224,7 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
             return areEqual;
         }
 
+        //used to convert moods into zones
         static determineZone(mood) {
             switch (mood) {
                 case "meh":
@@ -233,6 +237,7 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
                 case "happy":
                 case "thrilled":
                 case "okay":
+                case "crappy":
                     return "green";
                 case "stressed":
                 case "worried":
@@ -250,28 +255,25 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
         };
 
         constructor() {
-
-            this.updateClasses();
-            this.updateData();
+            this.updateClasses(); //get classes
+            this.updateData(); //fetch data for first class
         }
 
         updateClasses() {
-            var tempClasses;
+            //post to get_classes and wait for response
             var jqxhr = $.post('/modules/Abre-Moods/data_access/teachers/get_classes.php');
 
             //Used arrow function here, allows for 'this' to reference the dataManager class instead of the funciton call
             jqxhr.done(data => {
-                console.log(data);
-                tempClasses = JSON.parse(data);
-                this.classes = tempClasses;
-                $('#class_picker .class_name').html(this.classes[selectedClass]);
+                this.classes = JSON.parse(data); //store response as classes
+                $('#class_picker .class_name').html(this.classes[selectedClass]); //update the page with the new class
                 $('#class_picker .bell').html('Bell '+(selectedClass+1));
             });
 
         }
 
         classChanged() {
-            this.parsedStudentData = {};
+            this.parsedStudentData = {}; //reset all the data to be empty
             this.sortedStudentData = {
                 'unanswered': [],
                 'blue': [],
@@ -281,67 +283,63 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
                 'crisis': [],
             };
             this.rawStudentData = '';
-            $('.student').remove();
-            $('#class_picker .class_name').html(this.classes[selectedClass]);
-            $('#class_picker .bell').html('Bell '+(selectedClass+1));
+            $('.student').remove(); //remove all the students
+            $('#class_picker .class_name').html(this.classes[selectedClass]); //update the title with the new class
+            $('#class_picker .bell').html('Bell '+(selectedClass+1)); //change the bell number
         }
 
-        updateData() {
+        updateData() { //used to fetch all the data
             var jqxhr = $.post('/modules/Abre-Moods/data_access/teachers/get_all_students_status.php', {
-                "amount": "full",
-                "bell": selectedClass + 1
+                "bell": selectedClass + 1 //need to add 1 to selectedClass because its zero based
             });
             //Same here with the arrow function, it makes everything easier
             jqxhr.done(data => {
-                console.log('updating');
-                //var tempData = JSON.parse(data);
                 if (data === this.rawStudentData) {
-
+                    //do nothing bc the data hasn't changed yet
                 } else {
-                    console.log('re-processing');
-                    var tempData = JSON.parse(data);
-
-
-                    for (var studentID in tempData) {
+                    //data has changed so we need to figure out what has changed
+                    var tempData = JSON.parse(data); //convert the text to JSON
+                    for (var studentID in tempData) { //Look at each student
                         if (tempData.hasOwnProperty(studentID)) {
-                            if (!dataManager.isEquivalent(tempData[studentID], this.parsedStudentData[studentID])) {
-                                var zone;
-                                var lastUpdateMoment = moment(tempData[studentID]['time']);
-                                //add one so the selected class matches the appearance-based naming of the classes
-                                var selectedPeriodStartTime = masonSchedule.getPeriodStart(selectedClass + 1);
-                                if (masonSchedule.isAfterPeriodStart(lastUpdateMoment, selectedPeriodStartTime)) {
-                                    zone = tempData[studentID]['zone'];
+                            if (!dataManager.isEquivalent(tempData[studentID], this.parsedStudentData[studentID])) { //if the student hasn't updated then you can skip it
+                                //now we need update the student's data
 
+                                //determining which zone they'll be in
+                                var zone; // the zone of the student
+                                var lastUpdateMoment = moment(tempData[studentID]['time']); //gets the time the student last posted a mood
+                                var selectedPeriodStartTime = masonSchedule.getPeriodStart(selectedClass + 1); //get the time the period started, add one so the selected class matches the appearance-based naming of the classes
+                                if (masonSchedule.isAfterPeriodStart(lastUpdateMoment, selectedPeriodStartTime)) { //did the student update after the period started
+                                    zone = tempData[studentID]['zone']; //they updated after the start of the period so their response is sorted
                                 } else {
-                                    zone = 'unanswered';
+                                    zone = 'unanswered'; //they havent sumbitted a mood yet so they are unanswered and dont count towards numbers incrementing
                                 }
-                                var containers = Object.getOwnPropertyNames(this.sortedStudentData);
+
+                                //we need to remove them from their old zone
+                                var containers = Object.getOwnPropertyNames(this.sortedStudentData); //get the zone containers from the sorted data object
                                 containers.forEach((zoneArr)=>{
                                     //remove student from other zones, have to search them all...
                                     this.sortedStudentData[zoneArr].forEach((foundStudent, foundLocation, array)=>{
-                                        if(foundStudent.hasOwnProperty(studentID)) {
-                                            array.splice(foundLocation, 1);
+                                        if(foundStudent.hasOwnProperty(studentID)) { //if they share student IDs then...
+                                            array.splice(foundLocation, 1); //remove the student from that array
                                         }
                                     });
                                 });
-                                this.sortedStudentData[zone][this.sortedStudentData[zone].length] = {[studentID]: tempData[studentID]};
-                                this.parsedStudentData[studentID] = tempData[studentID];
-                                this.updateLocation(studentID,zone);
-                            } //else do nothing
+                                this.sortedStudentData[zone][this.sortedStudentData[zone].length] = {[studentID]: tempData[studentID]}; //add the student to the correct zone
+                                this.parsedStudentData[studentID] = tempData[studentID]; //add the student to the unsorted parsed data
+                                this.updateLocation(studentID,zone); //update the student's visuals
+                            }
                         }
                     }
-                    //this.parsedStudentData = tempData;
-                    this.rawStudentData = data;
-                    this.displayData();
+                    this.rawStudentData = data; //set the raw datas equal so we can compare them later for changes
+                    this.displayData(); //update the visuals
                 }
             });
         }
 
 
         displayData() {
-            this.updateDisplayBars();
-            this.updateDisplayNums();
-            //this.updatePeopleLocations();
+            this.updateDisplayBars(); //update the bars animating across
+            this.updateDisplayNums(); //update the numbers
         }
 
         updateDisplayBars() {
@@ -350,12 +348,12 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
             //animate total bar
             $('.class_progress_bar').animate({'width': 100 * (data['unanswered'].length) / total + '%'});
             //animate blue bar
-            $('#blue .loading_bar').animate({'width': 100 * (total - data['blue'].length) / total + '%'});
+            $('#blue .loading_bar').animate({'width': 100 * (total - data['blue'].length) / total + '%'}); //have to subtract bc it animates from right to left
             //animate green bar
             $('#green .loading_bar').animate({'width': 100 * (total - data['green'].length) / total + '%'});
-            //
+            //animate yellow bar
             $('#yellow .loading_bar').animate({'width': 100 * (total - data['yellow'].length) / total + '%'});
-            //
+            //animate red bar
             $('#red .loading_bar').animate({'width': 100 * (total - data['red'].length) / total + '%'});
         }
 
@@ -377,7 +375,7 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
 
         updateLocation(studentID,zone) {
             let data = this.sortedStudentData;
-            let containers = {
+            let containers = { //get all the jquery objects we'll need
                 'unanswered': $('#entire_class .students_container'),
                 'blue' : $('#blue .students_container'),
                 'green' : $('#green .students_container'),
@@ -386,18 +384,18 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
                 'crisis': $('#red .students_container'),
             };
 
-            let studentGroup = $('#' + studentID);
-            let studentData = this.parsedStudentData[studentID];
+            let studentGroup = $('#' + studentID); //look for any existing people
+            let studentData = this.parsedStudentData[studentID]; //getting the data we'll need
             let mood = studentData['mood'];
-            if (studentGroup.length === 1) {
-                studentGroup.detach().appendTo(containers[zone]);
-                let moodImg = studentGroup.find('.student_mood');
-                let previousMood = moodImg.attr('class').split(' ').pop();
-                moodImg.removeClass(previousMood);
-                moodImg.addClass('twa-'+mood);
+            if (studentGroup.length === 1) { //if one exists,
+                studentGroup.detach().appendTo(containers[zone]); //move it to the new zone
+                let moodImg = studentGroup.find('.student_mood'); //find emoji
+                let previousMood = moodImg.attr('class').split(' ').pop();//find previous mood class
+                moodImg.removeClass(previousMood); //remove previous class
+                moodImg.addClass('twa-'+mood); // add the new class
 
             } else {
-                studentGroup.remove();
+                studentGroup.remove();// if there were more than one, remove them something's glitched and we'll reset.
                 let studentLayout = [
                     `<div id="`, `" class='student' onclick="studentClicked.bind(this)()">
                     <div style="background-image: url('`, `')" class="student_image">
@@ -406,19 +404,14 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
                         <span class='student_name'>`, `</span>
                 </div>`
                 ];
-                var createStudent = function (studentId, imgURL, mood, name) {
+                var createStudent = function (studentId, imgURL, mood, name) { //contatonates all the stuff we need for a working student
                     return studentLayout[0] + studentId + studentLayout[1] + imgURL + studentLayout[2] + mood + studentLayout[3] + name + studentLayout[4]
                 };
-                let photo = this.parsedStudentData[studentID]['photo'];
+                let photo = this.parsedStudentData[studentID]['photo']; //getting more of the data we'll need
                 let name = this.parsedStudentData[studentID]['name'];
-                containers[zone].append(createStudent(studentID, photo, mood, name));
+                containers[zone].append(createStudent(studentID, photo, mood, name)); //append a student in the correct zone.
             }
         }
     }
 <?php } ?>
-    //var masonSchedule = new schedule();
-
-    //var pageDataManager = new dataManager();
-    //Have to use .bind to set it to the correct object
-    //setNamedInterval("data", pageDataManager.updateData.bind(pageDataManager), 10000);
 </script>

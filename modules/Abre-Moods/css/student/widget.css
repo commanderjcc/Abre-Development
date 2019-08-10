@@ -30,3 +30,73 @@
     box-shadow: 0 0 40px 20px;
     z-index: -1;
 }
+
+.sendAnimation {
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#circle {
+    transform-origin: center center;
+    stroke-dashoffset: 700;
+    stroke-dasharray: 1, 700;
+    transition: stroke-dasharray 1s ease-in-out;
+}
+
+.waiting {
+    animation: breathe-in-out 1.5s ease-in-out infinite forwards , spin 3s linear infinite reverse;
+}
+
+#circle.done {
+    animation: draw-full-circle 1s ease-in-out forwards;
+    /*stroke-dasharray: 700,1;*/
+}
+
+#checkmark {
+    stroke-dashoffset: 200;
+    stroke-dasharray: 200;
+}
+
+.check {
+    animation: check .25s ease-in .75s forwards;
+}
+
+@keyframes breathe-in-out {
+    0%{
+        stroke-dashoffset: 0;
+        stroke-dasharray: 5, 700;
+    }
+    50% {
+        stroke-dashoffset: -200;
+        stroke-dasharray: 500, 700;
+    }
+    100% {
+        stroke-dashoffset: -695;
+        stroke-dasharray: 500, 700;
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes draw-full-circle {
+    to {
+        stroke-dasharray: 700,1;
+    }
+}
+
+@keyframes check {
+    to {
+        stroke-dashoffset: 0;
+    }
+}

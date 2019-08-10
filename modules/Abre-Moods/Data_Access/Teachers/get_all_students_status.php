@@ -27,7 +27,6 @@ $staffID = intval(GetStaffUniqueID($email));
 $siteID = intval($_SESSION['siteID']);
 
 $bell = $_POST["bell"];
-$amount = $_POST["amount"];
 
 //set up query/statment for later use
 $stmt = $db->stmt_init();
