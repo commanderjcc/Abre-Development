@@ -18,9 +18,8 @@
 
 //required verification files
 require_once(dirname(__FILE__) . '/../../core/abre_verification.php');
-require(dirname(__FILE__) . '/../../core/abre_dbconnect.php');
 
-function determineZone(String $mood) {
+function determineZone(String $mood) { //used to determine the zone based on a mood... most is handled by js, might be safe to remove
     switch ($mood) {
         case "meh":
         case "sad":

@@ -59,7 +59,7 @@ echo "</div>"; ?>
 
 <script type='text/javascript'>
     var masonSchedule = new schedule(); //create schedule for getting current period
-    selectedClass = Object.keys(masonSchedule.getCurrentPeriod(now))[0] - 1; //set the selectedClass to the current period
+    // selectedClass = Object.keys(masonSchedule.getCurrentPeriod())[0] - 1; //set the selectedClass to the current period
     var pageDataManager = new dataManager(); //make a dataManager
     // //Have to use .bind to set it to the correct object
     setNamedInterval("data",pageDataManager.updateData.bind(pageDataManager),10000); //update every 10000ms

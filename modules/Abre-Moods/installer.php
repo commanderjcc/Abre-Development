@@ -16,24 +16,14 @@
     * version 3 along with this program.  If not, see https://www.gnu.org/licenses/agpl-3.0.en.html.
     */
 
+	//TODO update with all the db systems
+
 	//Required configuration files
 	require_once(dirname(__FILE__) . '/../../core/abre_verification.php');
 	require_once(dirname(__FILE__) . '/../../core/abre_functions.php');
 	//findme
 	if(superadmin() && !isAppInstalled("MCS-Moods"))
 	{
-
-		/* Left just for reference
-		//Create Books folder if one does not exist
-		if (!file_exists("$portal_path_root/content/books")){ mkdir("$portal_path_root/content/books", 0700); }
-
-		//Create Private Directory for Books
-		if (!file_exists("$portal_path_root/../$portal_private_root/books")){
-			if (!mkdir("$portal_path_root/../$portal_private_root/books", 0775)) {
-			}
-		}
-		*/
-
 
 		//###################### DATABASE STRUCTURE ###########################
 		//    ID      |  studentID   |  last_Mood  |  mood_History  |  siteID

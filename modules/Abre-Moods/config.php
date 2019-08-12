@@ -25,8 +25,6 @@
 	//Check for installation
 	if(admin()){ require('installer.php'); }
 
-
-//Not quite certain what this stuff does...
 	$pageview = 1;
 	$drawerhidden = 0;
 	$pageorder = 2;
@@ -37,16 +35,19 @@
 	$pageicon = "mood";
 	$pagepath = "moods";
 
-	require_once(dirname(__FILE__) .'/permissions.php');
+	require_once(dirname(__FILE__) .'/permissions.php'); //allows for $isStudent and $isAdmin
 
-	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/twemoji-amazing.css'>";
+	//include css
 	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/moods-general.css'>";
-	echo "<script type='text/javascript' src='/modules/".basename(__DIR__)."/js/moment.js'></script>";
+	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/twemoji-amazing.css'>";
 	echo "<link rel=\"stylesheet\" href=\"//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css\">";
-    echo "<script src=\"//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js\"></script>";
-    echo "<script src='/modules/".basename(__DIR__)."/js/chartist-plugin-tooltip.js'></script>";
-    echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/chartist-plugin-tooltip.css'>";
+	echo "<link rel='stylesheet' type='text/css' href='/modules/".basename(__DIR__)."/css/chartist-plugin-tooltip.css'>";
+
+	//include js
+	echo "<script type='text/javascript' src='/modules/".basename(__DIR__)."/js/moment.js'></script>";
 	//echo "<script type='text/javascript' src='/modules/".basename(__DIR__)."/js/moment.min.js'></script>";
+	echo "<script src='//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js'></script>";
+    echo "<script src='/modules/".basename(__DIR__)."/js/chartist-plugin-tooltip.js'></script>";
 
 
 	// This JS allows us to track each timer so that no two updaters are running at the same time
@@ -64,7 +65,9 @@
 			})();
 		  </script>";
 
+	//include the dataManagment file for scheduling/data updating
 	require_once(dirname(__FILE__) . '/data_access/Teachers/dataManagement.php');
+
 	//if they are staff, add detection for students that need help
 	if($isStaff) {
 		require_once(dirname(__FILE__) . '/data_access/crisis/alert_displayer.php');

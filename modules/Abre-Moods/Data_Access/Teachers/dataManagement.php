@@ -94,7 +94,7 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
 
         constructor() {
             this.update();//initialize all values
-            selectedClass = this.getCurrentPeriod();
+            selectedClass = parseInt(Object.keys(this.getCurrentPeriod(this.now))[0]) - 1; //set selected class to be the current class, -1 bc schedule is 1 based and needs to be 0 based
         }
 
         update(when = moment()) { //updates all the times to be current
@@ -395,8 +395,8 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
                 moodImg.addClass('twa-'+mood); // add the new class
 
             } else {
-                studentGroup.remove();// if there were more than one, remove them something's glitched and we'll reset.
-                let studentLayout = [
+                studentGroup.remove();// if there were more than one, remove them something's glitched and we'll reset
+                let studentLayout = [ //studentClicked.bind(this)() calls the studentClicked function in overview.php, the bind(this) set the this for the function to the object, () calls the function after binding
                     `<div id="`, `" class='student' onclick="studentClicked.bind(this)()">
                     <div style="background-image: url('`, `')" class="student_image">
                         <i class="student_mood twa twa-3x twa-`, `"></i>

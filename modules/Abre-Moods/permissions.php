@@ -17,24 +17,18 @@
     */
 	
 	//Required configuration files
-	//require(dirname(__FILE__) . '/../../configuration.php'); //not sure If we need this, disabling for now
-	require_once(dirname(__FILE__) . '/../../core/abre_verification.php'); 
-	require_once(dirname(__FILE__) . '/../../core/abre_functions.php'); 
-	require(dirname(__FILE__) . '/../../core/abre_dbconnect.php');
-	$isStudent = False;
+	require_once(dirname(__FILE__) . '/../../core/abre_functions.php');
+
+	$isStudent = False; // start off as false
 	$isStaff = False;
 
 	//prevent parents...I hope. idk how parents work
     $pagerestrictions = 'parent';
 
     if($_SESSION['usertype']=="student"){
-        $isStudent=true;
+        $isStudent=true; //set these easily accessible values
     } elseif($_SESSION['usertype']=="staff"){
         $isStaff=true;
     }
-
-    //hardcoding for a bit
-//    $isStudent = true;
-//    $isStaff = false;
 
 ?>

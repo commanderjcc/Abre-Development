@@ -63,7 +63,9 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 </div>
 <script type="text/javascript">
     var masonSchedule = new schedule(); //create schedule
-    selectedClass = Object.keys(masonSchedule.getCurrentPeriod(now))[0]; //set the selectedClass to the current period
+    // console.log(selectedClass);
+    // selectedClass = parseInt(Object.keys(masonSchedule.getCurrentPeriod())[0])-1; //set the selectedClass to the current period
+    // console.log(selectedClass + 1);
     var pageDataManager = new dataManager(); //create a dataManager
 
     var closeDropdown = function () {  //remove dropdown
@@ -81,39 +83,40 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         $('#class_head_bar').after(`<div class="select_dropdown mdl-shadow--4dp"></div>`);//add the dropdown holder
         $('.mdl-layout__content').append(`<div class='click_catcher'></div>`);//add the click catcher
         $('.click_catcher').click(function () {
-            closeDropdown() //if the person clicks off the page, close the dropdown
+            closeDropdown() //if the person clicks off the dropdown selection, close the dropdown
         });
-        options.forEach(function (element, index) {
+        options.forEach(function (element, index) { //for each class...
+            //add a dropdown menu
             $('.select_dropdown').append(layout[0] + (index + 1) + layout[1] + element + layout[2] + (index + 1) + layout[3]);
         });
 
-        $('.class_select_dropdown').click(function () {
-            selectedClass = $(this).data('index') - 1;
+        $('.class_select_dropdown').click(function () { //add click function to all of them at once
+            selectedClass = $(this).data('index') - 1; //get the selected class with the data-index property
             closeDropdown();
-            pageDataManager.classChanged();
+            pageDataManager.classChanged(); //update the class data
             pageDataManager.updateData();
         });
     };
 
     var studentClicked = function() {
         console.log(this.id);
-        window.location = '/#moods/student/' + this.id;
+        window.location = '/#moods/student/' + this.id; //make students link to their history page
     };
 
 
     //Have to use .bind to set it to the correct object
-    setNamedInterval("data", pageDataManager.updateData.bind(pageDataManager), 10000);
+    setNamedInterval("data", pageDataManager.updateData.bind(pageDataManager), 10000); //update every 10000ms
 
     $(document).ready(function () {
-        $('.pick_bell').click(function () {
+        $('.pick_bell').click(function () { //enable functionality on the downdown
             var arrow = $(this);
-            if (arrow.hasClass('dd_active')) {
-                closeDropdown();
-            } else {
-                pageDataManager.updateClasses();
-                arrow.removeClass('dd_inactive');
+            if (arrow.hasClass('dd_active')) { //if dropdown is already open
+                closeDropdown(); //close it
+            } else { //open the dropdown
+                pageDataManager.updateClasses(); //get the current classes
+                arrow.removeClass('dd_inactive'); //switch to active
                 arrow.addClass('dd_active');
-                createClassDropdown(pageDataManager.classes);
+                createClassDropdown(pageDataManager.classes); //make a dropdown with the classes
             }
         });
     });
