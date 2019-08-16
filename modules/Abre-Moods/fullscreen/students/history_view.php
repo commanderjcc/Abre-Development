@@ -144,7 +144,6 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         var tickOffset = (endDate.valueOf() - startDate.valueOf()) / 10; //12 is the number of ticks we'll be using
         var ticks = [];
         for (i = 0; i <= 10; i++) {
-            console.log(i);
             ticks.push(startDate.valueOf() + i * tickOffset); //add milisecond values for use with our ticks later in the chart
         }
 
@@ -225,10 +224,10 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
 
     jqxhr.done(function (responseData) {
-        console.log(JSON.parse(responseData));
         responseData = JSON.parse(responseData);
-
+        console.log(responseData);
         data = responseData;
+        data.history = data.history.reverse();
         var filteredData = autoFilter(data.history, moment().subtract(7, 'd'), moment());
         var graphData = {
             series: [
@@ -323,7 +322,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             </div>`];
         responseData.history.forEach((moodObj) => {//for each mood in the data
             //append one to the history box
-            $('#moodHistory').append(outline[0] + moodObj.mood + outline[1] + capitalizeFirst(moodObj.mood) + outline[2] + moment(moodObj.time).format('h:mm A') + outline[3] + moment(moodObj.time).format('dddd[,] MMM Do'))
+            $('#moodHistory').prepend(outline[0] + moodObj.mood + outline[1] + capitalizeFirst(moodObj.mood) + outline[2] + moment(moodObj.time).format('h:mm A') + outline[3] + moment(moodObj.time).format('dddd[,] MMM Do'))
         })
 
     });
