@@ -85,13 +85,13 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         $('.click_catcher').click(function () {
             closeDropdown() //if the person clicks off the dropdown selection, close the dropdown
         });
-        options.forEach(function (element, index) { //for each class...
-            //add a dropdown menu
-            $('.select_dropdown').append(layout[0] + (index + 1) + layout[1] + element + layout[2] + (index + 1) + layout[3]);
+        Object.keys(options).forEach(function (period) { //for each period we have...
+            //add a dropdown menu part
+            $('.select_dropdown').append(layout[0] + (period) + layout[1] + options[period] + layout[2] + (period) + layout[3]);
         });
 
         $('.class_select_dropdown').click(function () { //add click function to all of them at once
-            selectedClass = $(this).data('index') - 1; //get the selected class with the data-index property
+            selectedClass = $(this).data('index'); //get the selected class with the data-index property
             closeDropdown();
             pageDataManager.classChanged(); //update the class data
             pageDataManager.updateData();

@@ -94,7 +94,7 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
 
         constructor() {
             this.update();//initialize all values
-            selectedClass = parseInt(Object.keys(this.getCurrentPeriod(this.now))[0]) - 1; //set selected class to be the current class, -1 bc schedule is 1 based and needs to be 0 based
+            selectedClass = parseInt(Object.keys(this.getCurrentPeriod(this.now))[0]); //set selected class to be the current class, -1 bc schedule is 1 based and needs to be 0 based
         }
 
         update(when = moment()) { //updates all the times to be current
@@ -193,7 +193,7 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
             'crisis': [],
         };
         rawStudentData = {}; //raw data used for quick testing for updates
-        classes = []; //the available classes for the teachers
+        classes = {}; //the available classes for the teachers
 
         static isEquivalent(a, b) { //used to test equivalence later
             if (a == null || b == null || a == undefined || b == undefined) {
@@ -267,7 +267,7 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
             jqxhr.done(data => {
                 this.classes = JSON.parse(data); //store response as classes
                 $('#class_picker .class_name').html(this.classes[selectedClass]); //update the page with the new class
-                $('#class_picker .bell').html('Bell '+(selectedClass+1));
+                $('#class_picker .bell').html('Bell '+(selectedClass));
             });
 
         }
@@ -285,12 +285,12 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
             this.rawStudentData = '';
             $('.student').remove(); //remove all the students
             $('#class_picker .class_name').html(this.classes[selectedClass]); //update the title with the new class
-            $('#class_picker .bell').html('Bell '+(selectedClass+1)); //change the bell number
+            $('#class_picker .bell').html('Bell '+(selectedClass)); //change the bell number
         }
 
         updateData() { //used to fetch all the data
             var jqxhr = $.post('/modules/Abre-Moods/data_access/teachers/get_all_students_status.php', {
-                "bell": selectedClass + 1 //need to add 1 to selectedClass because its zero based
+                "bell": selectedClass //need to add 1 to selectedClass because its zero based
             });
             //Same here with the arrow function, it makes everything easier
             jqxhr.done(data => {
@@ -307,7 +307,7 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
                                 //determining which zone they'll be in
                                 var zone; // the zone of the student
                                 var lastUpdateMoment = moment(tempData[studentID]['time']); //gets the time the student last posted a mood
-                                var selectedPeriodStartTime = masonSchedule.getPeriodStart(selectedClass + 1); //get the time the period started, add one so the selected class matches the appearance-based naming of the classes
+                                var selectedPeriodStartTime = masonSchedule.getPeriodStart(selectedClass); //get the time the period started, add one so the selected class matches the appearance-based naming of the classes
                                 if (masonSchedule.isAfterPeriodStart(lastUpdateMoment, selectedPeriodStartTime)) { //did the student update after the period started
                                     zone = tempData[studentID]['zone']; //they updated after the start of the period so their response is sorted
                                 } else {
