@@ -18,6 +18,8 @@
     * version 3 along with this program.  If not, see https://www.gnu.org/licenses/agpl-3.0.en.html.
     */
 
+//used to get all the mood data for the graph/history view
+
 //required verification files
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
 require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
@@ -28,7 +30,7 @@ $siteID = intval($_SESSION['siteID']);
 if($_SESSION['usertype']=="staff"){
     $staffID = intval(GetStaffUniqueID($email));
     $studentID = $_POST['studentID'];
-} else {
+} else { //if they're not staff dont trust their post data and check against the session email
     $studentID = GetStudentUniqueID($email);
 }
 
@@ -89,6 +91,7 @@ $student = [
     'name' => $studentName,
 ];
 
+//return student object as JSON
 echo json_encode($student);
 //close up shop
 $moodStmt->close();
