@@ -21,15 +21,16 @@ require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
 require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
 require_once(dirname(__FILE__) . '/../../../../core/abre_functions.php');
 
-$email = $_SESSION['escapedemail'];
+$email = $_SESSION['escapedemail']; //get staff identification from session
 $staffID = intval(GetStaffUniqueID($email));
 $siteID = intval($_SESSION['siteID']);
 
-$sql = 'SELECT CourseName FROM Abre_StaffSchedules WHERE StaffID = '.$staffID.' AND siteID = '.$siteID.' Order by SectionCode ASC, Period ASC';
+//query db for courses with
+$sql = 'SELECT CourseName, Period FROM Abre_StaffSchedules WHERE StaffID = '.$staffID.' AND siteID = '.$siteID.' Order by SectionCode ASC, Period ASC';
 $result = $db->query($sql);
 $classes = [];
 while ($row = $result->fetch_assoc()) {
-    array_push($classes, $row['CourseName']);
+    $classes[$row['Period']] = $row['CourseName'];
 }
 
 echo json_encode($classes);
