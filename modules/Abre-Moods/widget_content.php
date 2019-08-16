@@ -29,16 +29,7 @@
 
 
 <?php
-	//different icons and text for staff vs students
-	//$pagerestrictions="staff";
-	//$pagerestrictions="student";
-	//if($_SESSION['usertype']=="student")
-	//if($pagerestrictions=="student")
-
-	//See if hard coding in permisions.php worked....
-	//$isStudent = true;
-	//$isStaff = false;
-	if($isStudent)
+	if($isStudent) //$isStudent and $isStaff comes from permissions.php
 	{
 		//insert all the data from /widget/students/students_widget_content.php
 		require(dirname(__FILE__) . "/widget/students/view.php");
