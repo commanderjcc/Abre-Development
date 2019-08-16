@@ -94,7 +94,7 @@ require_once(dirname(__FILE__) . '/../../permissions.php');?>
 
         constructor() {
             this.update();//initialize all values
-            selectedClass = parseInt(Object.keys(this.getCurrentPeriod(this.now))[0]); //set selected class to be the current class, -1 bc schedule is 1 based and needs to be 0 based
+            selectedClass = parseInt(Object.keys(this.getCurrentPeriod(this.now))[0]); //set selected class to be the current class
         }
 
         update(when = moment()) { //updates all the times to be current

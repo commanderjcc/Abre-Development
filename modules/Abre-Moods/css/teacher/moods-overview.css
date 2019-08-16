@@ -80,6 +80,7 @@ i.dd_inactive {
     flex-flow: column nowrap;
     align-items: center;
     margin: 5px;
+    cursor: pointer;
 }
 
 .student_image {

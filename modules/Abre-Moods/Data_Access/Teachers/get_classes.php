@@ -25,12 +25,12 @@ $email = $_SESSION['escapedemail']; //get staff identification from session
 $staffID = intval(GetStaffUniqueID($email));
 $siteID = intval($_SESSION['siteID']);
 
-//query db for courses with
+//query db for courses with the staffid and siteid
 $sql = 'SELECT CourseName, Period FROM Abre_StaffSchedules WHERE StaffID = '.$staffID.' AND siteID = '.$siteID.' Order by SectionCode ASC, Period ASC';
 $result = $db->query($sql);
 $classes = [];
 while ($row = $result->fetch_assoc()) {
-    $classes[$row['Period']] = $row['CourseName'];
+    $classes[$row['Period']] = $row['CourseName']; //output all the courses by period into the classes object
 }
 
 echo json_encode($classes);
