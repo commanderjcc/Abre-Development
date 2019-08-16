@@ -32,7 +32,7 @@ $bell = $_POST["bell"];
 $stmt = $db->stmt_init();
 $sql = 'SELECT StudentID FROM Abre_StudentSchedules WHERE StaffID = ? AND Period = ? AND siteID = '.$siteID;
 $stmt->prepare($sql);
-//prevents SQL injection by using variables to encapulsate everything
+//prevents SQL injection by using variables to encapsulate everything
 $stmt->bind_param("ii",$staffID,$bell);
 $stmt->execute();
 
