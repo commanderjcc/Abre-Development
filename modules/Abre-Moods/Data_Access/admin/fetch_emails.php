@@ -19,23 +19,24 @@
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php'); //required verification security
 require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
 
-$button = $_POST['button'];
+$button = $_POST['button']; //get button we're currently working with
 $siteID = intval($_SESSION['siteID']);
 
+//ask db for all the emails and related data for that button
 $sql = "Select id, email, admin, counselor FROM moods_contact_list WHERE buttonName = '" . $button . "' AND siteID = " . $siteID;
 $result = $db->query($sql);
 
 $emails = [];
-if ($result) {
-    while($emailrow = $result->fetch_assoc()) {
+if ($result) { //if we have a result
+    while($emailrow = $result->fetch_assoc()) { //for each result...
         $emailObj = [
             'id' => $emailrow['id'],
             'email' => $emailrow['email'],
             'admin' => $emailrow['admin'],
             'counselor' => $emailrow['counselor'],
         ];
-        array_push($emails, $emailObj);
+        array_push($emails, $emailObj); //push the information from that row into the emails array
     }
 }
 
-echo json_encode($emails);
+echo json_encode($emails); //send email array to client with json

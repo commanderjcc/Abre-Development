@@ -18,12 +18,15 @@
 //required verifications
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php'); //required verification security
 require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
-$data = $_POST['data'];
+$data = $_POST['data']; //shouldn't need to run escaping stuff on it bc using bind param
 $siteID = intval($_SESSION['siteID']);
 
+//only need to worry about updating bc should be inserted when we call fetch_settings and create it if its missing.
 $sql = 'UPDATE moods_settings Set emailAdmin = ?, emailCounselors = ?, emailTeacher = ?, willLink = ?, link = ? where buttonName = ? and siteID = ?';
-$stmt = $db->stmt_init();
-$stmt->prepare($sql);
-$stmt->bind_param('iiiissi', intval($data['emailAdmin']), intval($data['emailCounselors']), intval($data['emailTeacher']), intval($data['willLink']), $data['link'], $data['button'], $siteID);
-$stmt->execute();
-$stmt->close();
+$stmt = $db->stmt_init(); //create statement
+$stmt->prepare($sql); //prepare sql for use in statement
+$stmt->bind_param('iiiissi', intval($data['emailAdmin']), intval($data['emailCounselors']), intval($data['emailTeacher']), intval($data['willLink']), $data['link'], $data['button'], $siteID); //insert data into statement
+$stmt->execute(); //execute statement
+$stmt->close(); //close up
+
+$db->close();

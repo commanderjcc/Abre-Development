@@ -19,30 +19,32 @@
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php'); //required verification security
 require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
 
-$button = $_POST['button'];
+$button = $_POST['button']; //get what button we're talking about
 $siteID = intval($_SESSION['siteID']);
 
+//fetch all the settings for that button from db
 $sql = "Select id, emailAdmin, emailCounselors, emailTeacher, willLink, link FROM moods_settings WHERE buttonName = '".$button."' AND siteID = ".$siteID;
 $result = $db->query($sql);
 
-if($result->num_rows > 0) {
+if($result->num_rows > 0) { //if a result exists..
     $row = $result->fetch_assoc();
-    $checkboxes = [
+    $checkboxes = [ //make the checkboxes object with the data
         'emailAdmin' => $row['emailAdmin'],
         'emailCounselors' => $row['emailCounselors'],
         'emailTeacher' => $row['emailTeacher'],
         'willLink' => $row['willLink'],
         'link' => $row['link'],
     ];
-} else {
+} else { //if its empty...
     $emptystring = '';
+    //insert new default/blank row so we can update it later
     $sql = 'INSERT into moods_settings(buttonName, emailAdmin, emailCounselors, emailTeacher, willLink, link, siteID) values (?,0,0,0,0,?,?)';
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
     $stmt->bind_param('ssi',$button,$emptystring,$siteID);
     $stmt->execute();
     $stmt->close();
-    $checkboxes = [
+    $checkboxes = [ //create a checkbox object with default data inside
         'emailAdmin' => 0,
         'emailCounselors' => 0,
         'emailTeacher' => 0,
@@ -52,5 +54,6 @@ if($result->num_rows > 0) {
 }
 
 $db->close();
+
+//respond with json encoded data about checkboxes
 echo json_encode($checkboxes);
-//echo 'done';

@@ -20,24 +20,24 @@ require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php'); //r
 require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
 
 $siteID = intval($_SESSION['siteID']);
-$operation = $_POST['operation'];
-$data = $_POST['data'];
+$operation = $_POST['operation']; //get the current operation
+$data = $_POST['data']; //shouldn't need to run escaping stuff on it bc using bind param
 
-if ($operation === 'update') {
+if ($operation === 'update') { //if we need to update a row, use update command
     $sql = "UPDATE moods_contact_list set email = ?, admin = ?, counselor = ? Where ID = ? and buttonName = ? and siteID = " . $siteID;
-    $stmt = $db->stmt_init();
-    $stmt->prepare($sql);
-    $stmt->bind_param('siiis',$data['email'],intval($data['admin']),intval($data['counselor']),intval($data['id']),$data['button']);
-    $stmt->execute();
-    $stmt->close();
-} elseif ($operation === 'delete') {
+    $stmt = $db->stmt_init(); //create statement
+    $stmt->prepare($sql); //prepare sql for use with statement
+    $stmt->bind_param('siiis',$data['email'],intval($data['admin']),intval($data['counselor']),intval($data['id']),$data['button']); //insert data into statement
+    $stmt->execute(); //run statement
+    $stmt->close(); //close up shop
+} elseif ($operation === 'delete') { //if we need to delete a row, use delete command
     $sql = "Delete From moods_contact_list Where id = ? and buttonName = ? and siteID =" . $siteID;
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
     $stmt->bind_param('is',intval($data['id']),$data['button']);
     $stmt->execute();
     $stmt->close();
-} elseif ($operation === 'add') {
+} elseif ($operation === 'add') { //if we need to add a row, use insert command
     $sql = "INSERT INTO moods_contact_list(buttonName,email,admin,counselor,siteID) values (?,?,?,?,?)";
     $stmt = $db->stmt_init();
     $stmt->prepare($sql);
@@ -46,3 +46,5 @@ if ($operation === 'update') {
     echo $stmt->insert_id;
     $stmt->close();
 }
+
+$db->close();
