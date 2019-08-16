@@ -48,6 +48,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 </script>
 
 <script defer type="text/javascript">
+    //make some global variables
     var zoneConversion = ['', 'Blue', 'Green', 'Yellow', 'Red', ''];
     var data;
     var options;
@@ -59,8 +60,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         })
     };
 
-    var installPicker = function () {
-        $('#durationPicker').daterangepicker({
+    var installPicker = function () { //used to add the picker to the page once its ready to be installed
+        $('#durationPicker').daterangepicker({ //create daterangepicker, use daterangepicker.com/#options for more info
             "showDropdowns": true,
             "timePicker": true,
             "timePickerIncrement": 5,
@@ -74,8 +75,8 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             "linkedCalendars": false,
             "showCustomRangeLabel": false,
             "alwaysShowCalendars": true,
-            "startDate": "08/07/2019",
-            "endDate": "08/13/2019",
+            "startDate": moment().subtract(7,'d').format('MM/DD/YY'), //start with this week
+            "endDate": moment().format('MM/DD/YY'),
             "opens": "left",
             "buttonClasses": "mdl-button margined",
             "applyButtonClasses": "mdl-button--raised mdl-button--colored"
@@ -86,9 +87,9 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
     };
 
     var updateChart = function (data, start, end) {
-        var filteredData = autoFilter(data.history, start, end);
+        var filteredData = autoFilter(data.history, start, end); //filter the data by the dates chosen
 
-        var graphData = {
+        var graphData = { //insert those points into the graph data
             series: [
                 {
                     name: 'mood',
@@ -101,41 +102,41 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                 showLabel: true,
                 showGrid: true,
                 type: Chartist.FixedScaleAxis,
-                low: filteredData.ticks[0],
-                high: filteredData.ticks[10],
+                low: filteredData.ticks[0], //set low to first tick
+                high: filteredData.ticks[10], //set high to last tick
                 ticks: filteredData.ticks,
-                labelInterpolationFnc: (function (filteredData) {
+                labelInterpolationFnc: (function (filteredData) { // this whole thing is just to decide the kind of labels the x axis will use based on the dates chosen
                     var duration = filteredData.ticks[10] - filteredData.ticks[0];
                     if (duration <= moment.duration(1, 'd')) {
-                        return function (value)  {
-                            return moment(value).format('h:mm A');
+                        return function (value)  { //return a function that returns a formatted moment based on a value
+                            return moment(value).format('h:mm A'); //1:25 PM
                         };
                     } else if (duration <= moment.duration(10, 'd')) {
                         return function (value)  {
-                            return moment(value).format('dd, h:mm A');
+                            return moment(value).format('ddd, h:mm A'); //Mon, 1:25 PM
                         };
                     } else if (duration <= moment.duration(30, 'd')) {
                         return function (value)  {
-                            return moment(value).format('MMM, Do');
+                            return moment(value).format('MMM Do'); //Jul 12th
                         };
                     } else if (duration <= moment.duration(1, 'y')) {
                         return function (value)  {
-                            return moment(value).format('MMM Do YY');
+                            return moment(value).format("MMM D YY");//Jul 12 19
                         };
                     } else if (duration <= moment.duration(2, 'y')) {
                         return function (value)  {
-                            return moment(value).format('MMM YY');
+                            return moment(value).format("MMM 'YY");//Jul '19
                         };
                     } else {
                         return function (value)  {
-                            return moment(value).format('MM/DD/YY');
+                            return moment(value).format('MM/DD/YY');//07/12/19
                         };
                     }
-                })(filteredData),
+                })(filteredData), //call the function enclosed with () immediately while creating the options object and set LabelInterpolationFnc to the result, which should be one of the functions
             }
         };
 
-        chart.update(graphData, options, true);
+        chart.update(graphData, options, true); //update the chart with the new data and options but if we didn't include the option keep it the same as it was before
     };
 
     var autoFilter = function (data, startDate, endDate) {
@@ -216,8 +217,6 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 
             points.push({'meta': mood, 'x': time, 'y': zone}); //all the conversions have already been done so we can add the points in plain
         }
-        console.log(ticks);
-        console.log(points);
         return {'ticks': ticks, 'points': points};
     };
 
@@ -230,51 +229,51 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
         responseData = JSON.parse(responseData);
 
         data = responseData;
-        var filteredData = autoFilter(data.history.reverse(), moment().subtract(7, 'd'), moment());
+        var filteredData = autoFilter(data.history, moment().subtract(7, 'd'), moment());
         var graphData = {
             series: [
                 {
                     name: 'mood',
-                    data: filteredData.points,
+                    data: filteredData.points, //insert filtered points into the graphdata
                 }
             ]
         };
 
         var options = {
-            width: 'calc(100% - 3rem)',
-            chartPadding: {
+            width: 'calc(100% - 3rem)', //leave 3rem of space for the labels that get cut off
+            chartPadding: { //give extra padding on the bottom for the labels
                 top: 10,
                 right: 10,
                 bottom: 20,
                 left: 10,
             },
             axisY: {
-                type: Chartist.FixedScaleAxis,
+                type: Chartist.FixedScaleAxis, //go from 0 to 5 on the y axis
                 high: 5,
                 low: 0,
                 divisor: 5,
                 referenceValue: 1,
                 labelInterpolationFnc: function (value) {
-                    return zoneConversion[value];
+                    return zoneConversion[value]; //change the 0-5 into zones based on zoneConversion array
                 },
             },
             axisX: {
                 type: Chartist.FixedScaleAxis,
-                low: filteredData.ticks[0],
-                high: filteredData.ticks[10],
+                low: filteredData.ticks[0], //set the low to be the first tick
+                high: filteredData.ticks[10], //set the high to be the last tick
                 ticks: filteredData.ticks,
                 labelInterpolationFnc: function (value) {
                     //console.log(value);
-                    return moment(value).format('dd, h:mm A');
+                    return moment(value).format('dd, h:mm A'); //we know its going to be a week so use the week one
                 }
             },
             plugins: [
-                Chartist.plugins.tooltip({
+                Chartist.plugins.tooltip({ //enable tooltips
                     anchorToPoint: true,
                     appendToBody: true,
                     transformTooltipTextFnc: function (value) {
                         //console.log(value);
-                        return new moment(parseInt(value.split(',')[0])).format('MMM D h:mm A');
+                        return new moment(parseInt(value.split(',')[0])).format('MMM D h:mm A'); //what should we resolve the miliseconds value to, use moment and format as date/time
                     }
                 }),
             ],
@@ -308,11 +307,13 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
             }
         });
 
-        $('#student_name').text(responseData.name);
-        $('#profileHolder').css('background-image', 'url("' + responseData.photo + '")');
-        $('#profileHolder .student_mood').addClass('twa-' + responseData.mood);
-        $('#lastMood').text('"' + capitalizeFirst(responseData.mood) + '" at ' + moment(responseData.time).format('h:mm A'));
+        // update the left side of the page with the history in list form
+        $('#student_name').text(responseData.name); //add student name
+        $('#profileHolder').css('background-image', 'url("' + responseData.photo + '")'); //add student photo
+        $('#profileHolder .student_mood').addClass('twa-' + responseData.mood); //add current mood emoji
+        $('#lastMood').text('"' + capitalizeFirst(responseData.mood) + '" at ' + moment(responseData.time).format('h:mm A')); //add mood and time
 
+        //use this outline to create the list
         var outline = [`<div class="mood">
                 <i class="twa twa-3x twa-`, `"></i>
                 <div class="moodDetails">
@@ -320,14 +321,14 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
                     <span class="moodDate">`, `</span>
                 </div>
             </div>`];
-        responseData.history.forEach((moodObj) => {
-            //console.log(moodObj);
+        responseData.history.forEach((moodObj) => {//for each mood in the data
+            //append one to the history box
             $('#moodHistory').append(outline[0] + moodObj.mood + outline[1] + capitalizeFirst(moodObj.mood) + outline[2] + moment(moodObj.time).format('h:mm A') + outline[3] + moment(moodObj.time).format('dddd[,] MMM Do'))
         })
 
     });
 
-    $(window).on('hashchange', function(){ //remove a bunch of janky junk when we click away
+    $(window).on('hashchange', function(){ //remove a bunch of janky junk when we leave the page
         $('#durationPicker').daterangepicker().remove();
         $('.daterangepicker').remove();
         $('chartist-tooltip').remove();

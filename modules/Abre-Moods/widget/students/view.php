@@ -64,7 +64,7 @@ echo "<link rel='stylesheet' type='text/css' href='/modules/" . basename(dirname
 </div>
 <!--save layout of additional moods-->
 <script type='text/javascript'>
-    let additionalMoods = `
+    var additionalMoods = `
           <div class='emoji centered_container no_padding'>
               <div id='widget_stressed' class='emoji widget_emoji'>
                   <i class='twa twa-5x twa-stressed'></i>
