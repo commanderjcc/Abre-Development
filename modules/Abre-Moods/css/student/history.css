@@ -160,6 +160,35 @@
     stroke: rgba(0,0,0,.7) !important;
 }
 
+.ct-label.ct-horizontal, .ct-chart-line {
+    white-space: nowrap;
+    overflow: visible !important;
+}
+
+.ct-label.ct-horizontal.ct-end {
+    padding-right: 5px;
+    transform-origin: left top;
+}
+
+#controller {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+}
+
+td, th {
+    padding: unset;
+}
+
+select {
+    display: unset;
+    height: unset;
+}
+
+.margined {
+    margin: 5px;
+}
+
 
 
 @media only screen and (max-device-width: 1000px) {
@@ -327,12 +356,15 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: orange;
     }
 
     #ctx {
         width: 100%;
         height: 100%;
+    }
+
+    .ct-label.ct-horizontal.ct-end {
+        transform: rotate(70deg);
     }
 
     #moodHistory.mdl-shadow--2dp {
@@ -512,7 +544,6 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: orange;
     }
 
     #ctx {
