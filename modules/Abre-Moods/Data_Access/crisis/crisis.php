@@ -20,7 +20,7 @@
 require_once(dirname(__FILE__) . '/../../../../core/abre_verification.php');
 
 
-
+//this function is called by /Data_Access/Students/upload_mood.php when they encounter a crisis button
 function handleCrisis($mood, $time, $currentPeriod, $studentId, $displayName, $studentEmail, $siteID) {
     //connect to the database and get the current settings
     require(dirname(__FILE__) . '/../../../../core/abre_dbconnect.php');
@@ -111,7 +111,7 @@ function handleCrisis($mood, $time, $currentPeriod, $studentId, $displayName, $s
         $stmtTeacherEmail->close();
 
         //email the teacher
-        $success = mail($teacherEmail,$displayName ." ". $moodstr,"Hello Mr./Ms. ".$teacherFName." ".$teacherLName.", \n At ".$time."(bell ".$currentPeriod."), your student ".$displayName."(".$studentId.") marked \"".$moodstr."\" through the moods app. \n\nYour administration has specified that this crisis response should email you. \nIf you believe this automated response was sent to you incorrectly, please notify an administrator.",'From: noreply@localhost');
+        mail($teacherEmail,$displayName ." ". $moodstr,"Hello Mr./Ms. ".$teacherFName." ".$teacherLName.", \n At ".$time."(bell ".$currentPeriod."), your student ".$displayName."(".$studentId.") marked \"".$moodstr."\" through the moods app. \n\nYour administration has specified that this crisis response should email you. \nIf you believe this automated response was sent to you incorrectly, please notify an administrator.",'From: noreply@localhost');
    }
 
 
@@ -119,5 +119,4 @@ function handleCrisis($mood, $time, $currentPeriod, $studentId, $displayName, $s
     if ($willLink == 1) {
         return $link;
     }
-
 }
