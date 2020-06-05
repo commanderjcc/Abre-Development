@@ -1,0 +1,48 @@
+.teacher_color_bar {
+    color: #FFFFFF;
+    height:64px;
+}
+
+.loading_bar{
+    background: rgba(0,0,0,0.1);
+    position: absolute;
+    z-index: 1;
+    height: 64px;
+    right: 0;
+    float: right;
+}
+
+.bar_text_container{
+    font-style: italic;
+    font-weight: 300;
+    align-items: center;
+    height: 100%;
+    overflow: visible auto;
+    white-space: nowrap;
+    z-index:2;
+    font-size: 45px;
+    line-height: 64px;
+    padding: 0 10px;
+}
+
+.num_students{
+    font-weight: 900;
+}
+
+#class_head_bar {
+    background: #FFFFFF;
+    color: #202020;
+}
+
+#blue{
+    background: #336699;
+}
+#green{
+    background: #44af69
+}
+#yellow{
+    background: #ffa216;
+}
+#red{
+    background: #F4594b;
+}

@@ -1,0 +1,23 @@
+//Student
+
+menu.php
+  |
+  |\__permissions.php
+
+
+  page_menu_or_roster.php
+    |
+    |\__permissions.php
+
+On click History
+    |
+    |\__page_history_or_overview.php
+    |     |
+    |      \__permissions.php
+    |
+     \__menu.php
+          \...
+
+
+//Admin
+//!!!! ADD A DATABASE to track teacher's use of the widget and fullscreen app

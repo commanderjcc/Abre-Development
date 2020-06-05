@@ -1,0 +1,30 @@
+index.php //Base Abre System
+  |
+  |\__config.php
+  |
+  |
+  |\__menu.php //Called on fullscreen load
+  |     |
+  |     |\__TeacherMenu.php
+  |     |     |
+  |     |     |\__Overview.php
+  |     |     |
+  |     |     |\__StudentHistory.php
+  |     |     |
+  |     |      \__HistoryOverview.php
+  |     |
+  |     |
+  |      \__StudentMenu.php
+  |           |
+  |           |\__Home.php
+  |           |
+  |            \__History.php
+  |
+  |\__widget.php
+  |     |
+  |     |\__TeacherWidget.php
+  |     |
+  |     |
+  |      \__SutdentWidget.php
+  |
+  |\__
